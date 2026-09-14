@@ -129,7 +129,7 @@ async function runBoot(text) {
   const totalGenres = allGenres.length;
 
   await delay(120);
-  log.innerHTML += `<div style="color:#F0C882">✓ ${totalGenres} genre sections · ${totalAlbums} albums indexed</div>`;
+  log.innerHTML += `<div style="color:#E8FF3C">✓ ${totalGenres} genre sections · ${totalAlbums} albums indexed</div>`;
   await delay(280);
 
   // Build UI
@@ -171,7 +171,7 @@ function buildNavTree() {
   // "All genres" at top
   tree.innerHTML = `<div class="gnav-item${activeGenreIdx === null ? ' active' : ''}" onclick="setActiveGenre(null)">
       <div class="gi-dot"></div>
-      <span class="gi-name" style="color:var(--amber)">All genres</span>
+      <span class="gi-name" style="color:var(--signal)">All genres</span>
       <span class="gi-count">${allGenres.reduce((n,g)=>n+g.albums.filter(a=>isHeard(a)).length,0)}/${allGenres.reduce((n,g)=>n+g.albums.length,0)}</span>
     </div>` + html;
 }
@@ -271,6 +271,7 @@ function renderField() {
     }).join('');
 
     html += `<div class="genre-block" id="genre-block-${i}">
+      <div class="genre-block-line"></div>
       <div class="genre-header" onclick="toggleGenre(${i})">
         <div class="gh-left">
           <div class="gh-family">${g.family}</div>
@@ -322,10 +323,29 @@ function collapseAll(){ allGenres.forEach((_,i) => collapsedGenres.add(i)); rend
 // ── DOT CLICK (mark heard without opening drawer) ──
 function handleDotClick(e, genreIdx, albumIdx) {
   e.stopPropagation();
+  const wasHeard = isHeard(allGenres[genreIdx].albums[albumIdx]);
   toggleHeard(allGenres[genreIdx].albums[albumIdx]);
   renderField();
   updateGlobalProgress();
   buildNavTree();
+  // Pulse animation on mark-heard
+  if (!wasHeard) {
+    const row = document.querySelector(`#genre-block-${genreIdx} .album-row:nth-child(${albumIdx+1})`);
+    // Find by data or positional — simpler: query all rows in block
+    const rows = document.querySelectorAll(`#genre-block-${genreIdx} .album-row`);
+    rows.forEach(r => {
+      // match by index in original list
+    });
+    // Just find the newly-heard row
+    const allRows = document.querySelectorAll(`#grid-${genreIdx} .album-row`);
+    allRows.forEach(r => { r.classList.remove('just-heard'); });
+    // Re-query after render to find the heard row at this album position
+    const target = document.querySelector(`#grid-${genreIdx} .album-row.heard`);
+    if (target) {
+      target.classList.add('just-heard');
+      setTimeout(() => target.classList.remove('just-heard'), 600);
+    }
+  }
   if (openAlbum && openAlbum.genreIdx === genreIdx && openAlbum.albumIdx === albumIdx) {
     refreshDrawer();
   }
