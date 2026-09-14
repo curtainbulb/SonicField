@@ -1,0 +1,1504 @@
+SONICFIELD LIST
+
+
+ROCK FOUNDATIONS — British Invasion & Early Rock (The moment American R&B came back across the Atlantic transformed; the DNA of everything after)
+
+- [ ] Please Please Me (1963) — The Beatles
+- [ ] With The Beatles (1963) — The Beatles
+- [ ] A Hard Day's Night (1964) — The Beatles
+- [ ] Beatles for Sale (1964) — The Beatles
+- [ ] Help! (1965) — The Beatles
+- [ ] Rubber Soul (1965) — The Beatles
+- [ ] Revolver (1966) — The Beatles
+- [ ] Sgt. Pepper's Lonely Hearts Club Band (1967) — The Beatles
+- [ ] Magical Mystery Tour (1967) — The Beatles
+- [ ] The Beatles [White Album] (1968) — The Beatles
+- [ ] Abbey Road (1969) — The Beatles
+- [ ] Let It Be (1970) — The Beatles
+- [ ] The Rolling Stones (1964) — The Rolling Stones
+- [ ] The Rolling Stones No. 2 (1965) — The Rolling Stones
+- [ ] Out of Our Heads (1965) — The Rolling Stones
+- [ ] Aftermath (1966) — The Rolling Stones
+- [ ] Between the Buttons (1967) — The Rolling Stones
+- [ ] Beggars Banquet (1968) — The Rolling Stones
+- [ ] Let It Bleed (1969) — The Rolling Stones
+- [ ] Sticky Fingers (1971) — The Rolling Stones
+- [ ] Exile on Main St. (1972) — The Rolling Stones
+- [ ] Goats Head Soup (1973) — The Rolling Stones
+- [ ] Some Girls (1978) — The Rolling Stones
+- [ ] The Kinks Are the Village Green Preservation Society (1968) — The Kinks
+- [ ] Arthur (Or the Decline and Fall of the British Empire) (1969) — The Kinks
+- [ ] Face to Face (1966) — The Kinks
+- [ ] Something Else by the Kinks (1967) — The Kinks
+- [ ] Lola Versus Powerman and the Moneygoround, Part One (1970) — The Kinks
+- [ ] My Generation (1965) — The Who
+- [ ] A Quick One (1966) — The Who
+- [ ] The Who Sell Out (1967) — The Who
+- [ ] Tommy (1969) — The Who
+- [ ] Who's Next (1971) — The Who
+- [ ] Quadrophenia (1973) — The Who
+- [ ] Fresh Cream (1966) — Cream
+- [ ] Disraeli Gears (1967) — Cream
+- [ ] Wheels of Fire (1968) — Cream
+- [ ] Goodbye (1969) — Cream
+- [ ] Five Live Yardbirds (1964) — The Yardbirds
+- [ ] Having a Rave Up (1965) — The Yardbirds
+- [ ] Roger the Engineer (1966) — The Yardbirds
+- [ ] The Animals (1964) — The Animals
+- [ ] Animal Tracks (1965) — The Animals
+- [ ] Donovan's Greatest Hits (1969) — Donovan
+- [ ] Sunshine Superman (1966) — Donovan
+
+ROCK FOUNDATIONS — American Rock & Folk-Rock (The translation of rock into American literary ambition; Dylan and his fallout)
+
+- [ ] Bob Dylan (1962) — Bob Dylan
+- [ ] The Freewheelin' Bob Dylan (1963) — Bob Dylan
+- [ ] The Times They Are a-Changin' (1964) — Bob Dylan
+- [ ] Another Side of Bob Dylan (1964) — Bob Dylan
+- [ ] Bringing It All Back Home (1965) — Bob Dylan
+- [ ] Highway 61 Revisited (1965) — Bob Dylan
+- [ ] Blonde on Blonde (1966) — Bob Dylan
+- [ ] John Wesley Harding (1967) — Bob Dylan
+- [ ] Nashville Skyline (1969) — Bob Dylan
+- [ ] Blood on the Tracks (1975) — Bob Dylan
+- [ ] Desire (1976) — Bob Dylan
+- [ ] The Basement Tapes (1975) — Bob Dylan & The Band
+- [ ] Music from Big Pink (1968) — The Band
+- [ ] The Band (1969) — The Band
+- [ ] Stage Fright (1970) — The Band
+- [ ] Cahoots (1971) — The Band
+- [ ] Rock of Ages (1972) — The Band
+- [ ] Mr. Tambourine Man (1965) — The Byrds
+- [ ] Turn! Turn! Turn! (1965) — The Byrds
+- [ ] Fifth Dimension (1966) — The Byrds
+- [ ] Younger Than Yesterday (1967) — The Byrds
+- [ ] The Notorious Byrd Brothers (1968) — The Byrds
+- [ ] Sweetheart of the Rodeo (1968) — The Byrds
+- [ ] Surrealistic Pillow (1967) — Jefferson Airplane
+- [ ] After Bathing at Baxter's (1967) — Jefferson Airplane
+- [ ] Crown of Creation (1968) — Jefferson Airplane
+- [ ] Volunteers (1969) — Jefferson Airplane
+- [ ] If You Can Believe Your Eyes and Ears (1966) — The Mamas & the Papas
+- [ ] The Mamas & the Papas (1966) — The Mamas & the Papas
+
+PSYCHEDELIC ROCK — American West Coast (San Francisco as cultural laboratory; acid, flowers, and the collapse of innocence)
+
+- [ ] Are You Experienced (1967) — The Jimi Hendrix Experience
+- [ ] Axis: Bold as Love (1967) — The Jimi Hendrix Experience
+- [ ] Electric Ladyland (1968) — The Jimi Hendrix Experience
+- [ ] The Doors (1967) — The Doors
+- [ ] Strange Days (1967) — The Doors
+- [ ] Waiting for the Sun (1968) — The Doors
+- [ ] The Soft Parade (1969) — The Doors
+- [ ] Morrison Hotel (1970) — The Doors
+- [ ] L.A. Woman (1971) — The Doors
+- [ ] Buffalo Springfield (1966) — Buffalo Springfield
+- [ ] Buffalo Springfield Again (1967) — Buffalo Springfield
+- [ ] Last Time Around (1968) — Buffalo Springfield
+- [ ] Crosby, Stills & Nash (1969) — Crosby, Stills & Nash
+- [ ] Déjà Vu (1970) — Crosby, Stills, Nash & Young
+- [ ] Forever Changes (1967) — Love
+- [ ] Da Capo (1967) — Love
+- [ ] Love (1966) — Love
+- [ ] Cheap Thrills (1968) — Big Brother & the Holding Company
+- [ ] I Got Dem Ol' Kozmic Blues Again Mama! (1969) — Janis Joplin
+- [ ] Pearl (1971) — Janis Joplin
+- [ ] Aoxomoxoa (1969) — Grateful Dead
+- [ ] Workingman's Dead (1970) — Grateful Dead
+- [ ] American Beauty (1970) — Grateful Dead
+- [ ] Live/Dead (1969) — Grateful Dead
+- [ ] Anthem of the Sun (1968) — Grateful Dead
+- [ ] Safe as Milk (1967) — Captain Beefheart
+- [ ] Trout Mask Replica (1969) — Captain Beefheart & His Magic Band
+- [ ] Strictly Personal (1968) — Captain Beefheart
+- [ ] Lick My Decals Off, Baby (1970) — Captain Beefheart & His Magic Band
+- [ ] The Velvet Underground & Nico (1967) — The Velvet Underground
+- [ ] White Light/White Heat (1968) — The Velvet Underground
+- [ ] The Velvet Underground (1969) — The Velvet Underground
+- [ ] Loaded (1970) — The Velvet Underground
+- [ ] Nuggets: Original Artyfacts from the First Psychedelic Era (1972) — Various Artists
+
+PSYCHEDELIC ROCK — British Psychedelia (The art-school inflection; more literary, more studio-bound, more sinister at the edges)
+
+- [ ] The Piper at the Gates of Dawn (1967) — Pink Floyd
+- [ ] A Saucerful of Secrets (1968) — Pink Floyd
+- [ ] More (1969) — Pink Floyd
+- [ ] Ummagumma (1969) — Pink Floyd
+- [ ] Atom Heart Mother (1970) — Pink Floyd
+- [ ] Meddle (1971) — Pink Floyd
+- [ ] The Dark Side of the Moon (1973) — Pink Floyd
+- [ ] Wish You Were Here (1975) — Pink Floyd
+- [ ] Animals (1977) — Pink Floyd
+- [ ] The Wall (1979) — Pink Floyd
+- [ ] The Final Cut (1983) — Pink Floyd
+- [ ] A Collection of Beatles Oldies (1966) — The Beatles
+- [ ] Odessa (1969) — Bee Gees
+- [ ] Their Satanic Majesties Request (1967) — The Rolling Stones
+- [ ] Something New (1964) — The Beatles
+- [ ] The Pretty Things (1964) — The Pretty Things
+- [ ] S.F. Sorrow (1968) — The Pretty Things
+- [ ] Parachute (1970) — The Pretty Things
+- [ ] Volume 1 (1969) — The Soft Machine
+- [ ] Third (1970) — The Soft Machine
+- [ ] Six (1973) — The Soft Machine
+- [ ] Tomorrow (1968) — Tomorrow
+- [ ] Pink (1994) — The Pretty Things
+
+PROGRESSIVE ROCK — Symphonic & Art Rock (Rock music that wanted to be taken as seriously as classical; ambition, technique, and concept albums)
+
+- [ ] In the Court of the Crimson King (1969) — King Crimson
+- [ ] In the Wake of Poseidon (1970) — King Crimson
+- [ ] Lizard (1970) — King Crimson
+- [ ] Islands (1971) — King Crimson
+- [ ] Larks' Tongues in Aspic (1973) — King Crimson
+- [ ] Starless and Bible Black (1974) — King Crimson
+- [ ] Red (1974) — King Crimson
+- [ ] Discipline (1981) — King Crimson
+- [ ] The Yes Album (1971) — Yes
+- [ ] Fragile (1971) — Yes
+- [ ] Close to the Edge (1972) — Yes
+- [ ] Tales from Topographic Oceans (1973) — Yes
+- [ ] Going for the One (1977) — Yes
+- [ ] Trespass (1970) — Genesis
+- [ ] Nursery Cryme (1971) — Genesis
+- [ ] Foxtrot (1972) — Genesis
+- [ ] Selling England by the Pound (1973) — Genesis
+- [ ] The Lamb Lies Down on Broadway (1974) — Genesis
+- [ ] A Trick of the Tail (1976) — Genesis
+- [ ] Wind & Wuthering (1976) — Genesis
+- [ ] Emerson, Lake & Palmer (1970) — Emerson, Lake & Palmer
+- [ ] Tarkus (1971) — Emerson, Lake & Palmer
+- [ ] Pictures at an Exhibition (1971) — Emerson, Lake & Palmer
+- [ ] Trilogy (1972) — Emerson, Lake & Palmer
+- [ ] Brain Salad Surgery (1973) — Emerson, Lake & Palmer
+- [ ] Pawn Hearts (1971) — Van der Graaf Generator
+- [ ] H to He, Who Am the Only One (1970) — Van der Graaf Generator
+- [ ] Godbluff (1975) — Van der Graaf Generator
+- [ ] Still Life (1976) — Van der Graaf Generator
+- [ ] Nursery Cryme (1971) — Genesis
+- [ ] Tarot Suite (1976) — Mike Oldfield
+- [ ] Tubular Bells (1973) — Mike Oldfield
+- [ ] Hergest Ridge (1974) — Mike Oldfield
+- [ ] Ommadawn (1975) — Mike Oldfield
+- [ ] Hat (1990) — Magma
+- [ ] Mekanïk Destruktïw Kommandöh (1973) — Magma
+- [ ] Köhntarkösz (1974) — Magma
+- [ ] Jannick Top — Infernal Machina (1977) — Jannick Top
+- [ ] Hatfield and the North (1974) — Hatfield and the North
+- [ ] The Rotters' Club (1975) — Hatfield and the North
+
+PROGRESSIVE ROCK — Canterbury Scene (The jazz-inflected, eccentric English strain; Soft Machine's orbit)
+
+- [ ] Robert Wyatt: Rock Bottom (1974) — Robert Wyatt
+- [ ] Ruth Is Stranger Than Richard (1975) — Robert Wyatt
+- [ ] The End of an Ear (1970) — Robert Wyatt
+- [ ] Matching Mole (1972) — Matching Mole
+- [ ] Little Red Record (1972) — Matching Mole
+- [ ] Caravan (1969) — Caravan
+- [ ] If I Could Do It All Over Again, I'd Do It All Over You (1970) — Caravan
+- [ ] In the Land of Grey and Pink (1971) — Caravan
+- [ ] Waterloo Lily (1972) — Caravan
+- [ ] Cunning Stunts (1975) — Caravan
+- [ ] Five Live Yardbirds (1964) — The Yardbirds
+- [ ] Banana Moon (1971) — Daevid Allen
+- [ ] Camembert Electrique (1969) — Gong
+- [ ] Radio Gnome Invisible Part 1 — Flying Teapot (1973) — Gong
+- [ ] You (1974) — Gong
+
+HARD ROCK & HEAVY METAL — Birth of Heavy (The moment volume became its own argument; blues raised to maximum aggression)
+
+- [ ] Led Zeppelin (1969) — Led Zeppelin
+- [ ] Led Zeppelin II (1969) — Led Zeppelin
+- [ ] Led Zeppelin III (1970) — Led Zeppelin
+- [ ] Led Zeppelin IV (1971) — Led Zeppelin
+- [ ] Houses of the Holy (1973) — Led Zeppelin
+- [ ] Physical Graffiti (1975) — Led Zeppelin
+- [ ] Presence (1976) — Led Zeppelin
+- [ ] In Through the Out Door (1979) — Led Zeppelin
+- [ ] Black Sabbath (1970) — Black Sabbath
+- [ ] Paranoid (1970) — Black Sabbath
+- [ ] Master of Reality (1971) — Black Sabbath
+- [ ] Vol. 4 (1972) — Black Sabbath
+- [ ] Sabbath Bloody Sabbath (1973) — Black Sabbath
+- [ ] Sabotage (1975) — Black Sabbath
+- [ ] Technical Ecstasy (1976) — Black Sabbath
+- [ ] Heaven and Hell (1980) — Black Sabbath
+- [ ] Deep Purple in Rock (1970) — Deep Purple
+- [ ] Fireball (1971) — Deep Purple
+- [ ] Machine Head (1972) — Deep Purple
+- [ ] Who Do We Think We Are (1973) — Deep Purple
+- [ ] Burn (1974) — Deep Purple
+- [ ] Stormbringer (1974) — Deep Purple
+- [ ] Montrose (1973) — Montrose
+- [ ] Paper Money (1974) — Montrose
+- [ ] UFO 1 (1971) — UFO
+- [ ] Phenomenon (1974) — UFO
+- [ ] Force It (1975) — UFO
+- [ ] Lights Out (1977) — UFO
+- [ ] Strangers in the Night (1979) — UFO
+
+HARD ROCK & HEAVY METAL — NWOBHM & Classic Metal (Iron Maiden, Judas Priest; the grammar of metal standardized and weaponized)
+
+- [ ] Judas Priest (1974) — Judas Priest
+- [ ] Sad Wings of Destiny (1976) — Judas Priest
+- [ ] Sin After Sin (1977) — Judas Priest
+- [ ] Stained Class (1978) — Judas Priest
+- [ ] Hell Bent for Leather (1978) — Judas Priest
+- [ ] British Steel (1980) — Judas Priest
+- [ ] Point of Entry (1981) — Judas Priest
+- [ ] Screaming for Vengeance (1982) — Judas Priest
+- [ ] Iron Maiden (1980) — Iron Maiden
+- [ ] Killers (1981) — Iron Maiden
+- [ ] The Number of the Beast (1982) — Iron Maiden
+- [ ] Piece of Mind (1983) — Iron Maiden
+- [ ] Powerslave (1984) — Iron Maiden
+- [ ] Somewhere in Time (1986) — Iron Maiden
+- [ ] Seventh Son of a Seventh Son (1988) — Iron Maiden
+- [ ] Motorhead (1977) — Motörhead
+- [ ] Overkill (1979) — Motörhead
+- [ ] Bomber (1979) — Motörhead
+- [ ] Ace of Spades (1980) — Motörhead
+- [ ] No Sleep 'til Hammersmith (1981) — Motörhead
+- [ ] Iron Fist (1982) — Motörhead
+- [ ] Diamond Head — Lightning to the Nations (1980) — Diamond Head
+- [ ] Killing Machine (1978) — Judas Priest
+- [ ] Wheels of Steel (1980) — Saxon
+- [ ] Strong Arm of the Law (1980) — Saxon
+- [ ] Denim and Leather (1981) — Saxon
+
+HARD ROCK & HEAVY METAL — American Metal & Hair Metal (The Hollywood glamour side; spectacle, hooks, excess)
+
+- [ ] Van Halen (1978) — Van Halen
+- [ ] Van Halen II (1979) — Van Halen
+- [ ] Women and Children First (1980) — Van Halen
+- [ ] Fair Warning (1981) — Van Halen
+- [ ] 1984 (1984) — Van Halen
+- [ ] 5150 (1986) — Van Halen
+- [ ] Aerosmith (1973) — Aerosmith
+- [ ] Get Your Wings (1974) — Aerosmith
+- [ ] Toys in the Attic (1975) — Aerosmith
+- [ ] Rocks (1976) — Aerosmith
+- [ ] Draw the Line (1977) — Aerosmith
+- [ ] Permanent Vacation (1987) — Aerosmith
+- [ ] Pump (1989) — Aerosmith
+- [ ] KISS (1974) — KISS
+- [ ] Hotter Than Hell (1974) — KISS
+- [ ] Dressed to Kill (1975) — KISS
+- [ ] Destroyer (1976) — KISS
+- [ ] Rock and Roll Over (1976) — KISS
+- [ ] Love Gun (1977) — KISS
+- [ ] Alive! (1975) — KISS
+- [ ] Out of the Cellar (1984) — Ratt
+- [ ] Shout at the Devil (1983) — Mötley Crüe
+- [ ] Theatre of Pain (1985) — Mötley Crüe
+- [ ] Girls, Girls, Girls (1987) — Mötley Crüe
+- [ ] Look What the Cat Dragged In (1986) — Poison
+- [ ] Slippery When Wet (1986) — Bon Jovi
+- [ ] New Jersey (1988) — Bon Jovi
+- [ ] Night Songs (1986) — Cinderella
+- [ ] Long Cold Winter (1988) — Cinderella
+
+HARD ROCK & HEAVY METAL — Thrash Metal (Speed, precision, and fury; the anti-corporate backlash inside metal itself)
+
+- [ ] Kill 'Em All (1983) — Metallica
+- [ ] Ride the Lightning (1984) — Metallica
+- [ ] Master of Puppets (1986) — Metallica
+- [ ] ...And Justice for All (1988) — Metallica
+- [ ] Metallica [Black Album] (1991) — Metallica
+- [ ] Load (1996) — Metallica
+- [ ] Garage Inc. (1998) — Metallica
+- [ ] Killing Is My Business... and Business Is Good! (1985) — Megadeth
+- [ ] Peace Sells... but Who's Buying? (1986) — Megadeth
+- [ ] So Far, So Good... So What! (1988) — Megadeth
+- [ ] Rust in Peace (1990) — Megadeth
+- [ ] Countdown to Extinction (1992) — Megadeth
+- [ ] Reign in Blood (1986) — Slayer
+- [ ] South of Heaven (1988) — Slayer
+- [ ] Seasons in the Abyss (1990) — Slayer
+- [ ] Spreading the Disease (1985) — Anthrax
+- [ ] Among the Living (1987) — Anthrax
+- [ ] State of Euphoria (1988) — Anthrax
+- [ ] Persistence of Time (1990) — Anthrax
+- [ ] Fistful of Metal (1984) — Anthrax
+- [ ] Bonded by Blood (1985) — Exodus
+- [ ] The Legacy (1987) — Testament
+- [ ] Darkness Descends (1986) — Dark Angel
+- [ ] Dimensional Rituals (2000) — Coroner
+
+HARD ROCK & HEAVY METAL — Death, Doom & Extreme Metal (Metal at its most confrontational; the underground refusal to compromise)
+
+- [ ] Scream Bloody Gore (1987) — Death
+- [ ] Leprosy (1988) — Death
+- [ ] Spiritual Healing (1990) — Death
+- [ ] Human (1991) — Death
+- [ ] Individual Thought Patterns (1993) — Death
+- [ ] Symbolic (1995) — Death
+- [ ] The Sound of Perseverance (1998) — Death
+- [ ] Seven Churches (1985) — Possessed
+- [ ] Altars of Madness (1989) — Morbid Angel
+- [ ] Blessed Are the Sick (1991) — Morbid Angel
+- [ ] Covenant (1993) — Morbid Angel
+- [ ] Like an Ever Flowing Stream (1991) — Dismember
+- [ ] Left Hand Path (1990) — Entombed
+- [ ] Cause of Death (1990) — Obituary
+- [ ] None So Vile (1996) — Cryptopsy
+- [ ] Slowly We Rot (1989) — Obituary
+- [ ] Epicus Doomicus Metallicus (1986) — Candlemass
+- [ ] Nightfall (1987) — Candlemass
+- [ ] Ancient Dreams (1988) — Candlemass
+- [ ] Black Sabbath Vol. 4 (1972) — Black Sabbath
+- [ ] Turn Loose the Swans (1992) — My Dying Bride
+- [ ] As the Flower Withers (1992) — My Dying Bride
+- [ ] Serenades (1993) — Anathema
+- [ ] Gothic (1991) — Paradise Lost
+- [ ] Draconian Times (1995) — Paradise Lost
+- [ ] Icon (1993) — Paradise Lost
+
+HARD ROCK & HEAVY METAL — Black Metal (Scandinavian second-wave; atmosphere, rawness, ideology, and lo-fi as aesthetic weapon)
+
+- [ ] Filosofem (1996) — Burzum
+- [ ] Burzum (1992) — Burzum
+- [ ] Det som engang var (1993) — Burzum
+- [ ] Hvis lyset tar oss (1994) — Burzum
+- [ ] De Mysteriis Dom Sathanas (1994) — Mayhem
+- [ ] Diabolical Fullmoon Mysticism (1992) — Immortal
+- [ ] Pure Holocaust (1993) — Immortal
+- [ ] Battles in the North (1995) — Immortal
+- [ ] Blizzard Beasts (1997) — Immortal
+- [ ] At the Heart of Winter (1999) — Immortal
+- [ ] In the Nightside Eclipse (1994) — Emperor
+- [ ] Anthems to the Welkin at Dusk (1997) — Emperor
+- [ ] IX Equilibrium (1999) — Emperor
+- [ ] Pentagram (1994) — Gorgoroth
+- [ ] Antichrist (1994) — Gorgoroth
+- [ ] Under the Sign of Hell (1997) — Gorgoroth
+- [ ] A Blaze in the Northern Sky (1992) — Darkthrone
+- [ ] Under a Funeral Moon (1993) — Darkthrone
+- [ ] Transilvanian Hunger (1994) — Darkthrone
+- [ ] Panzerfaust (1995) — Darkthrone
+- [ ] Total Death (1996) — Darkthrone
+- [ ] Storm of the Light's Bane (1995) — Dissection
+- [ ] The Somberlain (1993) — Dissection
+- [ ] Reinkaos (2006) — Dissection
+- [ ] Nemesis Divina (1996) — Satyricon
+- [ ] Dark Medieval Times (1994) — Satyricon
+- [ ] Volcano (2002) — Satyricon
+- [ ] Enthrone Darkness Triumphant (1997) — Dimmu Borgir
+- [ ] Spiritual Black Dimensions (1999) — Dimmu Borgir
+
+CLASSIC ROCK — Arena Rock & Southern Rock (The big American sound; stadiums, FM radio, and the mythology of the road)
+
+- [ ] Who's Next (1971) — The Who
+- [ ] Layla and Other Assorted Love Songs (1970) — Derek and the Dominos
+- [ ] 461 Ocean Boulevard (1974) — Eric Clapton
+- [ ] Slowhand (1977) — Eric Clapton
+- [ ] Eat a Peach (1972) — The Allman Brothers Band
+- [ ] Brothers and Sisters (1973) — The Allman Brothers Band
+- [ ] At Fillmore East (1971) — The Allman Brothers Band
+- [ ] Idlewild South (1970) — The Allman Brothers Band
+- [ ] (pronounced 'lĕh-'nérd 'skin-'nérd) (1973) — Lynyrd Skynyrd
+- [ ] Second Helping (1974) — Lynyrd Skynyrd
+- [ ] Nuthin' Fancy (1975) — Lynyrd Skynyrd
+- [ ] Street Survivors (1977) — Lynyrd Skynyrd
+- [ ] Tom Sawyer (1981) — Rush
+- [ ] 2112 (1976) — Rush
+- [ ] A Farewell to Kings (1977) — Rush
+- [ ] Hemispheres (1978) — Rush
+- [ ] Permanent Waves (1980) — Rush
+- [ ] Moving Pictures (1981) — Rush
+- [ ] Signals (1982) — Rush
+- [ ] Hotel California (1976) — Eagles
+- [ ] One of These Nights (1975) — Eagles
+- [ ] Desperado (1973) — Eagles
+- [ ] On the Border (1974) — Eagles
+- [ ] The Long Run (1979) — Eagles
+- [ ] Fleetwood Mac (1975) — Fleetwood Mac
+- [ ] Rumours (1977) — Fleetwood Mac
+- [ ] Tusk (1979) — Fleetwood Mac
+- [ ] Mirage (1982) — Fleetwood Mac
+- [ ] Tango in the Night (1987) — Fleetwood Mac
+- [ ] Boston (1976) — Boston
+- [ ] Don't Look Back (1978) — Boston
+- [ ] Third Stage (1986) — Boston
+- [ ] Foreigner (1977) — Foreigner
+- [ ] Double Vision (1978) — Foreigner
+- [ ] Head Games (1979) — Foreigner
+- [ ] 4 (1981) — Foreigner
+
+SINGER-SONGWRITER — Confessional & Literary (The interiorized 70s; therapy culture in song form)
+
+- [ ] Tapestry (1971) — Carole King
+- [ ] Writer (1970) — Carole King
+- [ ] Music (1971) — Carole King
+- [ ] Rhymes & Reasons (1972) — Carole King
+- [ ] Blue (1971) — Joni Mitchell
+- [ ] For the Roses (1972) — Joni Mitchell
+- [ ] Court and Spark (1974) — Joni Mitchell
+- [ ] The Hissing of Summer Lawns (1975) — Joni Mitchell
+- [ ] Hejira (1976) — Joni Mitchell
+- [ ] Don Juan's Reckless Daughter (1977) — Joni Mitchell
+- [ ] Mingus (1979) — Joni Mitchell
+- [ ] James Taylor (1968) — James Taylor
+- [ ] Sweet Baby James (1970) — James Taylor
+- [ ] Mud Slide Slim and the Blue Horizon (1971) — James Taylor
+- [ ] One Man Dog (1972) — James Taylor
+- [ ] Cat Stevens — Tea for the Tillerman (1970) — Cat Stevens
+- [ ] Teaser and the Firecat (1971) — Cat Stevens
+- [ ] Catch Bull at Four (1972) — Cat Stevens
+- [ ] Foreigner (1973) — Cat Stevens
+- [ ] Neil Young (1968) — Neil Young
+- [ ] Everybody Knows This Is Nowhere (1969) — Neil Young
+- [ ] After the Gold Rush (1970) — Neil Young
+- [ ] Harvest (1972) — Neil Young
+- [ ] On the Beach (1974) — Neil Young
+- [ ] Tonight's the Night (1975) — Neil Young
+- [ ] Zuma (1975) — Neil Young
+- [ ] American Stars 'n Bars (1977) — Neil Young
+- [ ] Rust Never Sleeps (1979) — Neil Young
+- [ ] Harvest Moon (1992) — Neil Young
+- [ ] Songs of Leonard Cohen (1967) — Leonard Cohen
+- [ ] Songs from a Room (1969) — Leonard Cohen
+- [ ] Songs of Love and Hate (1971) — Leonard Cohen
+- [ ] New Skin for the Old Ceremony (1974) — Leonard Cohen
+- [ ] Death of a Ladies' Man (1977) — Leonard Cohen
+- [ ] Recent Songs (1979) — Leonard Cohen
+- [ ] Various Positions (1984) — Leonard Cohen
+- [ ] I'm Your Man (1988) — Leonard Cohen
+- [ ] The Future (1992) — Leonard Cohen
+- [ ] Paul Simon (1972) — Paul Simon
+- [ ] There Goes Rhymin' Simon (1973) — Paul Simon
+- [ ] Still Crazy After All These Years (1975) — Paul Simon
+- [ ] One-Trick Pony (1980) — Paul Simon
+- [ ] Graceland (1986) — Paul Simon
+- [ ] The Rhythm of the Saints (1990) — Paul Simon
+- [ ] Fire and Rain (1970) — James Taylor
+- [ ] Sweet Dreams (1974) — Emmylou Harris
+- [ ] Pieces of the Sky (1975) — Emmylou Harris
+
+SINGER-SONGWRITER — British Folk & Acoustic (Darker, more folk-rooted, more rural; the English and Celtic traditions electrified)
+
+- [ ] Nick Drake — Five Leaves Left (1969) — Nick Drake
+- [ ] Bryter Layter (1970) — Nick Drake
+- [ ] Pink Moon (1972) — Nick Drake
+- [ ] Richard and Linda Thompson — I Want to See the Bright Lights Tonight (1974) — Richard and Linda Thompson
+- [ ] Hokey Pokey (1975) — Richard and Linda Thompson
+- [ ] Pour Down Like Silver (1975) — Richard and Linda Thompson
+- [ ] First Light (1978) — Richard Thompson
+- [ ] Strict Tempo! (1981) — Richard Thompson
+- [ ] Shoot Out the Lights (1982) — Richard and Linda Thompson
+- [ ] Hand of Kindness (1983) — Richard Thompson
+- [ ] Fairport Convention (1968) — Fairport Convention
+- [ ] What We Did on Our Holidays (1969) — Fairport Convention
+- [ ] Unhalfbricking (1969) — Fairport Convention
+- [ ] Liege & Lief (1969) — Fairport Convention
+- [ ] Full House (1970) — Fairport Convention
+- [ ] Angel Delight (1971) — Fairport Convention
+- [ ] Sandy Denny — The North Star Grassman and the Ravens (1971) — Sandy Denny
+- [ ] Sandy (1972) — Sandy Denny
+- [ ] Like an Old Fashioned Waltz (1973) — Sandy Denny
+- [ ] John Martyn — Stormbringer! (1970) — John Martyn
+- [ ] Bless the Weather (1971) — John Martyn
+- [ ] Solid Air (1973) — John Martyn
+- [ ] Inside Out (1973) — John Martyn
+- [ ] Sunday's Child (1975) — John Martyn
+- [ ] One World (1977) — John Martyn
+- [ ] Grace and Danger (1980) — John Martyn
+- [ ] Bert Jansch (1965) — Bert Jansch
+- [ ] Jack Orion (1966) — Bert Jansch
+- [ ] Nicola (1967) — Bert Jansch
+- [ ] Birthday Blues (1969) — Bert Jansch
+- [ ] Rosemary Lane (1971) — Bert Jansch
+- [ ] Anne Briggs (1973) — Anne Briggs
+- [ ] John Renbourn (1966) — John Renbourn
+- [ ] Another Monday (1967) — John Renbourn
+- [ ] Pentangle — The Pentangle (1968) — Pentangle
+- [ ] Sweet Child (1968) — Pentangle
+- [ ] Basket of Light (1969) — Pentangle
+- [ ] Cruel Sister (1970) — Pentangle
+- [ ] Reflection (1971) — Pentangle
+
+PUNK — British Punk 1976-79 (The Year Zero moment; confrontation as form, velocity as content)
+
+- [ ] Never Mind the Bollocks, Here's the Sex Pistols (1977) — Sex Pistols
+- [ ] The Clash (1977) — The Clash
+- [ ] Give 'Em Enough Rope (1978) — The Clash
+- [ ] London Calling (1979) — The Clash
+- [ ] Sandinista! (1980) — The Clash
+- [ ] Combat Rock (1982) — The Clash
+- [ ] Cut the Crap (1985) — The Clash
+- [ ] Damned Damned Damned (1977) — The Damned
+- [ ] Music for Pleasure (1977) — The Damned
+- [ ] Machine Gun Etiquette (1979) — The Damned
+- [ ] The Black Album (1980) — The Damned
+- [ ] Rat Scabies and The Phantom (2004) — The Damned
+- [ ] Rattus Norvegicus (1977) — The Stranglers
+- [ ] No More Heroes (1977) — The Stranglers
+- [ ] Black and White (1978) — The Stranglers
+- [ ] The Raven (1979) — The Stranglers
+- [ ] The Gospel According to the Meninblack (1981) — The Stranglers
+- [ ] Buzzcocks — Another Music in a Different Kitchen (1978) — Buzzcocks
+- [ ] Love Bites (1978) — Buzzcocks
+- [ ] A Different Kind of Tension (1979) — Buzzcocks
+- [ ] Wire — Pink Flag (1977) — Wire
+- [ ] Chairs Missing (1978) — Wire
+- [ ] 154 (1979) — Wire
+- [ ] The Adverts — Crossing the Red Sea with the Adverts (1978) — The Adverts
+- [ ] Generation X (1978) — Generation X
+- [ ] X-Ray Spex — Germfree Adolescents (1978) — X-Ray Spex
+- [ ] Sham 69 — Tell Us the Truth (1978) — Sham 69
+
+PUNK — American Punk & Hardcore (The US underground response; more political, more physical, faster)
+
+- [ ] The Ramones (1976) — Ramones
+- [ ] Leave Home (1977) — Ramones
+- [ ] Rocket to Russia (1977) — Ramones
+- [ ] Road to Ruin (1978) — Ramones
+- [ ] End of the Century (1980) — Ramones
+- [ ] Pleasant Dreams (1981) — Ramones
+- [ ] Subterranean Jungle (1983) — Ramones
+- [ ] Too Tough to Die (1984) — Ramones
+- [ ] Patti Smith — Horses (1975) — Patti Smith
+- [ ] Radio Ethiopia (1976) — Patti Smith
+- [ ] Easter (1978) — Patti Smith
+- [ ] Wave (1979) — Patti Smith
+- [ ] Television — Marquee Moon (1977) — Television
+- [ ] Adventure (1978) — Television
+- [ ] Blondie (1976) — Blondie
+- [ ] Plastic Letters (1977) — Blondie
+- [ ] Parallel Lines (1978) — Blondie
+- [ ] Eat to the Beat (1979) — Blondie
+- [ ] Autoamerican (1980) — Blondie
+- [ ] Talking Heads: 77 (1977) — Talking Heads
+- [ ] More Songs About Buildings and Food (1978) — Talking Heads
+- [ ] Fear of Music (1979) — Talking Heads
+- [ ] Remain in Light (1980) — Talking Heads
+- [ ] Speaking in Tongues (1983) — Talking Heads
+- [ ] Little Creatures (1985) — Talking Heads
+- [ ] True Stories (1986) — Talking Heads
+- [ ] Naked (1988) — Talking Heads
+- [ ] Devo — Q: Are We Not Men? A: We Are Devo! (1978) — Devo
+- [ ] Duty Now for the Future (1979) — Devo
+- [ ] Freedom of Choice (1980) — Devo
+- [ ] New Traditionalists (1981) — Devo
+- [ ] Black Flag — Damaged (1981) — Black Flag
+- [ ] My War (1984) — Black Flag
+- [ ] Slip It In (1984) — Black Flag
+- [ ] Dead Kennedys — Fresh Fruit for Rotting Vegetables (1980) — Dead Kennedys
+- [ ] In God We Trust, Inc. (1981) — Dead Kennedys
+- [ ] Plastic Surgery Disasters (1982) — Dead Kennedys
+- [ ] Frankenchrist (1985) — Dead Kennedys
+- [ ] Minor Threat — Minor Threat (1981) — Minor Threat
+- [ ] Out of Step (1983) — Minor Threat
+- [ ] Minutemen — Double Nickels on the Dime (1984) — Minutemen
+- [ ] Hüsker Dü — Zen Arcade (1984) — Hüsker Dü
+- [ ] New Day Rising (1985) — Hüsker Dü
+- [ ] Flip Your Wig (1985) — Hüsker Dü
+- [ ] Candy Apple Grey (1986) — Hüsker Dü
+- [ ] Warehouse: Songs and Stories (1987) — Hüsker Dü
+- [ ] The Replacements — Sorry Ma, Forgot to Take Out the Trash (1981) — The Replacements
+- [ ] Hootenanny (1983) — The Replacements
+- [ ] Let It Be (1984) — The Replacements
+- [ ] Tim (1985) — The Replacements
+- [ ] Pleased to Meet Me (1987) — The Replacements
+- [ ] Descendents — Milo Goes to College (1982) — Descendents
+- [ ] Meat Puppets — Meat Puppets II (1984) — Meat Puppets
+- [ ] Dinosaur Jr. — You're Living All Over Me (1987) — Dinosaur Jr.
+- [ ] Bug (1988) — Dinosaur Jr.
+- [ ] Pixies — Surfer Rosa (1988) — Pixies
+- [ ] Doolittle (1989) — Pixies
+- [ ] Bossanova (1990) — Pixies
+- [ ] Trompe le Monde (1991) — Pixies
+
+POST-PUNK & GOTHIC — First Wave Post-Punk (The aftermath of punk; more cerebral, more atmospheric, more willing to be difficult)
+
+- [ ] Gang of Four — Entertainment! (1979) — Gang of Four
+- [ ] Solid Gold (1981) — Gang of Four
+- [ ] Songs of the Free (1982) — Gang of Four
+- [ ] Joy Division — Unknown Pleasures (1979) — Joy Division
+- [ ] Closer (1980) — Joy Division
+- [ ] Still (1981) — Joy Division
+- [ ] New Order — Movement (1981) — New Order
+- [ ] Power, Corruption & Lies (1983) — New Order
+- [ ] Low-Life (1985) — New Order
+- [ ] Brotherhood (1986) — New Order
+- [ ] Technique (1989) — New Order
+- [ ] Republic (1993) — New Order
+- [ ] The Fall — Live at the Witch Trials (1979) — The Fall
+- [ ] Grotesque (After the Gramme) (1980) — The Fall
+- [ ] Slates (1981) — The Fall
+- [ ] Hex Enduction Hour (1982) — The Fall
+- [ ] Room to Live (1982) — The Fall
+- [ ] Perverted by Language (1983) — The Fall
+- [ ] The Wonderful and Frightening World of... (1984) — The Fall
+- [ ] This Nation's Saving Grace (1985) — The Fall
+- [ ] Bend Sinister (1986) — The Fall
+- [ ] The Frenz Experiment (1988) — The Fall
+- [ ] Public Image Ltd — First Issue (1978) — Public Image Ltd
+- [ ] Metal Box (1979) — Public Image Ltd
+- [ ] The Flowers of Romance (1981) — Public Image Ltd
+- [ ] Album (1986) — Public Image Ltd
+- [ ] This Is What You Want... This Is What You Get (1984) — Public Image Ltd
+- [ ] The Pop Group — Y (1979) — The Pop Group
+- [ ] For How Much Longer Do We Tolerate Mass Murder? (1980) — The Pop Group
+- [ ] Essential Logic — Beat Rhythm News (1979) — Essential Logic
+- [ ] Swell Maps — A Trip to Marineville (1979) — Swell Maps
+- [ ] This Heat — This Heat (1979) — This Heat
+- [ ] Deceit (1981) — This Heat
+- [ ] The Slits — Cut (1979) — The Slits
+- [ ] Return of the Giant Slits (1981) — The Slits
+
+POST-PUNK & GOTHIC — Goth Rock & Darkwave (The theatrical, romantic, black-clad subculture; death as aesthetics)
+
+- [ ] Siouxsie and the Banshees — The Scream (1978) — Siouxsie and the Banshees
+- [ ] Join Hands (1979) — Siouxsie and the Banshees
+- [ ] Kaleidoscope (1980) — Siouxsie and the Banshees
+- [ ] Juju (1981) — Siouxsie and the Banshees
+- [ ] A Kiss in the Dreamhouse (1982) — Siouxsie and the Banshees
+- [ ] Hyæna (1984) — Siouxsie and the Banshees
+- [ ] Tinderbox (1986) — Siouxsie and the Banshees
+- [ ] Through the Looking Glass (1987) — Siouxsie and the Banshees
+- [ ] Peepshow (1988) — Siouxsie and the Banshees
+- [ ] Superstition (1991) — Siouxsie and the Banshees
+- [ ] The Cure — Three Imaginary Boys (1979) — The Cure
+- [ ] Seventeen Seconds (1980) — The Cure
+- [ ] Faith (1981) — The Cure
+- [ ] Pornography (1982) — The Cure
+- [ ] The Top (1984) — The Cure
+- [ ] The Head on the Door (1985) — The Cure
+- [ ] Kiss Me, Kiss Me, Kiss Me (1987) — The Cure
+- [ ] Disintegration (1989) — The Cure
+- [ ] Wish (1992) — The Cure
+- [ ] Bloodflowers (2000) — The Cure
+- [ ] Bauhaus — In the Flat Field (1980) — Bauhaus
+- [ ] Mask (1981) — Bauhaus
+- [ ] The Sky's Gone Out (1982) — Bauhaus
+- [ ] Burning from the Inside (1983) — Bauhaus
+- [ ] Sisters of Mercy — First and Last and Always (1985) — Sisters of Mercy
+- [ ] Floodland (1987) — Sisters of Mercy
+- [ ] Vision Thing (1990) — Sisters of Mercy
+- [ ] Fields of the Nephilim — Dawnrazor (1987) — Fields of the Nephilim
+- [ ] The Nephilim (1988) — Fields of the Nephilim
+- [ ] Elizium (1990) — Fields of the Nephilim
+- [ ] The Mission — God's Own Medicine (1986) — The Mission
+- [ ] Children (1988) — The Mission
+- [ ] Carved in Sand (1990) — The Mission
+- [ ] Love and Rockets — Seventh Dream of Teenage Heaven (1985) — Love and Rockets
+- [ ] Express (1986) — Love and Rockets
+- [ ] Earth Sun Moon (1987) — Love and Rockets
+
+NEW WAVE & SYNTH-POP — New Wave (The pop-smart side of post-punk; style as substance, art school ambition in 3-minute songs)
+
+- [ ] Squeeze — Argybargy (1980) — Squeeze
+- [ ] East Side Story (1981) — Squeeze
+- [ ] The Police — Outlandos d'Amour (1978) — The Police
+- [ ] Reggatta de Blanc (1979) — The Police
+- [ ] Zenyattà Mondatta (1980) — The Police
+- [ ] Ghost in the Machine (1981) — The Police
+- [ ] Synchronicity (1983) — The Police
+- [ ] Elvis Costello — My Aim Is True (1977) — Elvis Costello
+- [ ] This Year's Model (1978) — Elvis Costello
+- [ ] Armed Forces (1979) — Elvis Costello & The Attractions
+- [ ] Get Happy!! (1980) — Elvis Costello & The Attractions
+- [ ] Trust (1981) — Elvis Costello & The Attractions
+- [ ] Almost Blue (1981) — Elvis Costello & The Attractions
+- [ ] Imperial Bedroom (1982) — Elvis Costello & The Attractions
+- [ ] Punch the Clock (1983) — Elvis Costello & The Attractions
+- [ ] XTC — White Music (1978) — XTC
+- [ ] Go 2 (1978) — XTC
+- [ ] Drums and Wires (1979) — XTC
+- [ ] Black Sea (1980) — XTC
+- [ ] English Settlement (1982) — XTC
+- [ ] Skylarking (1986) — XTC
+- [ ] Oranges & Lemons (1989) — XTC
+- [ ] Nonsuch (1992) — XTC
+- [ ] The Pretenders — Pretenders (1980) — The Pretenders
+- [ ] Pretenders II (1981) — The Pretenders
+- [ ] Learning to Crawl (1984) — The Pretenders
+- [ ] Echo & the Bunnymen — Crocodiles (1980) — Echo & the Bunnymen
+- [ ] Heaven Up Here (1981) — Echo & the Bunnymen
+- [ ] Porcupine (1983) — Echo & the Bunnymen
+- [ ] Ocean Rain (1984) — Echo & the Bunnymen
+- [ ] The Psychedelic Furs — The Psychedelic Furs (1980) — The Psychedelic Furs
+- [ ] Talk Talk Talk (1981) — The Psychedelic Furs
+- [ ] Forever Now (1982) — The Psychedelic Furs
+- [ ] Midnight to Midnight (1987) — The Psychedelic Furs
+- [ ] Aztec Camera — High Land, Hard Rain (1983) — Aztec Camera
+- [ ] Knife (1984) — Aztec Camera
+- [ ] Lloyd Cole and the Commotions — Rattlesnakes (1984) — Lloyd Cole and the Commotions
+- [ ] Easy Pieces (1985) — Lloyd Cole and the Commotions
+
+NEW WAVE & SYNTH-POP — Synth-Pop & Electronic Pop (The machine aesthetic in service of hit singles; cold surfaces over human heat)
+
+- [ ] Kraftwerk — Autobahn (1974) — Kraftwerk
+- [ ] Radio-Activity (1975) — Kraftwerk
+- [ ] Trans-Europe Express (1977) — Kraftwerk
+- [ ] The Man-Machine (1978) — Kraftwerk
+- [ ] Computer World (1981) — Kraftwerk
+- [ ] Techno Pop (1983) — Kraftwerk
+- [ ] Electric Café (1986) — Kraftwerk
+- [ ] The Mix (1991) — Kraftwerk
+- [ ] Tour de France (2003) — Kraftwerk
+- [ ] Depeche Mode — Speak & Spell (1981) — Depeche Mode
+- [ ] A Broken Frame (1982) — Depeche Mode
+- [ ] Construction Time Again (1983) — Depeche Mode
+- [ ] Some Great Reward (1984) — Depeche Mode
+- [ ] Black Celebration (1986) — Depeche Mode
+- [ ] Music for the Masses (1987) — Depeche Mode
+- [ ] Violator (1990) — Depeche Mode
+- [ ] Songs of Faith and Devotion (1993) — Depeche Mode
+- [ ] Ultra (1997) — Depeche Mode
+- [ ] Exciter (2001) — Depeche Mode
+- [ ] Orchestral Manoeuvres in the Dark — Orchestral Manoeuvres in the Dark (1980) — OMD
+- [ ] Organisation (1980) — OMD
+- [ ] Architecture & Morality (1981) — OMD
+- [ ] Dazzle Ships (1983) — OMD
+- [ ] Junk Culture (1984) — OMD
+- [ ] Ultravox — Vienna (1980) — Ultravox
+- [ ] Rage in Eden (1981) — Ultravox
+- [ ] Quartet (1982) — Ultravox
+- [ ] Human League — Reproduction (1979) — Human League
+- [ ] Travelogue (1980) — Human League
+- [ ] Dare (1981) — Human League
+- [ ] Gary Numan — Replicas (1979) — Gary Numan
+- [ ] The Pleasure Principle (1979) — Gary Numan
+- [ ] Telekon (1980) — Gary Numan
+- [ ] Yazoo — Upstairs at Eric's (1982) — Yazoo
+- [ ] You and Me Both (1983) — Yazoo
+- [ ] Soft Cell — Non-Stop Erotic Cabaret (1981) — Soft Cell
+- [ ] The Art of Falling Apart (1983) — Soft Cell
+- [ ] Eurythmics — In the Garden (1981) — Eurythmics
+- [ ] Sweet Dreams (Are Made of This) (1983) — Eurythmics
+- [ ] Touch (1983) — Eurythmics
+- [ ] Be Yourself Tonight (1985) — Eurythmics
+- [ ] Revenge (1986) — Eurythmics
+- [ ] Savage (1987) — Eurythmics
+- [ ] We Too Are One (1989) — Eurythmics
+
+INDIE ROCK & ALTERNATIVE — 80s College Rock & Jangle (The American alternative underground before it became alternative mainstream)
+
+- [ ] R.E.M. — Murmur (1983) — R.E.M.
+- [ ] Reckoning (1984) — R.E.M.
+- [ ] Fables of the Reconstruction (1985) — R.E.M.
+- [ ] Life's Rich Pageant (1986) — R.E.M.
+- [ ] Document (1987) — R.E.M.
+- [ ] Green (1988) — R.E.M.
+- [ ] Out of Time (1991) — R.E.M.
+- [ ] Automatic for the People (1992) — R.E.M.
+- [ ] Monster (1994) — R.E.M.
+- [ ] New Adventures in Hi-Fi (1996) — R.E.M.
+- [ ] Up (1998) — R.E.M.
+- [ ] The Smiths — The Smiths (1984) — The Smiths
+- [ ] Meat Is Murder (1985) — The Smiths
+- [ ] The Queen Is Dead (1986) — The Smiths
+- [ ] Strangeways, Here We Come (1987) — The Smiths
+- [ ] Morrissey — Viva Hate (1988) — Morrissey
+- [ ] Kill Uncle (1991) — Morrissey
+- [ ] Your Arsenal (1992) — Morrissey
+- [ ] Vauxhall and I (1994) — Morrissey
+- [ ] Southpaw Grammar (1995) — Morrissey
+- [ ] The Stone Roses — The Stone Roses (1989) — The Stone Roses
+- [ ] Second Coming (1994) — The Stone Roses
+- [ ] Primal Scream — Sonic Flower Groove (1987) — Primal Scream
+- [ ] Primal Scream (1989) — Primal Scream
+- [ ] Screamadelica (1991) — Primal Scream
+- [ ] Give Out But Don't Give Up (1994) — Primal Scream
+- [ ] XTRMNTR (2000) — Primal Scream
+- [ ] Teenage Fanclub — A Catholic Education (1990) — Teenage Fanclub
+- [ ] Bandwagonesque (1991) — Teenage Fanclub
+- [ ] Thirteen (1993) — Teenage Fanclub
+- [ ] Grand Prix (1995) — Teenage Fanclub
+- [ ] Sebadoh — Bubble and Scrape (1993) — Sebadoh
+- [ ] Bakesale (1994) — Sebadoh
+- [ ] Pavement — Slanted and Enchanted (1992) — Pavement
+- [ ] Crooked Rain, Crooked Rain (1994) — Pavement
+- [ ] Wowee Zowee (1995) — Pavement
+- [ ] Brighten the Corners (1997) — Pavement
+- [ ] Terror Twilight (1999) — Pavement
+- [ ] Guided by Voices — Bee Thousand (1994) — Guided by Voices
+- [ ] Alien Lanes (1995) — Guided by Voices
+- [ ] Under the Bushes Under the Stars (1996) — Guided by Voices
+
+INDIE ROCK & ALTERNATIVE — Shoegaze & Dream Pop (Sound as texture; guitars as weather systems)
+
+- [ ] My Bloody Valentine — Isn't Anything (1988) — My Bloody Valentine
+- [ ] Loveless (1991) — My Bloody Valentine
+- [ ] m b v (2013) — My Bloody Valentine
+- [ ] Slowdive — Just for a Day (1991) — Slowdive
+- [ ] Souvlaki (1993) — Slowdive
+- [ ] Pygmalion (1995) — Slowdive
+- [ ] Ride — Nowhere (1990) — Ride
+- [ ] Going Blank Again (1992) — Ride
+- [ ] Carnival of Light (1994) — Ride
+- [ ] Tarantula (1996) — Ride
+- [ ] Lush — Spooky (1992) — Lush
+- [ ] Split (1994) — Lush
+- [ ] Lovelife (1996) — Lush
+- [ ] Chapterhouse — Whirlpool (1991) — Chapterhouse
+- [ ] Pale Saints — The Comforts of Madness (1990) — Pale Saints
+- [ ] Cocteau Twins — Garlands (1982) — Cocteau Twins
+- [ ] Head over Heels (1983) — Cocteau Twins
+- [ ] Treasure (1984) — Cocteau Twins
+- [ ] Victorialand (1986) — Cocteau Twins
+- [ ] The Pink Opaque (1985) — Cocteau Twins
+- [ ] Blue Bell Knoll (1988) — Cocteau Twins
+- [ ] Heaven or Las Vegas (1990) — Cocteau Twins
+- [ ] Four-Calendar Café (1993) — Cocteau Twins
+- [ ] Milk & Kisses (1996) — Cocteau Twins
+- [ ] This Mortal Coil — It'll End in Tears (1984) — This Mortal Coil
+- [ ] Filigree & Shadow (1986) — This Mortal Coil
+- [ ] Blood (1991) — This Mortal Coil
+- [ ] A.R. Kane — 69 (1988) — A.R. Kane
+- [ ] Ultra Vivid Scene — Ultra Vivid Scene (1988) — Ultra Vivid Scene
+
+INDIE ROCK & ALTERNATIVE — Grunge & Pacific Northwest (Seattle as mythology; the sound of the generation that grew up on metal and punk)
+
+- [ ] Nirvana — Bleach (1989) — Nirvana
+- [ ] Nevermind (1991) — Nirvana
+- [ ] In Utero (1993) — Nirvana
+- [ ] MTV Unplugged in New York (1994) — Nirvana
+- [ ] Pearl Jam — Ten (1991) — Pearl Jam
+- [ ] Vs. (1993) — Pearl Jam
+- [ ] Vitalogy (1994) — Pearl Jam
+- [ ] No Code (1996) — Pearl Jam
+- [ ] Yield (1998) — Pearl Jam
+- [ ] Binaural (2000) — Pearl Jam
+- [ ] Alice in Chains — Facelift (1990) — Alice in Chains
+- [ ] Dirt (1992) — Alice in Chains
+- [ ] Jar of Flies (1994) — Alice in Chains
+- [ ] Alice in Chains (1995) — Alice in Chains
+- [ ] Soundgarden — Ultramega OK (1988) — Soundgarden
+- [ ] Louder Than Love (1989) — Soundgarden
+- [ ] Badmotorfinger (1991) — Soundgarden
+- [ ] Superunknown (1994) — Soundgarden
+- [ ] Down on the Upside (1996) — Soundgarden
+- [ ] Mudhoney — Mudhoney (1989) — Mudhoney
+- [ ] Every Good Boy Deserves Fudge (1991) — Mudhoney
+- [ ] Piece of Cake (1992) — Mudhoney
+- [ ] My Brother the Cow (1995) — Mudhoney
+- [ ] Screaming Life (1987) — Soundgarden
+- [ ] Skin Yard — Skin Yard (1987) — Skin Yard
+- [ ] Green River — Dry as a Bone (1987) — Green River
+- [ ] Temple of the Dog — Temple of the Dog (1991) — Temple of the Dog
+- [ ] Mad Season — Above (1995) — Mad Season
+
+INDIE ROCK & ALTERNATIVE — British Indie & Britpop (The British invention of self-conscious Englishness as rock content)
+
+- [ ] Suede — Suede (1993) — Suede
+- [ ] Dog Man Star (1994) — Suede
+- [ ] Coming Up (1996) — Suede
+- [ ] Head Music (1999) — Suede
+- [ ] A New Morning (2002) — Suede
+- [ ] Blur — Leisure (1991) — Blur
+- [ ] Modern Life Is Rubbish (1993) — Blur
+- [ ] Parklife (1994) — Blur
+- [ ] The Great Escape (1995) — Blur
+- [ ] Blur (1997) — Blur
+- [ ] 13 (1999) — Blur
+- [ ] Think Tank (2003) — Blur
+- [ ] Oasis — Definitely Maybe (1994) — Oasis
+- [ ] (What's the Story) Morning Glory? (1995) — Oasis
+- [ ] Be Here Now (1997) — Oasis
+- [ ] The Masterplan (1998) — Oasis
+- [ ] Standing on the Shoulder of Giants (2000) — Oasis
+- [ ] Heathen Chemistry (2002) — Oasis
+- [ ] Don't Believe the Truth (2005) — Oasis
+- [ ] Pulp — It (1983) — Pulp
+- [ ] Freaks (1987) — Pulp
+- [ ] Separations (1992) — Pulp
+- [ ] His 'n' Hers (1994) — Pulp
+- [ ] Different Class (1995) — Pulp
+- [ ] This Is Hardcore (1998) — Pulp
+- [ ] We Love Life (2001) — Pulp
+- [ ] Elastica — Elastica (1995) — Elastica
+- [ ] The Menace (2000) — Elastica
+- [ ] Sleeper — Smart (1995) — Sleeper
+- [ ] The It Girl (1996) — Sleeper
+- [ ] Supergrass — I Should Coco (1995) — Supergrass
+- [ ] In It for the Money (1997) — Supergrass
+- [ ] Supergrass (1999) — Supergrass
+- [ ] Verve — A Storm in Heaven (1993) — The Verve
+- [ ] A Northern Soul (1995) — The Verve
+- [ ] Urban Hymns (1997) — The Verve
+- [ ] Radiohead — Pablo Honey (1993) — Radiohead
+- [ ] The Bends (1995) — Radiohead
+- [ ] OK Computer (1997) — Radiohead
+- [ ] Kid A (2000) — Radiohead
+- [ ] Amnesiac (2001) — Radiohead
+- [ ] Hail to the Thief (2003) — Radiohead
+- [ ] In Rainbows (2007) — Radiohead
+- [ ] The King of Limbs (2011) — Radiohead
+- [ ] Travis — Good Feeling (1997) — Travis
+- [ ] The Man Who (1999) — Travis
+- [ ] The Invisible Band (2001) — Travis
+- [ ] Stereophonics — Word Gets Around (1997) — Stereophonics
+- [ ] Performance and Cocktails (1999) — Stereophonics
+- [ ] Manic Street Preachers — The Holy Bible (1994) — Manic Street Preachers
+- [ ] Everything Must Go (1996) — Manic Street Preachers
+- [ ] This Is My Truth Tell Me Yours (1998) — Manic Street Preachers
+- [ ] Send Away the Tigers (2007) — Manic Street Preachers
+- [ ] Placebo — Placebo (1996) — Placebo
+- [ ] Without You I'm Nothing (1998) — Placebo
+- [ ] Black Market Music (2000) — Placebo
+- [ ] Meds (2006) — Placebo
+- [ ] Mansun — Attack of the Grey Lantern (1997) — Mansun
+- [ ] Six (1998) — Mansun
+
+INDIE ROCK & ALTERNATIVE — Post-Grunge & 90s Alternative (The aftermath; MTV-friendly but still guitar-based)
+
+- [ ] Smashing Pumpkins — Gish (1991) — Smashing Pumpkins
+- [ ] Siamese Dream (1993) — Smashing Pumpkins
+- [ ] Mellon Collie and the Infinite Sadness (1995) — Smashing Pumpkins
+- [ ] Adore (1998) — Smashing Pumpkins
+- [ ] Machina/The Machines of God (2000) — Smashing Pumpkins
+- [ ] Weezer — Weezer [Blue Album] (1994) — Weezer
+- [ ] Pinkerton (1996) — Weezer
+- [ ] Green Album (2001) — Weezer
+- [ ] Beck — Mellow Gold (1994) — Beck
+- [ ] One Foot in the Grave (1994) — Beck
+- [ ] Odelay (1996) — Beck
+- [ ] Mutations (1998) — Beck
+- [ ] Midnite Vultures (1999) — Beck
+- [ ] Sea Change (2002) — Beck
+- [ ] Guero (2005) — Beck
+- [ ] Stone Temple Pilots — Core (1992) — Stone Temple Pilots
+- [ ] Purple (1994) — Stone Temple Pilots
+- [ ] Tiny Music... Songs from the Vatican Gift Shop (1996) — Stone Temple Pilots
+- [ ] Live — Mental Jewelry (1991) — Live
+- [ ] Throwing Copper (1994) — Live
+- [ ] Secret Samadhi (1997) — Live
+- [ ] Seven Mary Three — American Standard (1995) — Seven Mary Three
+- [ ] Third Eye Blind — Third Eye Blind (1997) — Third Eye Blind
+- [ ] Matchbox Twenty — Yourself or Someone Like You (1996) — Matchbox Twenty
+- [ ] 311 — Music (1993) — 311
+- [ ] Transparent (1993) — 311
+- [ ] Grassroots (1994) — 311
+
+INDIE ROCK & ALTERNATIVE — Emo & Post-Hardcore (Emotional authenticity against hardcore's machismo; confessionalism goes underground)
+
+- [ ] Fugazi — 13 Songs (1989) — Fugazi
+- [ ] Repeater (1990) — Fugazi
+- [ ] Steady Diet of Nothing (1991) — Fugazi
+- [ ] In on the Kill Taker (1993) — Fugazi
+- [ ] Red Medicine (1995) — Fugazi
+- [ ] End Hits (1998) — Fugazi
+- [ ] The Argument (2001) — Fugazi
+- [ ] Jawbreaker — Bivouac (1992) — Jawbreaker
+- [ ] 24 Hour Revenge Therapy (1994) — Jawbreaker
+- [ ] Dear You (1995) — Jawbreaker
+- [ ] Sunny Day Real Estate — Diary (1994) — Sunny Day Real Estate
+- [ ] LP2 (1995) — Sunny Day Real Estate
+- [ ] How It Feels to Be Something On (1998) — Sunny Day Real Estate
+- [ ] The Rising Tide (2000) — Sunny Day Real Estate
+- [ ] American Football — American Football (1999) — American Football
+- [ ] The Get Up Kids — Four Minute Mile (1997) — The Get Up Kids
+- [ ] Something to Write Home About (1999) — The Get Up Kids
+- [ ] Cap'n Jazz — Burritos, Inspiration Point, Fork Balloon Sports, Cards in the Spokes, Automatic Biographies (1995) — Cap'n Jazz
+- [ ] Dashboard Confessional — The Places You Have Come to Fear the Most (2001) — Dashboard Confessional
+- [ ] Thursday — Full Collapse (2001) — Thursday
+- [ ] War All the Time (2003) — Thursday
+- [ ] Taking Back Sunday — Tell All Your Friends (2002) — Taking Back Sunday
+- [ ] Brand New — Your Favorite Weapon (2001) — Brand New
+- [ ] Deja Entendu (2003) — Brand New
+- [ ] The Devil and God Are Raging Inside Me (2006) — Brand New
+- [ ] Daisy (2009) — Brand New
+
+INDIE ROCK & ALTERNATIVE — Indie Folk & Lo-Fi (The return to smallness; home recording as authenticity)
+
+- [ ] Elliott Smith — Roman Candle (1994) — Elliott Smith
+- [ ] Elliott Smith (1995) — Elliott Smith
+- [ ] Either/Or (1997) — Elliott Smith
+- [ ] XO (1998) — Elliott Smith
+- [ ] Figure 8 (2000) — Elliott Smith
+- [ ] From a Basement on the Hill (2004) — Elliott Smith
+- [ ] Will Oldham / Bonnie Prince Billy — There Is No-One What Will Take Care of You (1993) — Palace Brothers
+- [ ] Days in the Wake (1994) — Palace Brothers
+- [ ] Viva Last Blues (1995) — Palace Music
+- [ ] Arise Therefore (1996) — Palace Music
+- [ ] Joya (1997) — Bonnie Prince Billy
+- [ ] I See a Darkness (1999) — Bonnie Prince Billy
+- [ ] Ease Down the Road (2001) — Bonnie Prince Billy
+- [ ] Master and Everyone (2003) — Bonnie Prince Billy
+- [ ] The Letting Go (2006) — Bonnie Prince Billy
+- [ ] Joanna Newsom — The Milk-Eyed Mender (2004) — Joanna Newsom
+- [ ] Ys (2006) — Joanna Newsom
+- [ ] Have One on Me (2010) — Joanna Newsom
+- [ ] Iron and Wine — The Creek Drank the Cradle (2002) — Iron and Wine
+- [ ] Our Endless Numbered Days (2004) — Iron and Wine
+- [ ] Woman King (2005) — Iron and Wine
+- [ ] The Shepherd's Dog (2007) — Iron and Wine
+- [ ] Sufjan Stevens — A Sun Came (2000) — Sufjan Stevens
+- [ ] Greetings from Michigan: The Great Lakes State (2003) — Sufjan Stevens
+- [ ] Seven Swans (2004) — Sufjan Stevens
+- [ ] Illinois (2005) — Sufjan Stevens
+- [ ] The BQE (2009) — Sufjan Stevens
+- [ ] Songs of My Mother's Country (2007) — Sufjan Stevens
+- [ ] Devendra Banhart — Oh Me Oh My (2002) — Devendra Banhart
+- [ ] Rejoicing in the Hands (2004) — Devendra Banhart
+- [ ] Niño Rojo (2004) — Devendra Banhart
+- [ ] Cripple Crow (2005) — Devendra Banhart
+- [ ] Freak Folk Compilation (2004) — Various Artists
+
+INDIE ROCK & ALTERNATIVE — Indie Pop & Chamber Pop (Wit, melody, and self-conscious literariness; Postcard Records and everything after)
+
+- [ ] Belle and Sebastian — Tigermilk (1996) — Belle and Sebastian
+- [ ] If You're Feeling Sinister (1996) — Belle and Sebastian
+- [ ] The Boy with the Arab Strap (1998) — Belle and Sebastian
+- [ ] Fold Your Hands Child, You Walk Like a Peasant (2000) — Belle and Sebastian
+- [ ] Storytelling (2002) — Belle and Sebastian
+- [ ] Dear Catastrophe Waitress (2003) — Belle and Sebastian
+- [ ] The Life Pursuit (2006) — Belle and Sebastian
+- [ ] The Divine Comedy — Fanfare for the Comic Muse (1990) — The Divine Comedy
+- [ ] Liberation (1993) — The Divine Comedy
+- [ ] Promenade (1994) — The Divine Comedy
+- [ ] Casanova (1996) — The Divine Comedy
+- [ ] A Short Album About Love (1997) — The Divine Comedy
+- [ ] Fin de Siècle (1998) — The Divine Comedy
+- [ ] Regeneration (2001) — The Divine Comedy
+- [ ] Absent Friends (2004) — The Divine Comedy
+- [ ] The Magnetic Fields — Holiday (1994) — The Magnetic Fields
+- [ ] The Charm of the Highway Strip (1994) — The Magnetic Fields
+- [ ] Get Lost (1995) — The Magnetic Fields
+- [ ] 69 Love Songs (1999) — The Magnetic Fields
+- [ ] i (2004) — The Magnetic Fields
+- [ ] Distortion (2008) — The Magnetic Fields
+- [ ] Stephin Merritt — The 6ths: Wasps' Nests (1995) — The 6ths
+- [ ] Future Bible Heroes — Memories of Love (1997) — Future Bible Heroes
+- [ ] Orange Juice — You Can't Hide Your Love Forever (1982) — Orange Juice
+- [ ] Rip It Up (1982) — Orange Juice
+- [ ] Texas Fever (1984) — Orange Juice
+- [ ] Edwyn Collins — Hope and Despair (1989) — Edwyn Collins
+- [ ] Gorgeous George (1994) — Edwyn Collins
+- [ ] Aztec Camera — High Land, Hard Rain (1983) — Aztec Camera
+- [ ] Go-Betweens — Send Me a Lullaby (1981) — The Go-Betweens
+- [ ] Before Hollywood (1983) — The Go-Betweens
+- [ ] Spring Hill Fair (1984) — The Go-Betweens
+- [ ] Liberty Belle and the Black Diamond Express (1986) — The Go-Betweens
+- [ ] Tallulah (1987) — The Go-Betweens
+- [ ] 16 Lovers Lane (1988) — The Go-Betweens
+- [ ] The Friends of Rachel Worth (2000) — The Go-Betweens
+- [ ] Field Music — Field Music (2005) — Field Music
+- [ ] Tones of Town (2007) — Field Music
+- [ ] Measure (2010) — Field Music
+
+EXPERIMENTAL & AVANT-GARDE — Krautrock & German Experimental (The German post-war reinvention; rhythm as pure engine, texture as content)
+
+- [ ] Can — Monster Movie (1969) — Can
+- [ ] Soundtracks (1970) — Can
+- [ ] Tago Mago (1971) — Can
+- [ ] Ege Bamyasi (1972) — Can
+- [ ] Future Days (1973) — Can
+- [ ] Soon Over Babaluma (1974) — Can
+- [ ] Landed (1975) — Can
+- [ ] Flow Motion (1976) — Can
+- [ ] Neu! — Neu! (1972) — Neu!
+- [ ] Neu! 2 (1973) — Neu!
+- [ ] Neu! '75 (1975) — Neu!
+- [ ] Faust — Faust (1971) — Faust
+- [ ] Faust So Far (1972) — Faust
+- [ ] The Faust Tapes (1973) — Faust
+- [ ] IV (1973) — Faust
+- [ ] Cluster — Cluster (1971) — Cluster
+- [ ] Cluster II (1972) — Cluster
+- [ ] Zuckerzeit (1974) — Cluster
+- [ ] Sowiesoso (1976) — Cluster
+- [ ] Kluster — Klopfzeichen (1970) — Kluster
+- [ ] Tangerine Dream — Electronic Meditation (1969) — Tangerine Dream
+- [ ] Alpha Centauri (1971) — Tangerine Dream
+- [ ] Zeit (1972) — Tangerine Dream
+- [ ] Atem (1973) — Tangerine Dream
+- [ ] Phaedra (1974) — Tangerine Dream
+- [ ] Rubycon (1975) — Tangerine Dream
+- [ ] Richochet (1975) — Tangerine Dream
+- [ ] Stratosfear (1976) — Tangerine Dream
+- [ ] Klaus Schulze — Irrlicht (1972) — Klaus Schulze
+- [ ] Cyborg (1973) — Klaus Schulze
+- [ ] Blackdance (1974) — Klaus Schulze
+- [ ] Picture Music (1975) — Klaus Schulze
+- [ ] Rubycon (1975) — Tangerine Dream
+- [ ] Popol Vuh — Affenstunde (1970) — Popol Vuh
+- [ ] In den Gärten Pharaos (1971) — Popol Vuh
+- [ ] Hosianna Mantra (1972) — Popol Vuh
+- [ ] Amon Düül II — Phallus Dei (1969) — Amon Düül II
+- [ ] Yeti (1970) — Amon Düül II
+- [ ] Tanz der Lemminge (1971) — Amon Düül II
+- [ ] Düül (1981) — Amon Düül II
+- [ ] Brian Eno — Here Come the Warm Jets (1974) — Brian Eno
+- [ ] Taking Tiger Mountain (By Strategy) (1974) — Brian Eno
+- [ ] Another Green World (1975) — Brian Eno
+- [ ] Discreet Music (1975) — Brian Eno
+- [ ] Before and After Science (1977) — Brian Eno
+- [ ] Ambient 1: Music for Airports (1978) — Brian Eno
+- [ ] Ambient 2: The Plateaux of Mirror (1980) — Brian Eno & Harold Budd
+- [ ] Ambient 4: On Land (1982) — Brian Eno
+- [ ] David Bowie / Brian Eno — Low (1977) — David Bowie
+- [ ] Heroes (1977) — David Bowie
+- [ ] Lodger (1979) — David Bowie
+
+EXPERIMENTAL & AVANT-GARDE — Noise, Industrial & No Wave (Music as confrontation with music itself)
+
+- [ ] Throbbing Gristle — The Second Annual Report (1977) — Throbbing Gristle
+- [ ] D.O.A.: The Third and Final Report (1978) — Throbbing Gristle
+- [ ] 20 Jazz Funk Greats (1979) — Throbbing Gristle
+- [ ] Heathen Earth (1980) — Throbbing Gristle
+- [ ] Psychic TV — Force the Hand of Chance (1982) — Psychic TV
+- [ ] Coil — Scatology (1984) — Coil
+- [ ] Horse Rotorvator (1986) — Coil
+- [ ] The Angelic Conversation (1985) — Coil
+- [ ] Current 93 — Nature Unveiled (1984) — Current 93
+- [ ] Swastikas for Noddy (1988) — Current 93
+- [ ] Death in June — The Guilty Have No Pride (1983) — Death in June
+- [ ] Burial Rites (1984) — Death in June
+- [ ] The World That Summer (1986) — Death in June
+- [ ] Einstürzende Neubauten — Kollaps (1981) — Einstürzende Neubauten
+- [ ] Zeichnungen des Patienten O.T. (1983) — Einstürzende Neubauten
+- [ ] Halber Mensch (1985) — Einstürzende Neubauten
+- [ ] Five on the Open-Ended Richter Scale (1987) — Einstürzende Neubauten
+- [ ] No New York (1978) — Various Artists
+- [ ] Teenage Jesus and the Jerks — Teenage Jesus and the Jerks (1979) — Teenage Jesus and the Jerks
+- [ ] DNA — A Taste of DNA (1981) — DNA
+- [ ] Swans — Filth (1983) — Swans
+- [ ] Cop/Young God (1984) — Swans
+- [ ] Greed/Holy Money (1986) — Swans
+- [ ] Children of God (1988) — Swans
+- [ ] The Burning World (1989) — Swans
+- [ ] White Light from the Mouth of Infinity (1991) — Swans
+- [ ] Love of Life (1992) — Swans
+- [ ] The Great Annihilator (1995) — Swans
+- [ ] Soundtracks for the Blind (1996) — Swans
+- [ ] Sonic Youth — Confusion Is Sex (1983) — Sonic Youth
+- [ ] Kill Yr Idols (1983) — Sonic Youth
+- [ ] Bad Moon Rising (1985) — Sonic Youth
+- [ ] Evol (1986) — Sonic Youth
+- [ ] Sister (1987) — Sonic Youth
+- [ ] Daydream Nation (1988) — Sonic Youth
+- [ ] Goo (1990) — Sonic Youth
+- [ ] Dirty (1992) — Sonic Youth
+- [ ] Experimental Jet Set, Trash and No Star (1994) — Sonic Youth
+- [ ] Murray Street (2002) — Sonic Youth
+- [ ] Washing Machine (1995) — Sonic Youth
+
+EXPERIMENTAL & AVANT-GARDE — Post-Rock & Instrumental (Rock stripped of its voice; pure structure and dynamics)
+
+- [ ] Tortoise — Tortoise (1994) — Tortoise
+- [ ] Millions Now Living Will Never Die (1996) — Tortoise
+- [ ] TNT (1998) — Tortoise
+- [ ] Standards (2001) — Tortoise
+- [ ] It's All Around You (2004) — Tortoise
+- [ ] Talk Talk — The Colour of Spring (1986) — Talk Talk
+- [ ] Spirit of Eden (1988) — Talk Talk
+- [ ] Laughing Stock (1991) — Talk Talk
+- [ ] Mark Hollis — Mark Hollis (1998) — Mark Hollis
+- [ ] Bark Psychosis — Hex (1994) — Bark Psychosis
+- [ ] Godspeed You! Black Emperor — F♯ A♯ ∞ (1997) — Godspeed You! Black Emperor
+- [ ] Slow Riot for New Zerø Kanada (1999) — Godspeed You! Black Emperor
+- [ ] Lift Your Skinny Fists Like Antennas to Heaven (2000) — Godspeed You! Black Emperor
+- [ ] Yanqui U.X.O. (2002) — Godspeed You! Black Emperor
+- [ ] Sigur Rós — Von (1997) — Sigur Rós
+- [ ] Ágætis byrjun (1999) — Sigur Rós
+- [ ] () (2002) — Sigur Rós
+- [ ] Takk... (2005) — Sigur Rós
+- [ ] Með suð í eyrum við spilum endalaust (2008) — Sigur Rós
+- [ ] Mogwai — Mogwai Young Team (1997) — Mogwai
+- [ ] Come On Die Young (1999) — Mogwai
+- [ ] Rock Action (2001) — Mogwai
+- [ ] Happy Songs for Happy People (2003) — Mogwai
+- [ ] Mr. Beast (2006) — Mogwai
+- [ ] The Hawk Is Howling (2008) — Mogwai
+- [ ] Explosions in the Sky — Those Who Tell the Truth Shall Die, Those Who Tell the Truth Shall Live Forever (2001) — Explosions in the Sky
+- [ ] The Earth Is Not a Cold Dead Place (2003) — Explosions in the Sky
+- [ ] All of a Sudden I Miss Everyone (2007) — Explosions in the Sky
+- [ ] Slint — Tweez (1989) — Slint
+- [ ] Spiderland (1991) — Slint
+- [ ] June of 44 — Engine Room (1995) — June of 44
+- [ ] Rodan — Rusty (1994) — Rodan
+- [ ] Labradford — A Stable Reference (1995) — Labradford
+- [ ] Breadcrumb Trail (1993) — Labradford
+- [ ] Crescent (1996) — Labradford
+- [ ] E Luxo So (1999) — Labradford
+
+GLAM ROCK & ART ROCK — Glam & Theatrical Rock (Rock as costume, persona, and spectacle; gender-bending as political and aesthetic statement)
+
+- [ ] David Bowie — Space Oddity (1969) — David Bowie
+- [ ] The Man Who Sold the World (1970) — David Bowie
+- [ ] Hunky Dory (1971) — David Bowie
+- [ ] The Rise and Fall of Ziggy Stardust and the Spiders from Mars (1972) — David Bowie
+- [ ] Aladdin Sane (1973) — David Bowie
+- [ ] Pin Ups (1973) — David Bowie
+- [ ] Diamond Dogs (1974) — David Bowie
+- [ ] Young Americans (1975) — David Bowie
+- [ ] Station to Station (1976) — David Bowie
+- [ ] Low (1977) — David Bowie
+- [ ] Heroes (1977) — David Bowie
+- [ ] Lodger (1979) — David Bowie
+- [ ] Scary Monsters (1980) — David Bowie
+- [ ] Let's Dance (1983) — David Bowie
+- [ ] Tonight (1984) — David Bowie
+- [ ] Never Let Me Down (1987) — David Bowie
+- [ ] Black Tie White Noise (1993) — David Bowie
+- [ ] Earthling (1997) — David Bowie
+- [ ] Marc Bolan & T. Rex — T. Rex (1970) — T. Rex
+- [ ] Electric Warrior (1971) — T. Rex
+- [ ] The Slider (1972) — T. Rex
+- [ ] Tanx (1973) — T. Rex
+- [ ] Zinc Alloy and the Hidden Riders of Tomorrow (1974) — T. Rex
+- [ ] Roxy Music — Roxy Music (1972) — Roxy Music
+- [ ] For Your Pleasure (1973) — Roxy Music
+- [ ] Stranded (1973) — Roxy Music
+- [ ] Country Life (1974) — Roxy Music
+- [ ] Siren (1975) — Roxy Music
+- [ ] Viva! (1976) — Roxy Music
+- [ ] Manifesto (1979) — Roxy Music
+- [ ] Flesh + Blood (1980) — Roxy Music
+- [ ] Avalon (1982) — Roxy Music
+- [ ] Bryan Ferry — These Foolish Things (1973) — Bryan Ferry
+- [ ] Another Time, Another Place (1974) — Bryan Ferry
+- [ ] Let's Stick Together (1976) — Bryan Ferry
+- [ ] In Your Mind (1977) — Bryan Ferry
+- [ ] Slade — Slayed? (1972) — Slade
+- [ ] Stomp Your Hands, Clap Your Feet (1974) — Slade
+- [ ] Sweet — The Sweet (1973) — Sweet
+- [ ] Alice Cooper — Love It to Death (1971) — Alice Cooper
+- [ ] Killer (1971) — Alice Cooper
+- [ ] School's Out (1972) — Alice Cooper
+- [ ] Billion Dollar Babies (1973) — Alice Cooper
+- [ ] Welcome to My Nightmare (1975) — Alice Cooper
+- [ ] Lou Reed — Lou Reed (1972) — Lou Reed
+- [ ] Transformer (1972) — Lou Reed
+- [ ] Berlin (1973) — Lou Reed
+- [ ] Rock n Roll Animal (1974) — Lou Reed
+- [ ] Sally Can't Dance (1974) — Lou Reed
+- [ ] Coney Island Baby (1976) — Lou Reed
+- [ ] Street Hassle (1978) — Lou Reed
+- [ ] The Bells (1979) — Lou Reed
+- [ ] New York (1989) — Lou Reed
+- [ ] Iggy Pop / The Stooges — The Stooges (1969) — The Stooges
+- [ ] Fun House (1970) — The Stooges
+- [ ] Raw Power (1973) — Iggy and the Stooges
+- [ ] The Idiot (1977) — Iggy Pop
+- [ ] Lust for Life (1977) — Iggy Pop
+- [ ] New Values (1979) — Iggy Pop
+- [ ] Soldier (1980) — Iggy Pop
+- [ ] Blah-Blah-Blah (1986) — Iggy Pop
+
+POP & R&B — Pop Songcraft & Mainstream Rock (The art of the single; melody as highest ambition)
+
+- [ ] Michael Jackson — Off the Wall (1979) — Michael Jackson
+- [ ] Thriller (1982) — Michael Jackson
+- [ ] Bad (1987) — Michael Jackson
+- [ ] Dangerous (1991) — Michael Jackson
+- [ ] HIStory: Past, Present and Future, Book I (1995) — Michael Jackson
+- [ ] Invincible (2001) — Michael Jackson
+- [ ] Prince — For You (1978) — Prince
+- [ ] Prince (1979) — Prince
+- [ ] Dirty Mind (1980) — Prince
+- [ ] Controversy (1981) — Prince
+- [ ] 1999 (1982) — Prince
+- [ ] Purple Rain (1984) — Prince
+- [ ] Around the World in a Day (1985) — Prince
+- [ ] Parade (1986) — Prince
+- [ ] Sign 'O' the Times (1987) — Prince
+- [ ] Lovesexy (1988) — Prince
+- [ ] Batman (1989) — Prince
+- [ ] Graffiti Bridge (1990) — Prince
+- [ ] Diamonds and Pearls (1991) — Prince
+- [ ] The Gold Experience (1995) — Prince
+- [ ] Emancipation (1996) — Prince
+- [ ] Crystal Ball (1998) — Prince
+- [ ] Bruce Springsteen — Greetings from Asbury Park, N.J. (1973) — Bruce Springsteen
+- [ ] The Wild, the Innocent & the E Street Shuffle (1973) — Bruce Springsteen
+- [ ] Born to Run (1975) — Bruce Springsteen
+- [ ] Darkness on the Edge of Town (1978) — Bruce Springsteen
+- [ ] The River (1980) — Bruce Springsteen
+- [ ] Nebraska (1982) — Bruce Springsteen
+- [ ] Born in the U.S.A. (1984) — Bruce Springsteen
+- [ ] Tunnel of Love (1987) — Bruce Springsteen
+- [ ] Human Touch (1992) — Bruce Springsteen
+- [ ] The Ghost of Tom Joad (1995) — Bruce Springsteen
+- [ ] The Rising (2002) — Bruce Springsteen
+- [ ] Tom Petty — Tom Petty and the Heartbreakers (1976) — Tom Petty and the Heartbreakers
+- [ ] You're Gonna Get It! (1978) — Tom Petty and the Heartbreakers
+- [ ] Damn the Torpedoes (1979) — Tom Petty and the Heartbreakers
+- [ ] Hard Promises (1981) — Tom Petty and the Heartbreakers
+- [ ] Long After Dark (1982) — Tom Petty and the Heartbreakers
+- [ ] Southern Accents (1985) — Tom Petty and the Heartbreakers
+- [ ] Let Me Up (I've Had Enough) (1987) — Tom Petty and the Heartbreakers
+- [ ] Full Moon Fever (1989) — Tom Petty
+- [ ] Into the Great Wide Open (1991) — Tom Petty and the Heartbreakers
+- [ ] Wildflowers (1994) — Tom Petty
+- [ ] Echo (1999) — Tom Petty and the Heartbreakers
+- [ ] Billy Joel — Piano Man (1973) — Billy Joel
+- [ ] Streetlife Serenade (1974) — Billy Joel
+- [ ] Turnstiles (1976) — Billy Joel
+- [ ] The Stranger (1977) — Billy Joel
+- [ ] 52nd Street (1978) — Billy Joel
+- [ ] Glass Houses (1980) — Billy Joel
+- [ ] An Innocent Man (1983) — Billy Joel
+- [ ] The Bridge (1986) — Billy Joel
+- [ ] Storm Front (1989) — Billy Joel
+- [ ] River of Dreams (1993) — Billy Joel
+
+ELECTRONIC & DANCE — Electronic & Ambient (From the studios of Cologne and London; music made from electricity itself)
+
+- [ ] Giorgio Moroder — From Here to Eternity (1977) — Giorgio Moroder
+- [ ] Donna Summer — I Remember Yesterday (1977) — Donna Summer
+- [ ] Bad Girls (1979) — Donna Summer
+- [ ] The Chemical Brothers — Exit Planet Dust (1995) — The Chemical Brothers
+- [ ] Dig Your Own Hole (1997) — The Chemical Brothers
+- [ ] Surrender (1999) — The Chemical Brothers
+- [ ] Come with Us (2002) — The Chemical Brothers
+- [ ] Push the Button (2005) — The Chemical Brothers
+- [ ] We Are the Night (2007) — The Chemical Brothers
+- [ ] Prodigy — Experience (1992) — The Prodigy
+- [ ] Music for the Jilted Generation (1994) — The Prodigy
+- [ ] The Fat of the Land (1997) — The Prodigy
+- [ ] Always Outnumbered, Never Outgunned (2004) — The Prodigy
+- [ ] Orbital — Orbital [Brown Album] (1991) — Orbital
+- [ ] Orbital 2 [Blue Album] (1993) — Orbital
+- [ ] Snivilisation (1994) — Orbital
+- [ ] In Sides (1996) — Orbital
+- [ ] The Middle of Nowhere (1999) — Orbital
+- [ ] The Altogether (2001) — Orbital
+- [ ] Aphex Twin — Selected Ambient Works 85-92 (1992) — Aphex Twin
+- [ ] Selected Ambient Works Volume II (1994) — Aphex Twin
+- [ ] ...I Care Because You Do (1995) — Aphex Twin
+- [ ] Richard D. James Album (1996) — Aphex Twin
+- [ ] Come to Daddy (1997) — Aphex Twin
+- [ ] Windowlicker (1999) — Aphex Twin
+- [ ] Drukqs (2001) — Aphex Twin
+- [ ] Autechre — Incunabula (1993) — Autechre
+- [ ] Amber (1994) — Autechre
+- [ ] Tri Repetae (1995) — Autechre
+- [ ] Chiastic Slide (1997) — Autechre
+- [ ] LP5 (1998) — Autechre
+- [ ] Confield (2001) — Autechre
+- [ ] Draft 7.30 (2003) — Autechre
+- [ ] Untilted (2005) — Autechre
+- [ ] Squarepusher — Feed Me Weird Things (1996) — Squarepusher
+- [ ] Hard Normal Daddy (1997) — Squarepusher
+- [ ] Music Is Rotted One Note (1998) — Squarepusher
+- [ ] Budakhan Mindphone (1999) — Squarepusher
+- [ ] Go Plastic (2001) — Squarepusher
+- [ ] Four Tet — Pause (2001) — Four Tet
+- [ ] Rounds (2003) — Four Tet
+- [ ] Everything Ecstatic (2005) — Four Tet
+- [ ] Burial — Burial (2006) — Burial
+- [ ] Untrue (2007) — Burial
+- [ ] Boards of Canada — Music Has the Right to Children (1998) — Boards of Canada
+- [ ] Geogaddi (2002) — Boards of Canada
+- [ ] The Campfire Headphase (2005) — Boards of Canada
+- [ ] Plaid — Not for Threes (1997) — Plaid
+- [ ] Rest Proof Clockwork (1999) — Plaid
+- [ ] Spokes (2003) — Plaid
+- [ ] The Black Dog — Bytes (1993) — The Black Dog
+- [ ] Spanners (1995) — The Black Dog
+- [ ] Underworld — Dubnobasswithmyheadman (1994) — Underworld
+- [ ] Second Toughest in the Infants (1996) — Underworld
+- [ ] Beaucoup Fish (1999) — Underworld
+- [ ] A Hundred Days Off (2002) — Underworld
+- [ ] Oblivion with Bells (2007) — Underworld
+- [ ] Massive Attack — Blue Lines (1991) — Massive Attack
+- [ ] Protection (1994) — Massive Attack
+- [ ] Mezzanine (1998) — Massive Attack
+- [ ] 100th Window (2003) — Massive Attack
+- [ ] Heligoland (2010) — Massive Attack
+- [ ] Portishead — Dummy (1994) — Portishead
+- [ ] Portishead (1997) — Portishead
+- [ ] Third (2008) — Portishead
+- [ ] Tricky — Maxinquaye (1995) — Tricky
+- [ ] Pre-Millennium Tension (1996) — Tricky
+- [ ] Angels with Dirty Faces (1998) — Tricky
+
+ELECTRONIC & DANCE — House & Techno (Chicago and Detroit as the two poles; the invention of electronic dance music)
+
+- [ ] Various Artists — The House Sound of Chicago Vol. 1 (1986) — Various Artists
+- [ ] Various Artists — Trax Classix (1987) — Various Artists
+- [ ] Inner City — Big Fun (1989) — Inner City
+- [ ] The KLF — Chill Out (1990) — The KLF
+- [ ] Space (1990) — The KLF
+- [ ] The White Room (1991) — The KLF
+- [ ] Moby — Everything Is Wrong (1995) — Moby
+- [ ] Animal Rights (1996) — Moby
+- [ ] Play (1999) — Moby
+- [ ] 18 (2002) — Moby
+- [ ] Hotel (2005) — Moby
+- [ ] Last Night (2008) — Moby
+- [ ] Daft Punk — Homework (1997) — Daft Punk
+- [ ] Discovery (2001) — Daft Punk
+- [ ] Human After All (2005) — Daft Punk
+- [ ] Alive 2007 (2007) — Daft Punk
+- [ ] Laurent Garnier — Shot in the Dark (1995) — Laurent Garnier
+- [ ] Deep Forest (1992) — Deep Forest
+- [ ] Bohlen — The Power of Love (1992) — Various Artists
+
+POST-2000 INDIE & ALTERNATIVE (The decade that fragmented everything; downloading changed the form as much as the content)
+
+- [ ] Strokes — Is This It (2001) — The Strokes
+- [ ] Room on Fire (2003) — The Strokes
+- [ ] First Impressions of Earth (2006) — The Strokes
+- [ ] Angles (2011) — The Strokes
+- [ ] White Stripes — The White Stripes (1999) — The White Stripes
+- [ ] De Stijl (2000) — The White Stripes
+- [ ] White Blood Cells (2001) — The White Stripes
+- [ ] Elephant (2003) — The White Stripes
+- [ ] Get Behind Me Satan (2005) — The White Stripes
+- [ ] Icky Thump (2007) — The White Stripes
+- [ ] Interpol — Turn on the Bright Lights (2002) — Interpol
+- [ ] Antics (2004) — Interpol
+- [ ] Our Love to Admire (2007) — Interpol
+- [ ] The National — The National (2001) — The National
+- [ ] Sad Songs for Dirty Lovers (2003) — The National
+- [ ] Alligator (2005) — The National
+- [ ] Boxer (2007) — The National
+- [ ] High Violet (2010) — The National
+- [ ] Arcade Fire — Funeral (2004) — Arcade Fire
+- [ ] Neon Bible (2007) — Arcade Fire
+- [ ] The Suburbs (2010) — Arcade Fire
+- [ ] LCD Soundsystem — LCD Soundsystem (2005) — LCD Soundsystem
+- [ ] Sound of Silver (2007) — LCD Soundsystem
+- [ ] This Is Happening (2010) — LCD Soundsystem
+- [ ] Franz Ferdinand — Franz Ferdinand (2004) — Franz Ferdinand
+- [ ] You Could Have It So Much Better (2005) — Franz Ferdinand
+- [ ] Tonight: Franz Ferdinand (2009) — Franz Ferdinand
+- [ ] Bloc Party — Silent Alarm (2005) — Bloc Party
+- [ ] A Weekend in the City (2007) — Bloc Party
+- [ ] Intimacy (2008) — Bloc Party
+- [ ] Arctic Monkeys — Whatever People Say I Am, That's What I'm Not (2006) — Arctic Monkeys
+- [ ] Favourite Worst Nightmare (2007) — Arctic Monkeys
+- [ ] Humbug (2009) — Arctic Monkeys
+- [ ] Suck It and See (2011) — Arctic Monkeys
+- [ ] AM (2013) — Arctic Monkeys
+- [ ] Yeah Yeah Yeahs — Fever to Tell (2003) — Yeah Yeah Yeahs
+- [ ] Show Your Bones (2006) — Yeah Yeah Yeahs
+- [ ] It's Blitz! (2009) — Yeah Yeah Yeahs
+- [ ] TV on the Radio — Desperate Youth, Blood Thirsty Babes (2004) — TV on the Radio
+- [ ] Return to Cookie Mountain (2006) — TV on the Radio
+- [ ] Dear Science (2008) — TV on the Radio
+- [ ] Nine Inch Nails — Pretty Hate Machine (1989) — Nine Inch Nails
+- [ ] Broken (1992) — Nine Inch Nails
+- [ ] The Downward Spiral (1994) — Nine Inch Nails
+- [ ] The Fragile (1999) — Nine Inch Nails
+- [ ] With Teeth (2005) — Nine Inch Nails
+- [ ] Year Zero (2007) — Nine Inch Nails
+- [ ] The Slip (2008) — Nine Inch Nails
+- [ ] Marilyn Manson — Portrait of an American Family (1994) — Marilyn Manson
+- [ ] Antichrist Superstar (1996) — Marilyn Manson
+- [ ] Mechanical Animals (1998) — Marilyn Manson
+- [ ] Holy Wood (In the Shadow of the Valley of Death) (2000) — Marilyn Manson
+- [ ] The Golden Age of Grotesque (2003) — Marilyn Manson
+- [ ] Tool — Opiate (1992) — Tool
+- [ ] Undertow (1993) — Tool
+- [ ] Ænima (1996) — Tool
+- [ ] Lateralus (2001) — Tool
+- [ ] 10,000 Days (2006) — Tool
+- [ ] A Perfect Circle — Mer de Noms (2000) — A Perfect Circle
+- [ ] Thirteenth Step (2003) — A Perfect Circle
+- [ ] Emotive (2004) — A Perfect Circle
+- [ ] Porcupine Tree — Up the Downstair (1993) — Porcupine Tree
+- [ ] The Sky Moves Sideways (1995) — Porcupine Tree
+- [ ] Signify (1996) — Porcupine Tree
+- [ ] Stupid Dream (1999) — Porcupine Tree
+- [ ] Lightbulb Sun (2000) — Porcupine Tree
+- [ ] In Absentia (2002) — Porcupine Tree
+- [ ] Deadwing (2005) — Porcupine Tree
+- [ ] Fear of a Blank Planet (2007) — Porcupine Tree
+- [ ] The Incident (2009) — Porcupine Tree
