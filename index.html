@@ -14,12 +14,13 @@
   <input id="q" type="search" placeholder="Artist or album" aria-label="Search records" autocomplete="off">
   <div class="chips" id="dec" role="group" aria-label="Decade"></div>
   <div class="chips" id="hf" role="group" aria-label="Heard filter">
-    <button data-h="all" aria-pressed="true">All</button><button data-h="no" aria-pressed="false">Unheard</button><button data-h="yes" aria-pressed="false">Heard</button>
+    <button data-h="all" aria-pressed="true">All</button><button data-h="no" aria-pressed="false">Unheard</button><button data-h="yes" aria-pressed="false">Heard</button><button data-h="unrated" aria-pressed="false">Unrated</button><button data-h="untagged" aria-pressed="false">Untagged</button><button data-h="flag" aria-pressed="false">Flagged</button>
   </div>
-  <button id="pull" class="pull">Pull one</button>
+  <button id="sb" class="pull alt">Stats</button><button id="pull" class="pull">Pull one</button>
 </header>
 <nav id="rail" aria-label="Crates"></nav>
 <main id="wall"><p class="load">Sorting the crates…</p></main>
+<section id="stats"></section>
 <aside id="sheet" aria-hidden="true" aria-label="Record detail"></aside>
 <div id="veil"></div>
 <script type="module" src="app.js"></script>

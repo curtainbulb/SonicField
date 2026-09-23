@@ -64,3 +64,17 @@ button,input{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 @media(max-width:820px){:root{--rail:0px}#rail{position:static;width:auto;display:flex;overflow-x:auto;padding:0;top:auto}#rail a{flex:none;border-left:0;border-bottom:6px solid var(--c);white-space:nowrap}#wall{padding:0 12px 100px}.shelf{grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:8px}.crate .tally{display:none}#q{width:130px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;scroll-behavior:auto!important}}
 .sl:has(img.ok) .t{display:none}
+
+.pull.alt{background:var(--pink)}body.stats #wall,body.stats #rail{display:none}#stats{display:none;padding:24px}body.stats #stats{display:block}
+#stats h2{font:800 clamp(38px,6vw,80px)/.9 var(--d);letter-spacing:-.045em}#stats h3{font:800 20px var(--d);margin:28px 0 8px}
+.sts{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px;margin-top:16px}.st{text-align:left;padding:12px;background:var(--deep);border-left:6px solid var(--pink)}
+.st b{display:block;font:800 26px/1.05 var(--d)}.st span{font:400 13px var(--d);color:#fffb}
+.map{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:6px}.map button{text-align:center;padding:4px}.map button:hover{background:var(--deep)}
+.map svg{width:100%}.map span{display:block;font:400 11px/1.15 var(--d)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:28px}@media(max-width:820px){.two{grid-template-columns:1fr}}
+.rbar{display:flex;align-items:center;gap:8px;font:400 14px var(--d);margin:3px 0}.rbar i{height:14px;background:var(--sun)}.rbar em,.ln em{font-style:normal;opacity:.7}
+.ln{display:flex;justify-content:space-between;width:100%;padding:5px 0;border-bottom:1px solid #fff3;font:400 15px var(--d);text-align:left}
+.ed label{display:block;font:400 12px var(--d);margin:8px 0}.ed input,.ed select{display:block;width:100%;font:400 15px var(--d);padding:6px;border:2px solid #151515;background:#fff;color:#151515;cursor:text;margin-top:2px}
+.ed .row{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.stars button{font-size:30px;color:#0003;line-height:1}.stars button.on{color:#e6a800}.stars button:last-child{font:400 12px var(--d);color:#444;margin-left:8px}
+.flags{font:400 13px var(--d);color:#a00;padding-left:18px;margin-top:6px}
+#stats .why{color:#fffc}
