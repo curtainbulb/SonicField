@@ -5,7 +5,7 @@ const save = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } cat
 
 let crates = [], all = [], res = {}, heard = new Set(ls('sonicfield_heard', []));
 const F = { q: '', dec: new Set(), h: 'all' };
-const fams = []; const hue = f => { if (!fams.includes(f)) fams.push(f); return `hsl(${(fams.indexOf(f) * 47 + 12) % 360} 88% 64%)`; };
+const fams = []; const hue = f => { if (!fams.includes(f)) fams.push(f); return `hsl(${(fams.indexOf(f) * 47 + 12) % 360} 100% 68%)`; };
 const isHeard = a => heard.has(a.k);
 
 async function boot() {
@@ -37,15 +37,18 @@ const tile = a => `<button class="sl${isHeard(a) ? ' heard' : ''}" data-k="${esc
 
 function render() {
   pred = compile(F.q, U());
+  io.disconnect(); spy.disconnect(); vis.clear(); slow.clear(); // old tiles were never released after a re-render
   const out = crates.map((c, i) => {
     const list = c.albums.filter(visible); if (!list.length) return '';
     return `<section class="crate" id="c${i}" style="--c:${c.c}"><header><span class="fam">${esc(c.family)}</span><h2>${esc(c.name)}</h2>${c.desc ? `<p>${esc(c.desc)}</p>` : ''}
       <div class="tally"><span></span><small>heard</small><i><b></b></i></div></header><div class="shelf">${list.map(tile).join('')}</div></section>`;
   }).join('');
   $('#wall').innerHTML = out || `<p class="none">Nothing in the crates matches that. Clear a filter or shorten the search.</p>`;
+  crates.forEach((c, i) => { const r = $('#r' + i); if (r) r.hidden = !$('#c' + i); });
   tallies(); watch();
 }
 function tallies() {
+  $('#cnt').textContent = `${all.length} sleeves · ${all.filter(isHeard).length} played`;
   crates.forEach((c, i) => {
     const n = c.albums.filter(isHeard).length, el = $(`#c${i}`), r = $(`#r${i}`);
     if (r) { r.querySelector('small').textContent = `${n}/${c.albums.length}`; r.classList.toggle('done', n === c.albums.length); }
@@ -80,8 +83,10 @@ async function go() {
 }
 // Detail sheet
 let cur = null; const failed = new Set();
+let opener = null;
+function lock(on) { document.documentElement.classList.toggle('lock', on); ['#wall', '#rail', '.bar', '#stats'].forEach(s => { $(s).inert = on; }); }
 async function open(a) {
-  cur = a; const c = crates[a.ci], r = res[a.k];
+  cur = a; const ae = document.activeElement, keep = ae?.closest?.('#sheet') ? (ae.dataset.f ? `[data-f="${ae.dataset.f}"]` : ae.dataset.a ? `[data-a="${ae.dataset.a}"]` : ae.id ? '#' + ae.id : null) : null; const c = crates[a.ci], r = res[a.k];
   const same = c.albums.slice(Math.max(0, a.ai - 5), a.ai + 7).filter(x => x !== a);
   const yr = all.filter(x => x.year === a.year && x.ci !== a.ci).slice(0, 14);
   let link;
@@ -99,11 +104,12 @@ async function open(a) {
     ${c.desc ? `<h4>The crate</h4><p>${esc(c.desc)}.</p>` : ''}
     <h4>Next to it in the crate</h4><div class="strip">${same.map(tile).join('')}</div>
     <h4>Also from ${a.year}, other crates</h4><div class="strip">${yr.map(tile).join('') || '<p>Nothing else in the list from this year.</p>'}</div>`;
-  $('#sheet').classList.add('on'); $('#veil').classList.add('on'); $('#sheet').setAttribute('aria-hidden', 'false'); $('#sheet .x').focus();
+  const was = $('#sheet').classList.contains('on'); if (!was) { opener = document.activeElement; lock(true); }
+  $('#sheet').classList.add('on'); $('#veil').classList.add('on'); $('#sheet').setAttribute('aria-hidden', 'false'); ((keep && $(keep)) || (!$('#sheet').contains(document.activeElement) ? $('#sheet .x') : null))?.focus({ preventScroll: true });
   $('#sheet').querySelectorAll('.sl').forEach(t => io.observe(t));
   if (!(a.k in res) && !failed.has(a.k)) { try { res[a.k] = await lookup(a); save('sf_res', res); } catch { failed.add(a.k); if (cur === a) open(a); return; } if (cur === a) open(a); }
 }
-function close() { $('#sheet').classList.remove('on'); $('#veil').classList.remove('on'); $('#sheet').setAttribute('aria-hidden', 'true'); cur = null; }
+function close() { $('#sheet').classList.remove('on'); $('#veil').classList.remove('on'); $('#sheet').setAttribute('aria-hidden', 'true'); cur = null; if (document.documentElement.classList.contains('lock')) { lock(false); opener?.focus({ preventScroll: true }); opener = null; } }
 const byTile = t => { const b = t.closest('.sl'); return b && all.find(x => x.k === b.dataset.k); };
 
 document.addEventListener('click', e => {
@@ -112,16 +118,18 @@ document.addEventListener('click', e => {
   if (t.closest('.x') || t.id === 'veil') return close();
   if (t.closest('[data-heard]') && cur) { heard.has(cur.k) ? heard.delete(cur.k) : heard.add(cur.k); save('sonicfield_heard', [...heard]);
     document.querySelectorAll('.sl').forEach(s => s.classList.toggle('heard', heard.has(s.dataset.k))); tallies(); return open(cur); }
-  const d = t.closest('[data-d]'); if (d) { const n = +d.dataset.d; F.dec.has(n) ? F.dec.delete(n) : F.dec.add(n); d.setAttribute('aria-pressed', F.dec.has(n)); return render(); }
-  const h = t.closest('[data-h]'); if (h) { F.h = h.dataset.h; document.querySelectorAll('[data-h]').forEach(b => b.setAttribute('aria-pressed', b === h)); return render(); }
+  const d = t.closest('[data-d]'); if (d) { const n = +d.dataset.d; F.dec.has(n) ? F.dec.delete(n) : F.dec.add(n); d.setAttribute('aria-pressed', F.dec.has(n)); render(); return scrollTo({ top: 0, behavior: 'instant' }); }
+  const h = t.closest('[data-h]'); if (h) { F.h = h.dataset.h; document.querySelectorAll('[data-h]').forEach(b => b.setAttribute('aria-pressed', b === h)); render(); return scrollTo({ top: 0, behavior: 'instant' }); }
   if (t.closest('#pull')) { const p = all.filter(a => visible(a) && !isHeard(a)); if (!p.length) return; const a = p[Math.random() * p.length | 0];
-    document.querySelector(`.sl[data-k="${CSS.escape(a.k)}"]`)?.scrollIntoView({ block: 'center' }); open(a); }
+    document.querySelector(`.sl[data-k="${CSS.escape(a.k)}"]`)?.scrollIntoView({ block: 'center', behavior: 'instant' }); open(a); }
 });
-let tm; $('#q').addEventListener('input', e => { clearTimeout(tm); tm = setTimeout(() => { F.q = e.target.value.trim(); render(); }, 150); });
+let tm; $('#q').addEventListener('input', e => { clearTimeout(tm); tm = setTimeout(() => { F.q = e.target.value.trim(); render(); scrollTo({ top: 0, behavior: 'instant' }); }, 150); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
 document.addEventListener('pointermove', e => { const s = e.target.closest?.('.sl'); if (!s || matchMedia('(prefers-reduced-motion:reduce)').matches) return;
   const b = s.getBoundingClientRect(); s.style.setProperty('--ry', `${((e.clientX - b.left) / b.width - .5) * 14}deg`); s.style.setProperty('--rx', `${-((e.clientY - b.top) / b.height - .5) * 14}deg`); });
-var spy = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { document.querySelectorAll('#rail a').forEach(a => a.classList.toggle('on', a.id === 'r' + e.target.id.slice(1))); } }), { rootMargin: '-15% 0px -75% 0px' });
+var spy = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; let on;
+  document.querySelectorAll('#rail a').forEach(a => { const y = a.id === 'r' + e.target.id.slice(1); a.classList.toggle('on', y); if (y) on = a; });
+  const r = $('#rail'); if (on) r.scrollTo({ top: on.offsetTop - r.clientHeight / 2 + on.offsetHeight / 2, left: on.offsetLeft - r.clientWidth / 2 + on.offsetWidth / 2, behavior: 'auto' }); }), { rootMargin: '-130px 0px -70% 0px' });
 
 // Taxonomy + audio annotations. Every audio value carries provenance: 'file' (measured) or 'user' (typed in). Nothing is inferred silently.
 var meta = ls('sf_meta', {}); const M = k => meta[k] || (meta[k] = {}), saveMeta = () => save('sf_meta', meta);
@@ -177,16 +185,19 @@ function stats() {
    <h3>Your data</h3><div class="acts"><button class="btn" id="ex-j">Export JSON</button><button class="btn" id="ex-c">Export CSV</button><label class="btn alt">Import JSON<input type="file" id="im" accept=".json" hidden></label></div>`;
 }
 const dl = (name, text, type) => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([text], { type })); a.download = name; a.click(); };
-function stats_show(on) { document.body.classList.toggle('stats', on); $('#sb').textContent = on ? 'Back to crates' : 'Stats'; if (on) stats(); else render(); scrollTo(0, 0); }
+let pos = 0;
+function stats_show(on, keep = true) { if (on) pos = scrollY; document.body.classList.toggle('stats', on); $('#sb').textContent = on ? 'Back to crates' : 'Stats'; if (on) stats(); else render(); scrollTo({ top: on || !keep ? 0 : pos, behavior: 'instant' }); }
 $('#sb').onclick = () => stats_show(!document.body.classList.contains('stats'));
 $('#stats').addEventListener('click', e => { const g = e.target.closest('[data-go],[data-c],[data-q],#ex-j,#ex-c');
   if (!g) return; if (g.id === 'ex-j') return dl('sonicfield.json', JSON.stringify({ heard: [...heard], meta }, null, 1), 'application/json');
   if (g.id === 'ex-c') { const q = s => `"${String(s ?? '').replace(/"/g, '""')}"`; return dl('sonicfield-technical.csv', ['artist,title,year,crate,heard,rating,type,tags,format,khz,bits,channels,audio_provenance,apple_id,flags'].concat(all.map(a => { const m = meta[a.k] || {}, u = m.au || {};
     return [a.artist, a.title, a.year, a.crate, isHeard(a), m.r, m.ty, (m.tags || []).join(';'), u.fmt, u.sr, u.bd, u.ch, u.prov, res[a.k]?.id, flags(a).join(' | ')].map(q).join(','); })).join('\n'), 'text/csv'); }
-  if (g.dataset.c) { stats_show(false); return setTimeout(() => $(`#c${g.dataset.c}`)?.scrollIntoView(), 30); }
+  if (g.dataset.c) { stats_show(false, false); return setTimeout(() => $(`#c${g.dataset.c}`)?.scrollIntoView(), 30); }
   const s = g.dataset.q ?? ({ 'is:heard': 'is:heard', 'is:rated': 'is:rated', 'is:noted': 'is:noted', flag: '' })[g.dataset.go]; if (s == null || g.dataset.go === undefined && g.dataset.q === undefined) return;
-  if (g.dataset.go === 'flag') F.h = 'flag'; else F.h = 'all'; F.q = s; $('#q').value = s; stats_show(false); });
+  if (g.dataset.go === 'flag') F.h = 'flag'; else F.h = 'all'; F.q = s; $('#q').value = s; stats_show(false, false); });
 $('#stats').addEventListener('change', async e => { if (e.target.id !== 'im' || !e.target.files[0]) return; try { const d = JSON.parse(await e.target.files[0].text());
   if (!Array.isArray(d.heard) || typeof d.meta !== 'object') throw 0; heard = new Set([...heard, ...d.heard]); meta = { ...meta, ...d.meta }; save('sonicfield_heard', [...heard]); saveMeta(); stats(); } catch { e.target.insertAdjacentHTML('afterend', '<p class="why">That file isn\'t a SonicField export.</p>'); } });
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
+const hh = () => { const b = $('.bar'), sticky = getComputedStyle(b).position === 'sticky'; document.documentElement.style.setProperty('--hh', (sticky ? b.offsetHeight : $('#rail').offsetHeight) + 'px'); };
+new ResizeObserver(hh).observe($('.bar')); new ResizeObserver(hh).observe($('#rail')); addEventListener('resize', hh); hh();
 boot();
