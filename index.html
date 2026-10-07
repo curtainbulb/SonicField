@@ -1,28 +1,52 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f4f3ef">
-<title>SONICFIELD // 1,391 sleeves, 37 crates</title>
-<meta name="description" content="A personal crate-digging tracker for 1,391 albums across 37 crates.">
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#e9e6dc">
+  <meta name="description" content="A personal listening room for 1,391 albums across 37 crates.">
+  <title>SonicField — a listening room</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="bar">
-  <h1>SONIC<span>FIELD</span><small id="cnt" aria-live="polite">booting…</small></h1>
-  <div class="search"><input id="q" type="search" placeholder="Search the crates" aria-label="Search records" autocomplete="off" spellcheck="false"><button id="help" aria-expanded="false" aria-controls="search-help">?</button>
-    <div id="search-help" hidden><strong>Search syntax</strong><span>artist:"Nina Simone"</span><span>title:blue</span><span>crate:ambient</span><span>family:jazz</span><span>tag:mono</span><span>is:heard · is:unheard · is:rated · is:noted · is:matched</span><span>year:1970-1979 · year&gt;=1980 · rating&gt;=4</span><span>Use quotes for phrases and a leading - to exclude.</span></div>
+  <header class="masthead">
+    <a class="wordmark" href="#listen" data-view="listen" aria-label="SonicField home">SONIC<span>FIELD</span><small>THE PERSONAL RECORD INDEX</small></a>
+    <nav class="primary-nav" aria-label="Main navigation">
+      <button data-view="listen" aria-current="page">Listening room</button>
+      <button data-view="crates">Crates <span id="crate-count"></span></button>
+      <button data-view="saved">Saved <span id="saved-count"></span></button>
+      <button data-view="stats">Your ledger</button>
+    </nav>
+    <div class="search-wrap">
+      <label class="search-box"><span aria-hidden="true">⌕</span><input id="q" type="search" placeholder="Find a record or artist" aria-label="Find a record or artist" autocomplete="off" spellcheck="false"><kbd>/</kbd></label>
+      <button id="help" aria-expanded="false" aria-controls="search-help">Search syntax</button>
+      <div id="search-help" hidden><strong>Search the collection</strong><span>artist:"Nina Simone" · title:blue</span><span>crate:ambient · family:jazz · tag:mono</span><span>is:heard · is:unheard · is:rated · is:noted · is:matched</span><span>year:1970-1979 · year&gt;=1980 · rating&gt;=4</span><span>Use quotes for a phrase. Add - to exclude it.</span></div>
+    </div>
+    <button id="pull" class="draw-button"><span>Draw a record</span><kbd>R</kbd></button>
+  </header>
+
+  <div class="app-frame">
+    <aside class="side-index" aria-label="Collection navigation">
+      <div class="side-top"><span class="eyebrow">Your collection</span><span id="cnt" aria-live="polite">Loading</span></div>
+      <div class="side-shortcuts">
+        <button data-view="listen"><span>01</span> Listening room</button>
+        <button data-view="crates"><span>02</span> All records</button>
+        <button data-view="saved"><span>03</span> Saved for later</button>
+      </div>
+      <div class="crate-index-head"><span class="eyebrow">Browse by crate</span><button id="all-crates" data-view="crates">All 37</button></div>
+      <nav id="rail" aria-label="Crates"></nav>
+      <div class="side-foot"><span class="status-dot"></span><span>Stored on this device</span></div>
+    </aside>
+    <main id="wall" tabindex="-1"><p class="load">Opening your listening room…</p></main>
   </div>
-  <div class="chips" id="dec" role="group" aria-label="Decade"></div>
-  <div class="chips" id="hf" role="group" aria-label="Filter">
-    <button data-h="all" aria-pressed="true">All</button><button data-h="no" aria-pressed="false">Unheard</button><button data-h="yes" aria-pressed="false">Heard</button><button data-h="unrated" aria-pressed="false">Unrated</button><button data-h="untagged" aria-pressed="false">Untagged</button><button data-h="flag" aria-pressed="false">Flagged</button>
-  </div>
-  <button id="sb" class="pull alt">Stats</button><button id="pull" class="pull">Pull one</button>
-</header>
-<nav id="rail" aria-label="Crates"></nav>
-<main id="wall"><p class="load">Sorting crates…</p></main>
-<section id="stats" aria-label="Total stats"></section>
-<aside id="sheet" role="dialog" aria-modal="true" aria-label="Record detail" aria-hidden="true"></aside>
-<div id="veil"></div>
-<script type="module" src="app.js"></script>
+
+  <section id="stats" aria-label="Your collection ledger"></section>
+  <aside id="sheet" role="dialog" aria-modal="true" aria-label="Record detail" aria-hidden="true"></aside>
+  <div id="veil"></div>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <nav class="mobile-nav" aria-label="Main navigation">
+    <button data-view="listen" aria-current="page">Room</button><button data-view="crates">Crates</button><button data-view="saved">Saved</button><button data-view="stats">Ledger</button>
+  </nav>
+  <script type="module" src="app.js"></script>
 </body>
 </html>
