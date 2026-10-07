@@ -31,8 +31,8 @@ function visible(a) {
   if (F.dec.size && !F.dec.has(Math.floor(a.year / 10) * 10)) return false;
   return pred(a);
 }
-const tile = a => { const col = /^#[0-9a-f]{6}$/i.test(res[a.k]?.col || '') ? res[a.k].col : 'var(--panel)'; return `<button class="sl${isHeard(a) ? ' heard' : ''}" data-k="${esc(a.k)}" data-c="${a.ci}" data-a="${a.ai}" aria-label="${esc(a.title)}, ${esc(a.artist)}, ${a.year}">
-  <span class="in" style="--cover:${col}"><span class="t">${esc(a.title)}<em>${esc(a.artist)}</em></span><span class="y">${a.year}</span></span></button>`; };
+const tile = a => `<button class="sl${isHeard(a) ? ' heard' : ''}" data-k="${esc(a.k)}" data-c="${a.ci}" data-a="${a.ai}" aria-label="${esc(a.title)}, ${esc(a.artist)}, ${a.year}">
+  <span class="in"><span class="t">${esc(a.title)}<em>${esc(a.artist)}</em></span><span class="y">${a.year}</span></span></button>`;
 
 function recommendations() {
   const seeds = all.filter(a => (meta[a.k]?.r || 0) >= 4);
@@ -71,7 +71,7 @@ function tallies() {
 // ~100s for a single screen), nothing pre-resolved, and full 600px images in ~150px tiles. Now: cache-first paint, one search per
 // artist (covers all their albums), visible-first queue, 3 workers, off-screen jobs skipped, 300px thumbs (600px only in the sheet).
 const byK = new Map(), byA = new Map(), vis = new Set(), started = new Set(), slow = new Set(); let workers = 0, saveT;
-const sz = (r, n) => r?.id ? `art/${r.id}-${n}.webp` : '';
+const sz = (r, n) => r?.art ? r.art.replace(/\{s\}/g, n) : '';
 const persist = () => { clearTimeout(saveT); saveT = setTimeout(() => save('sf_res', res), 700); };
 const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { vis.add(e.target); want(e.target); } else vis.delete(e.target); }), { rootMargin: '700px' });
 function watch() { document.querySelectorAll('#wall .sl').forEach(t => io.observe(t)); document.querySelectorAll('.crate').forEach(c => spy.observe(c)); }
@@ -100,14 +100,12 @@ async function open(a) {
   cur = a; const ae = document.activeElement, keep = ae?.closest?.('#sheet') ? (ae.dataset.f ? `[data-f="${ae.dataset.f}"]` : ae.dataset.a ? `[data-a="${ae.dataset.a}"]` : ae.id ? '#' + ae.id : null) : null; const c = crates[a.ci], r = res[a.k];
   const same = c.albums.slice(Math.max(0, a.ai - 5), a.ai + 7).filter(x => x !== a);
   const yr = all.filter(x => x.year === a.year && x.ci !== a.ci).slice(0, 14);
-  let link;
-  if (r) link = `<a class="btn" href="${esc(r.url)}" target="_blank" rel="noopener">Apple Music</a>`;
-  else if (a.k in res) link = `<span class="btn off">No Apple Music link</span>`;
-  else link = `<span class="btn off">${failed.has(a.k) ? 'Apple lookup unreachable' : 'Matching…'}</span>`;
+  const apple = r?.url || `https://music.apple.com/us/search?term=${encodeURIComponent(`${a.artist} ${a.title}`)}`;
+  const link = `<a class="btn" href="${esc(apple)}" rel="noopener">Open in Apple Music</a>`;
   const query = encodeURIComponent(`${a.artist} ${a.title}`);
   const otherLinks = `<a class="btn service" href="https://open.spotify.com/search/${query}" target="_blank" rel="noopener">Spotify</a><a class="btn service" href="https://music.youtube.com/search?q=${query}" target="_blank" rel="noopener">YouTube Music</a>`;
-  const why = r ? `Matched to "${esc(r.name)}" by ${esc(r.artist)}, ${r.year}, US storefront (confidence ${r.score}). Album id ${r.id}.`
-    : a.k in res ? `No release scored high enough on artist, title and year together, so no link is shown. A guess would be worse.` : failed.has(a.k) ? `Couldn't reach Apple's catalogue just now. Close and reopen this record to retry; no link is guessed meanwhile.` : `Checking Apple's catalogue for artist, title and year.`;
+  const why = r ? `Matched to "${esc(r.name)}" by ${esc(r.artist)}, ${r.year}, US storefront (confidence ${r.score}).`
+    : failed.has(a.k) ? `Apple's catalogue could not be reached, so this opens an Apple Music search for the artist and title.` : `This record is not matched to a specific Apple release yet, so the button opens an Apple Music search for the artist and title.`;
   $('#sheet').style.setProperty('--c', c.c);
   $('#sheet').innerHTML = `<button class="x" aria-label="Close">×</button>
     <div class="disc"><div class="rec"></div><div class="cov"><span class="t" style="${r?.id ? 'display:none' : ''}">${esc(a.title)}</span>${r?.id ? `<img src="${esc(sz(r, 480))}" alt="Cover of ${esc(a.title)}">` : ''}</div></div>
@@ -211,7 +209,6 @@ $('#stats').addEventListener('click', e => { const g = e.target.closest('[data-g
   if (g.dataset.go === 'flag') F.h = 'flag'; else F.h = 'all'; F.q = s; $('#q').value = s; stats_show(false, false); });
 $('#stats').addEventListener('change', async e => { if (e.target.id !== 'im' || !e.target.files[0]) return; try { const d = JSON.parse(await e.target.files[0].text());
   if (!Array.isArray(d.heard) || typeof d.meta !== 'object') throw 0; heard = new Set([...heard, ...d.heard]); meta = { ...meta, ...d.meta }; save('sonicfield_heard', [...heard]); saveMeta(); stats(); } catch { e.target.insertAdjacentHTML('afterend', '<p class="why">That file isn\'t a SonicField export.</p>'); } });
-if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
 const hh = () => { const b = $('.bar'), sticky = getComputedStyle(b).position === 'sticky'; document.documentElement.style.setProperty('--hh', (sticky ? b.offsetHeight : $('#rail').offsetHeight) + 'px'); };
 new ResizeObserver(hh).observe($('.bar')); new ResizeObserver(hh).observe($('#rail')); addEventListener('resize', hh); hh();
 boot();
