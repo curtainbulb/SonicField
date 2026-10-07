@@ -1,174 +1,230 @@
-# SonicField UI redesign
+# SonicField — The Null Index
 
-## Current UI audit
+## Current UI Audit
 
-The product already has the right raw material: a clear crate taxonomy, a 1,391-record source list, query operators, heard state, ratings, tags, notes, audio-copy checks, export/import, and a record detail sheet. The interface presented those capabilities as one long wall with a crowded toolbar. Recents and saved records had no home, recommendations were difficult to discover, and the details view mixed listening actions with a long technical form.
+This audit is based on the source. The embedded browser blocked the local preview URL, so the rendered app could not be inspected interactively in this environment.
 
-## Three directions considered
+- The previous visual system used warm parchment, a literary serif, album-card grids, and oxide accents. It read as a gentle listening journal, not a hollow, severe archive.
+- The catalog rendered every record into the page at once, then replaced the full catalog DOM for each filter and route change. With 1,391 entries, that creates unnecessary layout work and discards the user's current list elements.
+- The record sheet was an aside made modal with custom background locking, focus trapping, and focus restoration. Its asynchronous catalogue lookup rebuilt the entire sheet when it returned, adding focus and interaction race conditions.
+- The album list has 1,391 entries but 1,384 distinct legacy keys. Seven repeated title/artist/year entries could resolve to the wrong crate context through a key-only lookup.
+- The first route depends on fetching the Markdown archive. The prior error state combined a raw fetch message with generic server guidance; the new state names the failed request and offers retry.
 
-| Direction | Character | Interaction model | Tradeoff |
-| --- | --- | --- | --- |
-| Sleeve Index | A sharply typeset record catalog with dense filters and album-first browsing. | Search, filter, scan, open a sleeve. | Excellent for deliberate lookup; weak as a welcoming return point. |
-| Listening Room | A personal home for returning to records, following rated-based threads, and drawing something unexpected. | Resume, discover, then enter the complete crate index. | Adds a home view and saved/recent state; keeps the full catalog one route away. |
-| Field Atlas | A map-like index arranged by family, decade, and overlapping musical territory. | Move between families, eras, and crates as connected paths. | Strong exploration; more unfamiliar spatial navigation for a user who already thinks in crates. |
+The new interface gives each visible entry a stable crate-and-position identity, while keeping the legacy key for local data compatibility.
+
+## Concept 1 — The Ossuary
+
+**Vibe:** A wall of names, organized like a memorial register.
+
+**Interaction:** Browse an alphabetized, typographic list. Open a record into a narrow inscription panel. Search and mark records in place.
+
+**Strength:** Quiet and emotionally direct. The archive itself supplies all visual interest.
+
+**Cost:** Alphabetical browsing hides the user's existing crate taxonomy and weakens exploratory relationships between records.
+
+## Concept 2 — Dead Channel
+
+**Vibe:** A receiver left running after transmission stopped: near-black field, a single cold signal, sparse measurements.
+
+**Interaction:** Search first, jump between recent signals, tune by era and status, and use the command palette as the main route switcher.
+
+**Strength:** Strongest sense of a living but failing system; fast for repeated expert use.
+
+**Cost:** Search-led navigation makes the full collection harder to understand at a glance and puts too much weight on hidden commands.
+
+## Concept 3 — The Null Index
+
+**Vibe:** A private instrument for cataloguing what remains. Bone text on charcoal, hairline rules, measured gaps, one rust signal.
+
+**Interaction:** A visible route rail and crate list remain available on desktop. The index is a paged, searchable register. A command palette offers direct jumps without becoming the only navigation.
+
+**Strength:** The structure is immediately legible; the archive stays sparse without hiding its features.
+
+**Cost:** More typographic than image-led. Covers are present as quiet evidence, not as the interface's main event.
 
 ## Recommendation
 
-Listening Room is implemented. It gives the archive a useful starting point without turning the catalog into a dashboard. The surface is warm paper, dark ink, hairline rules, a single oxide-red signal color, editorial serif display type, and compact system sans/mono utility text. Record sleeves remain the visual center. The circular listening stamp and the overlapping sleeve-and-disc detail transition give the interface its physical character.
+Build **The Null Index**. It makes the product's actual structure visible, gives the 1,391-entry catalog bounded rendering, and keeps search, crate selection, saved records, ledger, and settings one direct move away. The bleakness comes from spacing, hierarchy, and material contrast rather than novelty controls or decorative effects.
 
-## Design principles
+## Final Design Spec
 
-- Lead with the collection’s own language: listening room, crate, sleeve, trail, ledger.
-- Keep browsing, saving, hearing, rating, and recording copy details as direct actions.
-- Use red for selection, progress, and the next action. Do not use it as ambient decoration.
-- Let album art carry color. The interface itself stays paper, ink, and oxide.
-- Keep detail work in one focused folio, with listening actions before classification fields.
-- Suggestions come only from local ratings and collection metadata; they do not claim streaming-service taste data.
+### Principles
 
-## Information architecture
+- Give every screen one clear next action.
+- Use words before icons; reserve the rust signal for active state and important actions.
+- Keep the desktop route rail and crate list visible.
+- Treat each record as a row in a working register, not a floating card.
+- Keep personal data local and exportable.
+- Use motion only to confirm a state change or expose a layer.
+- Keep search, filters, and record actions reversible.
 
-```text
-Listening room
-├── Listening trail (recently opened)
-├── Follow a thread (rated-based suggestions)
-└── Choose a crate
-Crates
-├── Search results and decade/listening filters
-└── 37 crate sections → record folio
-Saved & recent
-├── Saved for later
-└── Recently opened
-Your ledger
-├── Collection and listening totals
-├── Crate/decade map and rating distribution
-└── Import/export
-Record folio
-├── Apple Music / Spotify / YouTube Music
-├── Save / heard / rating
-├── Classification, tags, note
-└── Copy format, source, and file-header inspection
-```
+### Information architecture
 
-The primary route is always visible in the desktop masthead. The crate rail appears on the catalog route, where it is useful for direct jumps. Mobile uses a persistent four-destination bottom bar and a horizontally scrollable filter line.
+    Room
+    ├── Listening progress
+    ├── Recently opened
+    ├── Rating-based suggestions
+    └── Crate entry points
+    Index
+    ├── Search and syntax
+    ├── Crate, decade, and state filters
+    └── Record detail
+    Kept records
+    ├── Saved
+    └── Recent
+    Ledger
+    ├── Collection totals
+    ├── Decade and rating breakdowns
+    └── Crate listening progress
+    Settings
+    ├── Accent and list density
+    ├── JSON and CSV export / JSON import
+    └── Keyboard reference
 
-## Main task flows
+### Core user flows
 
-1. Find an album: `/` or Ctrl/Cmd+K focuses search → query operators narrow the crate index → select a sleeve → choose a streaming destination.
-2. Mark a listen: open sleeve → “Mark heard” → state and crate tally update immediately; “Heard · undo” reverses it.
-3. Classify a copy: open sleeve → choose rating, tags, type, or audio details → values save under existing `sf_meta`.
-4. Return later: open sleeve → “Save for later” → Saved & Recent; remove from the same action in the folio.
-5. Discover: home → follow a thread from 4–5 star ratings or draw an unheard record with the button / `R` shortcut.
-6. Inspect or back up: Your Ledger → crate/rating summaries → export or merge an existing SonicField JSON export.
+1. **Find a record:** Press / or focus the visible search → type a title, artist, tag, crate, family, year, or rating query → open a result.
+2. **Mark it heard:** Open a record → choose Mark heard → close or continue to a nearby record. The action can be undone from the same control.
+3. **Classify a copy:** Open a record → rate it → add tags, a note, format, and source details. FLAC/WAV headers can fill measured fields.
+4. **Keep a record:** Open it → Keep for later → find it in Kept records. Removing the marker is reversible.
+5. **Discover:** Use Follow a line for suggestions derived from local ratings and archive metadata, or press R to draw an unheard record.
+6. **Carry data out:** Settings → export JSON or CSV. Import merges fields into local data.
 
-## Key-screen wireframes
+### Key-screen wireframes
 
-Listening room, desktop:
+Desktop room:
 
-```text
-┌ SONICFIELD ─ Listening room ─ Crates ─ Saved ─ Ledger ─ Search ─ Draw ┐
-│ collection / routes │ A private archive for curious ears     (stamp) │
-│                     │ Your collection, still in motion.              │
-│                     │ [Enter the crates] [Start with a record]       │
-│                     ├─────────────────────────────────────────────────┤
-│                     │ Back in the room     [recent sleeves →]        │
-│                     │ Follow a thread      [rated-based sleeves]      │
-│                     │ Choose a crate       [typographic crate index]  │
-└─────────────────────┴─────────────────────────────────────────────────┘
-```
+    ┌ fixed routes / crate register ┬ route label · search · command · draw ┐
+    │ 01 Room                       │ THE RECORDS REMAIN.      archive state │
+    │ 02 Index                      │ [Open index] [Begin with a record]      │
+    │ 03 Kept                       ├ recent register rows ──────────────────┤
+    │ 04 Ledger                     │ follow a line · choose a crate          │
+    │ 05 Settings                   └─────────────────────────────────────────┘
 
-Crate index:
+Index:
 
-```text
-┌ global masthead and search ───────────────────────────────────────────┐
-│ crate rail     │ Browse the crates       [decades] [listening status] │
-│                │ family / crate title / short description             │
-│ active crate   │ [sleeve] [sleeve] [sleeve] [sleeve]                   │
-│                │ next crate …                                         │
-└────────────────┴──────────────────────────────────────────────────────┘
-```
+    ┌ visible route rail ┬ query / filters / count ───────────────────────────┐
+    │ crate A            │ crate · state · decades                            │
+    │ crate B            │ record / artist        crate      year     marks   │
+    │ crate C            │ record row ─────────────────────────────────────── │
+    │ ...                │ record row · load next                              │
+    └────────────────────┴───────────────────────────────────────────────────┘
 
-Record folio:
+Record detail:
 
-```text
-┌ overlapping sleeve and record ─────────────────────────────── close ┐
-│ title / artist / year / crate / family                             │
-│ [Apple Music] [Spotify] [YouTube Music] [Save] [Mark heard]         │
-│ confidence or search-fallback note                                  │
-│ rating · type · filed under · tags · note                           │
-│ copy format · sample rate · bits · channels · source · header check │
-│ neighboring sleeves                                                 │
-└─────────────────────────────────────────────────────────────────────┘
-```
+    ┌ record / crate position ───────────────────────────────────── close ┐
+    │ cover evidence     title / artist / year / family / crate             │
+    │                   Apple · Spotify · YouTube · Keep · Mark heard       │
+    │                   rating · type · filed under · tags · note           │
+    │                   format · sample rate · bits · source · header read   │
+    │                   nearby records                                      │
+    └───────────────────────────────────────────────────────────────────────┘
 
-## Component system
+Mobile: short masthead, full-width search, five persistent destinations, one-column register, bottom record sheet, and horizontally scrollable decade filters.
 
-- Masthead: wordmark, primary routes, global search/help, draw action.
-- Side index: collection count, route shortcuts, active crate links, local-storage status.
-- Room sections: recent sleeves, recommendations, crate choices, first-use guidance.
-- Sleeve: fixed square geometry, remote cover, title fallback, year, heard/saved marks.
-- Collection heading: title, count/context, decade chips, listening-state select, clear action.
-- Folio: cover/disc, streaming links, reversible saved/heard actions, classification editor, neighbors.
-- Ledger: metrics, crate map, ratings, artist/crate shortcuts, data import/export.
-- Feedback states: loading copy, recoverable load error, empty saved state, no-results state, and transient live toast.
+### Components
 
-## Design tokens
+- **Route rail:** Five labeled destinations, crate list, device-local status.
+- **Top bar:** Current location, global search, command palette, random unheard action.
+- **Record row:** Cover fallback, title, artist, crate, year, heard/saved/rating marks.
+- **Filter register:** Crate and state selects, decade toggles, count, syntax help, clear action.
+- **Record dialog:** Catalogue links, reversible heard/saved controls, rating, personal metadata, copy inspection, adjacent records.
+- **Command palette:** Views, recent records, record/artist lookup, and draw action.
+- **Ledger:** Count register, decade bars, rating distribution, crate progress.
+- **Settings:** Accent, density, import/export, shortcut reference.
+- **Feedback:** Loading, unavailable archive, empty, no-match, toast, and import result states.
 
-| Token | Value | Use |
+### Design system
+
+| Role | Value | Use |
 | --- | --- | --- |
-| Paper | `#e9e6dc` | Main canvas |
-| Stock | `#f5f2e9` | Folio, placeholders, raised paper |
-| Ink | `#25241f` | Primary text and controls |
-| Soft ink | `#4c4a42` | Secondary text |
-| Muted | `#77746a` | Tertiary labels |
-| Rule | `#c9c4b7` | Separators and quiet borders |
-| Oxide | `#bd422c` | Active state, progress, calls to action |
-| Oxide wash | `#f1d8cc` | Selected/hovered paper surface |
+| Void | #11110f | Main canvas |
+| Well | #171815 | Dialogs and input fields |
+| Bone | #e8e3d7 | Primary text |
+| Ash | #aaa69a | Secondary text |
+| Dust | #79786f | Quiet labels |
+| Rule | #373832 | Hairline separators |
+| Rust | #ca806e | Default action / active mark |
+| Cold ash | #a9c2c0 | Optional alternate accent |
 
-Typography uses Georgia for expressive titles, Arial/Helvetica system sans for reading, and system monospace for data labels. Spacing follows a 4/8/12/16/24/32/48px rhythm. Corners are square except for the circular record/stamp. Shadows are limited to the active search-help panel and elevation feedback. No external font or icon downloads are required.
+Typography uses a severe system sans for reading and system monospace for coordinates, counts, and shortcuts. No remote font or icon dependency. Spacing uses 4, 8, 12, 16, 24, 32, 48, and 72px steps. Geometry is square; no ambient shadows. Album covers provide the only high-color imagery.
 
-## Motion and state
+### Motion
 
 | Trigger | Motion | Duration | Purpose |
 | --- | --- | --- | --- |
-| Sleeve hover/focus | Move up 4px and rotate slightly | 180ms | Make the sleeve feel selectable |
-| Open folio | Paper panel enters; disc slides behind sleeve | 260–320ms | Show a physical reveal and preserve context |
-| Action hover | Oxide surface, small arrow shift | 160ms | Confirm action target |
-| Toast | Rise 8px and reveal | 160ms; 2.2s hold | Confirm save/remove without blocking |
-| Reduced motion | Transitions collapse; sleeve and stamp stay still | Immediate | Respect the OS preference |
+| Open record | Side sheet enters 18px and resolves opacity | 180ms | Confirm the selected row |
+| Open command | Small stepped fade and 5px rise | 130ms | Make direct access feel immediate |
+| Hover / focus | Hard surface change; no scale or bounce | 120–140ms | Expose the active target |
+| Toast | Opacity and 5px rise | 130ms | Confirm a reversible action |
+| Reduced motion | Remove non-essential movement and transitions | Immediate | Respect the system preference |
 
-All loading and empty states keep the next useful action visible. An unmatched Apple record still has a search link. If local data fails to load, the page offers a retry. Errors do not clear user state.
+Reduced motion follows the user's OS preference using the CSS media query documented by [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/%40media/prefers-reduced-motion).
 
-## Responsive and accessible behavior
+### States
 
-- Desktop: persistent masthead and route rail; four/six-column sleeves adapt to width.
-- Tablet: sidebar narrows; home record rows reduce columns; filters wrap naturally.
-- Mobile: masthead stacks, crate navigation becomes a sticky horizontal index, bottom route bar respects safe-area insets, and sleeve grids use two or three columns.
-- Every action is a labeled button/link/select; focus has a visible outline; search shortcuts are shown beside the input.
-- Escape closes the folio and search help. Tab/Shift+Tab stay inside the modal folio. The background becomes inert while the folio is open.
-- Heard state is text-marked and not color-only. Status and toast updates use live regions.
-- Minimum target heights are 40px for controls and 42px for rating stars.
-- Reduced-motion settings disable sliding and hover movement. Text, borders, and contrast remain legible without animation.
+- **Default:** Bone text, charcoal canvas, hairline separators.
+- **Hover:** Slightly raised charcoal surface, rust text only when it clarifies an active mark.
+- **Focus:** Two-pixel rust outline with offset; keyboard focus remains visible.
+- **Active:** Rust line, pressed state, or explicit text mark; never color alone.
+- **Loading:** Quiet status line; no blocking skeleton grid.
+- **Error:** Names the failed archive request, retains local data, offers retry.
+- **Empty:** Says what is absent and gives a direct next action.
+- **No results:** Counts zero and offers Clear filters.
+- **Success:** Short live-region toast with the changed action.
 
-## Performance notes
+### Responsive behavior
 
-- No framework, runtime dependency, custom font, or background image.
-- Sleeve aspect ratio reserves layout before the Apple CDN cover loads.
-- Covers request a 320px source only as sleeves approach the viewport; the folio requests 480px on open.
-- CSS motion changes transform/opacity and color, not layout dimensions.
-- The album list and existing local cache remain client-side; new saved/recent keys are small additive arrays. Existing `sf_meta`, `sf_res`, and `sonicfield_heard` remain readable.
+- **Wide desktop:** 238px rail with all routes and crates; 3-column home crate list; 72-row initial index page.
+- **Tablet:** Narrower persistent rail, simplified row columns, stacked ledger.
+- **Mobile:** Rail replaced by persistent five-destination bottom navigation; search stays in the masthead; crate filter becomes a select; register rows collapse to title, artist, year, and marks; dialog becomes a bottom sheet.
+- Safe-area insets are applied to the mobile navigation and sheet. Touch controls remain at least 44px high.
 
-## User checks
+### Accessibility
 
-Ask a first-time user to locate a named album, find all records by an artist, mark one heard, rate and tag another, save a third, restore it from Saved & Recent, and export their data. Repeat at a narrow mobile width and with keyboard-only input. Observe whether users understand the four destinations, the difference between heard and saved, why a suggestion appeared, and whether the Apple link opens the installed app or a useful search fallback. Check contrast and motion with system accessibility settings enabled.
+- Native buttons, labels, selects, lists, and modal dialogs.
+- Skip link, labeled search/filter controls, current-route states, pressed states, progress values, and live status.
+- The native modal dialog uses showModal(), which enters the top layer and makes the rest of its document inert; this replaces custom background locking and hand-written focus trapping. [MDN: showModal()](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal)
+- Escape closes the record sheet; focus returns to the invoking row or a safe main-content target.
+- Heard, saved, and rating marks use text as well as color.
+- System reduced-motion preference is honored. Text and controls retain high contrast on both accent choices.
+
+### Performance and reliability
+
+- Static HTML/CSS/JS; no framework runtime, icon kit, remote typeface, or background animation.
+- Only the first 72 matching records render. Load next expands the visible page in bounded steps.
+- Covers are observed near the viewport and loaded only when the resolved archive has artwork.
+- Search input is debounced; CSS motion uses opacity and transform.
+- Existing localStorage keys remain intact. Unique in-page IDs distinguish repeated list entries without changing their legacy saved-data key.
+- Catalogue lookup is optional and does not block opening or editing a record.
+
+## Prototype Code
+
+- **index.html:** semantic app frame, visible routes, search, and native dialogs.
+- **style.css:** Null Index tokens, responsive layouts, record register, modal, settings, and reduced-motion behavior.
+- **app.js:** route state, bounded lists, search/filtering, local annotations, command palette, import/export, and record flows.
+- **lib.js and the archive data remain the existing source of record parsing, query syntax, header inspection, and release matching.**
+
+Run the project through its existing GitHub Pages deployment or any static HTTP server from the project root. Opening index.html as a file is unsupported because the app fetches albums.md and data/resolved.json. Browsing and local marks work without catalogue access; unmatched release lookup and cover art use Apple's public catalogue.
+
+### What to test with users
+
+- Find a named album, search an artist, and use a query operator without instruction.
+- Filter to unheard, save a record, rate and tag another, then find both in Kept and the Ledger.
+- Open a repeated title in different crates and confirm the correct crate is shown.
+- Export, import into a clean browser profile, and confirm the marks are restored.
+- Complete the same tasks by keyboard and at 320px, tablet, and desktop widths.
+- Check the dialog with a screen reader, 200% zoom, high contrast, and reduced motion.
+- Ask whether the room screen makes the first action clear and whether the emptiness reads as deliberate.
 
 ## Acceptance checklist
 
-- [x] Distinct home, crate index, saved/recent, ledger, and record folio.
-- [x] Search syntax help, decade/status filters, and clear-filter recovery.
-- [x] Saved records and recent visits persist in additive localStorage keys.
-- [x] Suggestions use only local ratings and existing metadata.
-- [x] Apple Music, Spotify, and YouTube Music actions are available per record.
-- [x] Reversible heard/saved actions and keyboard shortcuts.
-- [x] Desktop crate navigation and mobile destination bar.
-- [x] Loading, load error, empty, no-results, and action feedback states.
-- [x] Reduced-motion, keyboard focus, modal focus trap, and live feedback.
+- [x] Distinct Room, Index, Kept, Ledger, and Settings screens.
+- [x] Visible desktop routes and crates; persistent mobile routes.
+- [x] Search, syntax help, decade/status/crate filters, paging, command palette, and random draw.
+- [x] Record detail with service links, heard/saved/rating, tags, notes, classification, and audio header inspection.
+- [x] Existing personal-data keys retained; JSON/CSV export and merge import retained.
+- [x] Loading, recoverable error, empty, no-match, and success feedback states.
+- [x] Reduced motion, focus styles, labeled controls, native modal behavior, and 44px mobile targets.
+- [x] No framework, icon package, external font, decorative gradient, or all-record first render.
+- [ ] Visual browser QA at desktop/tablet/mobile widths; unavailable here because local preview navigation was blocked.
