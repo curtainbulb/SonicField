@@ -47,7 +47,7 @@ export function pick(a, results) {
   const c = best.c;
   return { id: c.collectionId, url: c.collectionViewUrl.split('?')[0], name: c.collectionName,
     artist: c.artistName, year: +String(c.releaseDate).slice(0,4), art: (c.artworkUrl100||'').replace('100x100bb','{s}x{s}bb'), tracks: c.trackCount,
-    score: +best.s.toFixed(3), country: 'us', genre: c.primaryGenreName, tracks: c.trackCount, label: c.copyright };
+    score: +best.s.toFixed(3), country: 'us', genre: c.primaryGenreName, label: c.copyright };
 }
 
 export async function lookup(a, country = 'us') {

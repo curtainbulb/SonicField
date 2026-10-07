@@ -5,7 +5,6 @@ const save = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } cat
 
 let crates = [], all = [], res = {}, heard = new Set(ls('sonicfield_heard', []));
 const F = { q: '', dec: new Set(), h: 'all' };
-const fams = []; const hue = f => { if (!fams.includes(f)) fams.push(f); return `hsl(${(fams.indexOf(f) * 47 + 12) % 360} 100% 68%)`; };
 const isHeard = a => heard.has(a.k);
 
 async function boot() {
@@ -14,7 +13,7 @@ async function boot() {
       fetch('data/resolved.json').then(r => r.ok ? r.json() : {}).catch(() => ({}))]);
     res = { ...pre, ...ls('sf_res', {}) };
     crates = parse(md);
-    crates.forEach((c, ci) => { c.c = hue(c.family); c.albums.forEach((a, ai) => { a.k = keyOf(a); a.ci = ci; a.ai = ai; all.push(a); }); });
+    crates.forEach((c, ci) => { c.c = 'var(--accent)'; c.albums.forEach((a, ai) => { a.k = keyOf(a); a.ci = ci; a.ai = ai; all.push(a); }); });
     all.forEach(a => { const c = crates[a.ci]; a.crate = c.name; a.fam = c.family; a.res = !!res[a.k]; byK.set(a.k, a); (byA.get(a.artist) || byA.set(a.artist, []).get(a.artist)).push(a); });
     $('#dec').innerHTML = [1960,1970,1980,1990,2000].map(d => `<button data-d="${d}" aria-pressed="false">${d}s</button>`).join('');
     $('#rail').innerHTML = crates.map((c, i) => `<a href="#c${i}" id="r${i}" style="--c:${c.c}">${esc(c.name)}<small></small></a>`).join('');
@@ -32,13 +31,25 @@ function visible(a) {
   if (F.dec.size && !F.dec.has(Math.floor(a.year / 10) * 10)) return false;
   return pred(a);
 }
-const tile = a => `<button class="sl${isHeard(a) ? ' heard' : ''}" data-k="${esc(a.k)}" data-c="${a.ci}" data-a="${a.ai}" aria-label="${esc(a.title)}, ${esc(a.artist)}, ${a.year}">
-  <span class="in"><span class="t">${esc(a.title)}<em>${esc(a.artist)}</em></span><span class="y">${a.year}</span></span></button>`;
+const tile = a => { const col = /^#[0-9a-f]{6}$/i.test(res[a.k]?.col || '') ? res[a.k].col : 'var(--panel)'; return `<button class="sl${isHeard(a) ? ' heard' : ''}" data-k="${esc(a.k)}" data-c="${a.ci}" data-a="${a.ai}" aria-label="${esc(a.title)}, ${esc(a.artist)}, ${a.year}">
+  <span class="in" style="--cover:${col}"><span class="t">${esc(a.title)}<em>${esc(a.artist)}</em></span><span class="y">${a.year}</span></span></button>`; };
+
+function recommendations() {
+  const seeds = all.filter(a => (meta[a.k]?.r || 0) >= 4);
+  if (!seeds.length) return `<section class="recommendation empty"><div><span class="eyebrow">For later</span><h2>Rate a few records to tune this shelf.</h2><p>Recommendations use only your 4–5 star ratings and the crate, family, decade, and tags already in this list.</p></div></section>`;
+  const score = (a, b) => {
+    const tags = (meta[a.k]?.tags || []).filter(t => (meta[b.k]?.tags || []).includes(t)).length;
+    return (a.crate === b.crate ? 4 : 0) + (a.fam === b.fam ? 3 : 0) + (Math.floor(a.year / 10) === Math.floor(b.year / 10) ? 2 : 0) + tags * 2;
+  };
+  const picks = all.filter(a => !seeds.includes(a)).map(a => ({ a, score: Math.max(...seeds.map(s => score(a, s))) }))
+    .filter(x => x.score > 0).sort((x, y) => y.score - x.score || x.a.year - y.a.year).slice(0, 8).map(x => x.a);
+  return `<section class="recommendation"><div><span class="eyebrow">From your ratings</span><h2>Try next</h2><p>Built from crate, family, decade, and tag overlap with your highest-rated records.</p></div><div class="shelf">${picks.map(tile).join('')}</div></section>`;
+}
 
 function render() {
   pred = compile(F.q, U());
   io.disconnect(); spy.disconnect(); vis.clear(); slow.clear(); // old tiles were never released after a re-render
-  const out = crates.map((c, i) => {
+  const out = recommendations() + crates.map((c, i) => {
     const list = c.albums.filter(visible); if (!list.length) return '';
     return `<section class="crate" id="c${i}" style="--c:${c.c}"><header><span class="fam">${esc(c.family)}</span><h2>${esc(c.name)}</h2>${c.desc ? `<p>${esc(c.desc)}</p>` : ''}
       <div class="tally"><span></span><small>heard</small><i><b></b></i></div></header><div class="shelf">${list.map(tile).join('')}</div></section>`;
@@ -60,12 +71,12 @@ function tallies() {
 // ~100s for a single screen), nothing pre-resolved, and full 600px images in ~150px tiles. Now: cache-first paint, one search per
 // artist (covers all their albums), visible-first queue, 3 workers, off-screen jobs skipped, 300px thumbs (600px only in the sheet).
 const byK = new Map(), byA = new Map(), vis = new Set(), started = new Set(), slow = new Set(); let workers = 0, saveT;
-const sz = (r, n) => r.art.replace(/\{s\}/g, n);
+const sz = (r, n) => r?.id ? `art/${r.id}-${n}.webp` : '';
 const persist = () => { clearTimeout(saveT); saveT = setTimeout(() => save('sf_res', res), 700); };
 const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { vis.add(e.target); want(e.target); } else vis.delete(e.target); }), { rootMargin: '700px' });
 function watch() { document.querySelectorAll('#wall .sl').forEach(t => io.observe(t)); document.querySelectorAll('.crate').forEach(c => spy.observe(c)); }
 function want(t) { const a = byK.get(t.dataset.k); if (!a) return; if (a.k in res) return paint(t, res[a.k]); if (started.has(a.artist)) slow.add(a); go(); }
-function paint(t, r) { if (!r?.art || t.querySelector('img')) return; const img = new Image(); img.alt = ''; img.decoding = 'async'; img.onload = () => { img.className = 'ok'; }; img.onerror = () => img.remove(); img.src = sz(r, 300); t.querySelector('.in').prepend(img); }
+function paint(t, r) { if (!r?.id || t.querySelector('img')) return; const img = new Image(); img.alt = ''; img.decoding = 'async'; img.onload = () => { img.className = 'ok'; }; img.onerror = () => img.remove(); img.src = sz(r, 320); t.querySelector('.in').prepend(img); }
 const paintAll = () => vis.forEach(t => { const a = byK.get(t.dataset.k); if (a && res[a.k]) paint(t, res[a.k]); });
 const nap = ms => new Promise(r => setTimeout(r, ms));
 function nextJob() {
@@ -90,17 +101,19 @@ async function open(a) {
   const same = c.albums.slice(Math.max(0, a.ai - 5), a.ai + 7).filter(x => x !== a);
   const yr = all.filter(x => x.year === a.year && x.ci !== a.ci).slice(0, 14);
   let link;
-  if (r) link = `<a class="btn" href="${esc(r.url)}" target="_blank" rel="noopener">Play in Apple Music</a>`;
+  if (r) link = `<a class="btn" href="${esc(r.url)}" target="_blank" rel="noopener">Apple Music</a>`;
   else if (a.k in res) link = `<span class="btn off">No Apple Music link</span>`;
   else link = `<span class="btn off">${failed.has(a.k) ? 'Apple lookup unreachable' : 'Matching…'}</span>`;
+  const query = encodeURIComponent(`${a.artist} ${a.title}`);
+  const otherLinks = `<a class="btn service" href="https://open.spotify.com/search/${query}" target="_blank" rel="noopener">Spotify</a><a class="btn service" href="https://music.youtube.com/search?q=${query}" target="_blank" rel="noopener">YouTube Music</a>`;
   const why = r ? `Matched to "${esc(r.name)}" by ${esc(r.artist)}, ${r.year}, US storefront (confidence ${r.score}). Album id ${r.id}.`
     : a.k in res ? `No release scored high enough on artist, title and year together, so no link is shown. A guess would be worse.` : failed.has(a.k) ? `Couldn't reach Apple's catalogue just now. Close and reopen this record to retry; no link is guessed meanwhile.` : `Checking Apple's catalogue for artist, title and year.`;
   $('#sheet').style.setProperty('--c', c.c);
   $('#sheet').innerHTML = `<button class="x" aria-label="Close">×</button>
-    <div class="disc"><div class="rec"></div><div class="cov"><span class="t" style="${r?.art ? 'display:none' : ''}">${esc(a.title)}</span>${r?.art ? `<img src="${esc(sz(r, 600))}" alt="Cover of ${esc(a.title)}">` : ''}</div></div>
+    <div class="disc"><div class="rec"></div><div class="cov"><span class="t" style="${r?.id ? 'display:none' : ''}">${esc(a.title)}</span>${r?.id ? `<img src="${esc(sz(r, 480))}" alt="Cover of ${esc(a.title)}">` : ''}</div></div>
     <h3>${esc(a.title)}</h3><p class="by">${esc(a.artist)}</p>
     <div class="meta"><span><b>${a.year}</b></span><span>${esc(c.name)}</span><span>${esc(c.family)}</span></div>
-    <div class="acts">${link}<button class="btn alt" data-heard>${isHeard(a) ? 'Heard. Undo' : 'Mark heard'}</button></div><p class="why">${why}</p>${editor(a)}
+    <div class="acts">${link}${otherLinks}<button class="btn alt" data-heard>${isHeard(a) ? 'Heard. Undo' : 'Mark heard'}</button></div><p class="why">${why}</p>${editor(a)}
     ${c.desc ? `<h4>The crate</h4><p>${esc(c.desc)}.</p>` : ''}
     <h4>Next to it in the crate</h4><div class="strip">${same.map(tile).join('')}</div>
     <h4>Also from ${a.year}, other crates</h4><div class="strip">${yr.map(tile).join('') || '<p>Nothing else in the list from this year.</p>'}</div>`;
@@ -124,6 +137,7 @@ document.addEventListener('click', e => {
     document.querySelector(`.sl[data-k="${CSS.escape(a.k)}"]`)?.scrollIntoView({ block: 'center', behavior: 'instant' }); open(a); }
 });
 let tm; $('#q').addEventListener('input', e => { clearTimeout(tm); tm = setTimeout(() => { F.q = e.target.value.trim(); render(); scrollTo({ top: 0, behavior: 'instant' }); }, 150); });
+$('#help').addEventListener('click', () => { const on = $('#search-help').hidden; $('#search-help').hidden = !on; $('#help').setAttribute('aria-expanded', on); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
 document.addEventListener('pointermove', e => { const s = e.target.closest?.('.sl'); if (!s || matchMedia('(prefers-reduced-motion:reduce)').matches) return;
   const b = s.getBoundingClientRect(); s.style.setProperty('--ry', `${((e.clientX - b.left) / b.width - .5) * 14}deg`); s.style.setProperty('--rx', `${-((e.clientY - b.top) / b.height - .5) * 14}deg`); });

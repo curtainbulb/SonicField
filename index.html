@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0a0614">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f4f3ef">
 <title>SONICFIELD // 1,391 sleeves, 37 crates</title>
-<meta name="description" content="A terminal for digging through rock and its descendants, 1960–2010. Pull a sleeve, play it in Apple Music, log it.">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<meta name="description" content="A personal crate-digging tracker for 1,391 albums across 37 crates.">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header class="bar">
-  <h1>SONIC<i>FIELD</i><small id="cnt" aria-live="polite">booting…</small></h1>
-  <input id="q" type="search" placeholder="> search" aria-label="Search records" autocomplete="off" spellcheck="false">
+  <h1>SONIC<span>FIELD</span><small id="cnt" aria-live="polite">booting…</small></h1>
+  <div class="search"><input id="q" type="search" placeholder="Search the crates" aria-label="Search records" autocomplete="off" spellcheck="false"><button id="help" aria-expanded="false" aria-controls="search-help">?</button>
+    <div id="search-help" hidden><strong>Search syntax</strong><span>artist:"Nina Simone"</span><span>title:blue</span><span>crate:ambient</span><span>family:jazz</span><span>tag:mono</span><span>is:heard · is:unheard · is:rated · is:noted · is:matched</span><span>year:1970-1979 · year&gt;=1980 · rating&gt;=4</span><span>Use quotes for phrases and a leading - to exclude.</span></div>
+  </div>
   <div class="chips" id="dec" role="group" aria-label="Decade"></div>
   <div class="chips" id="hf" role="group" aria-label="Filter">
     <button data-h="all" aria-pressed="true">All</button><button data-h="no" aria-pressed="false">Unheard</button><button data-h="yes" aria-pressed="false">Heard</button><button data-h="unrated" aria-pressed="false">Unrated</button><button data-h="untagged" aria-pressed="false">Untagged</button><button data-h="flag" aria-pressed="false">Flagged</button>
@@ -19,7 +19,7 @@
   <button id="sb" class="pull alt">Stats</button><button id="pull" class="pull">Pull one</button>
 </header>
 <nav id="rail" aria-label="Crates"></nav>
-<main id="wall"><p class="load">&gt; sorting crates<span class="cur">_</span></p></main>
+<main id="wall"><p class="load">Sorting crates…</p></main>
 <section id="stats" aria-label="Total stats"></section>
 <aside id="sheet" role="dialog" aria-modal="true" aria-label="Record detail" aria-hidden="true"></aside>
 <div id="veil"></div>
