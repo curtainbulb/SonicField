@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#11110f" />
+    <meta
+      name="description"
+      content="The Unheard Register: a quiet listening rite for the albums still waiting in the dark."
+    />
+    <title>SONICFIELD / NULL CHOIR</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="albums-data.js"></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to the register</a>
+
+    <div class="app-shell">
+      <header class="masthead">
+        <a class="wordmark" href="#top" aria-label="Sonicfield null choir home">
+          <span>SONICFIELD</span>
+          <span class="wordmark-slash">/</span>
+          <span class="wordmark-muted">NULL CHOIR</span>
+        </a>
+
+        <div class="masthead-signal" aria-live="polite">
+          <span class="signal-mark" aria-hidden="true"></span>
+          <span id="signal-status">1,391 SIGNALS UNENTERED</span>
+        </div>
+
+        <button class="text-button" id="clear-progress" type="button">
+          <span>ERASE MARKS</span>
+          <span class="button-key">[X]</span>
+        </button>
+      </header>
+
+      <div class="layout" id="top">
+        <nav class="room-rail" aria-label="Archive rooms">
+          <div class="rail-intro">
+            <p class="micro-label">INDEX / 00</p>
+            <p class="rail-copy">
+              A register for the albums that have not happened yet.
+            </p>
+          </div>
+
+          <div class="rail-heading">
+            <span>ROOMS</span>
+            <span id="room-total">36</span>
+          </div>
+
+          <div class="room-list" id="category-list"></div>
+
+          <div class="rail-footnote">
+            <span class="rail-rule"></span>
+            <p>All rooms are open.<br />Nothing is owned here.</p>
+          </div>
+        </nav>
+
+        <main id="main-content">
+          <section class="ritual-intro" aria-labelledby="register-title">
+            <div class="ritual-copy">
+              <p class="eyebrow">THE UNHEARD REGISTER <span>/</span> FIELD NOTE 01</p>
+              <h1 id="register-title">A procession for what is still waiting.</h1>
+              <p class="lede">
+                The catalogue is not a collection. It is a quiet room full of unopened doors.
+                Mark a record when it has crossed into memory. Until then, it remains here:
+                present, unclaimed, and making no promises.
+              </p>
+            </div>
+
+            <div class="summon-block">
+              <p class="micro-label">RITUAL / NEXT TRANSMISSION</p>
+              <button class="summon-button" id="draw-button" type="button">
+                <span class="summon-word">SUMMON</span>
+                <span class="summon-mark" aria-hidden="true">↗</span>
+              </button>
+              <p class="summon-help" id="draw-caption">Draw one unheard signal from this room.</p>
+            </div>
+          </section>
+
+          <section class="tool-strip" aria-label="Register controls">
+            <form class="search-form" id="search-form" role="search">
+              <label class="search-label" for="search-input">SEARCH THE DEAD AIR</label>
+              <div class="search-line">
+                <input
+                  id="search-input"
+                  name="q"
+                  type="search"
+                  autocomplete="off"
+                  placeholder="artist, title, year, room"
+                  spellcheck="false"
+                />
+                <span class="search-key" aria-hidden="true">/</span>
+              </div>
+            </form>
+
+            <div class="tool-actions">
+              <button class="filter-button" id="unheard-toggle" type="button" aria-pressed="false">
+                <span class="toggle-box" aria-hidden="true"></span>
+                <span>UNHEARD ONLY</span>
+              </button>
+              <p class="result-readout" id="result-readout" aria-live="polite">1,391 records</p>
+            </div>
+          </section>
+
+          <section class="procession" aria-labelledby="procession-title">
+            <div class="section-bar">
+              <div>
+                <p class="micro-label">THE PROCESSION</p>
+                <h2 id="procession-title">Open register</h2>
+              </div>
+              <div class="section-meta">
+                <span id="view-label">ALL ROOMS</span>
+                <span class="meta-separator">/</span>
+                <span id="view-position">01—36</span>
+              </div>
+            </div>
+
+            <div
+              class="procession-viewport"
+              id="procession-viewport"
+              tabindex="0"
+              aria-label="Scrollable album procession"
+            >
+              <div class="procession-canvas" id="procession-canvas">
+                <div class="procession-layer" id="procession-layer" role="list"></div>
+              </div>
+              <div class="empty-register" id="empty-register" hidden>
+                <p class="micro-label">NO TRANSMISSION</p>
+                <p>Nothing in this room matches the current conditions.</p>
+                <button class="text-button" id="reset-view" type="button">RESET VIEW <span>[R]</span></button>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <aside class="ledger" aria-labelledby="ledger-title">
+          <div class="ledger-sticky">
+            <div class="ledger-heading">
+              <p class="micro-label">FIELD NOTE / CURRENT MARK</p>
+              <span class="ledger-cross" aria-hidden="true">+</span>
+            </div>
+
+            <div class="current-record" id="current-record">
+              <p class="record-empty">Select a signal<br />to hold it here.</p>
+            </div>
+
+            <div class="ledger-actions">
+              <button class="ledger-button" id="mark-selected" type="button" disabled>
+                <span id="mark-selected-label">MARK AS HEARD</span>
+                <span>↳</span>
+              </button>
+              <button class="ledger-button ledger-button-quiet" id="jump-selected" type="button" disabled>
+                <span>RETURN TO MARK</span>
+                <span>↗</span>
+              </button>
+            </div>
+
+            <dl class="ledger-stats">
+              <div>
+                <dt>ENTERED</dt>
+                <dd id="heard-count">000</dd>
+              </div>
+              <div>
+                <dt>REMAINING</dt>
+                <dd id="remaining-count">1,391</dd>
+              </div>
+              <div>
+                <dt>COMPLETION</dt>
+                <dd id="completion-count">0.0%</dd>
+              </div>
+            </dl>
+
+            <div class="ledger-note">
+              <span class="rail-rule"></span>
+              <p>
+                Your marks are kept in this browser only. The room remembers where you last stood.
+              </p>
+            </div>
+
+            <div class="key-legend" aria-label="Keyboard shortcuts">
+              <p class="micro-label">SHORTCUTS</p>
+              <p><kbd>/</kbd> focus search <kbd>R</kbd> reset view</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <footer class="site-footer">
+        <span>SONICFIELD LIST / SOURCE PRESERVED</span>
+        <span>NO ACCOUNT / NO CLOUD / NO END</span>
+      </footer>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+    <dialog class="confirm-dialog" id="confirm-dialog" aria-labelledby="confirm-title">
+      <form method="dialog">
+        <p class="micro-label">DESTRUCTIVE MARK</p>
+        <h2 id="confirm-title">Erase every mark?</h2>
+        <p>This clears the heard state in this browser. The source list stays untouched.</p>
+        <div class="dialog-actions">
+          <button class="text-button" value="cancel">KEEP MARKS</button>
+          <button class="danger-button" id="confirm-clear" value="clear">ERASE ALL</button>
+        </div>
+      </form>
+    </dialog>
+  </body>
+</html>
