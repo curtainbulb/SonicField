@@ -2,7 +2,7 @@ import { parse, keyOf, compile, lookup, norm, sniff } from './lib.js';
 
 const $ = selector => document.querySelector(selector);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, char => ({
-  '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
 }[char]));
 const read = (key, fallback) => {
   try {
@@ -12,14 +12,8 @@ const read = (key, fallback) => {
     return fallback;
   }
 };
-const readArray = key => {
-  const value = read(key, []);
-  return Array.isArray(value) ? value : [];
-};
-const readObject = key => {
-  const value = read(key, {});
-  return value && typeof value === 'object' && !Array.isArray(value) ? value : {};
-};
+const readArray = key => { const value = read(key, []); return Array.isArray(value) ? value : []; };
+const readObject = key => { const value = read(key, {}); return value && typeof value === 'object' && !Array.isArray(value) ? value : {}; };
 const save = (key, value) => {
   try {
     localStorage.setItem(key, JSON.stringify(value));
@@ -31,12 +25,16 @@ const save = (key, value) => {
 const FMT = { FLAC: true, ALAC: true, WAV: true, AIFF: true, DSD: true, MP3: false, AAC: false, Opus: false, Vorbis: false };
 const TYPES = ['Studio album', 'Live', 'Compilation', 'EP', 'Soundtrack', 'Reissue', 'Demo/outtakes'];
 const RATES = [44.1, 48, 88.2, 96, 176.4, 192, 352.8, 384];
+
 const HEARD_KEY = 'sonicfield_heard';
 const FAVORITES_KEY = 'sf_faves';
 const RECENT_KEY = 'sf_recent';
 const META_KEY = 'sf_meta';
 const RESOLVED_KEY = 'sf_res';
 const PREFS_KEY = 'sf_preferences';
+
+const VIRTUAL_THRESHOLD = 120; // below this, just render the list; above, window it
+const LIST_BUFFER_ROWS = 10;
 
 let crates = [];
 let records = [];
@@ -48,12 +46,12 @@ let favorites = new Set(readArray(FAVORITES_KEY));
 let recent = readArray(RECENT_KEY);
 let meta = readObject(META_KEY);
 let prefs = { accent: 'rust', density: 'standard', ...readObject(PREFS_KEY) };
+
 let view = 'room';
 let activeCrate = '';
 let query = '';
 let statusFilter = 'all';
 let decades = new Set();
-let pageSize = 72;
 let current = null;
 let dialogOpener = null;
 let toastTimer;
@@ -61,12 +59,14 @@ let saveTimer;
 let lookupPending = new Set();
 let lookupFailed = new Set();
 let duplicateIndex;
+let virtualCleanup = null;
 
-const recordDialog = $('#record-dialog');
+const recordPanel = $('#record-panel');
 const commandDialog = $('#command-dialog');
 const detailContent = $('#detail-content');
 const commandQuery = $('#command-query');
 const wall = $('#wall');
+
 const coverObserver = new IntersectionObserver(entries => {
   for (const entry of entries) {
     if (!entry.isIntersecting) continue;
@@ -75,45 +75,35 @@ const coverObserver = new IntersectionObserver(entries => {
   }
 }, { rootMargin: '420px 0px' });
 
-function isHeard(record) {
-  return heard.has(record.k);
-}
-
-function isSaved(record) {
-  return favorites.has(record.k);
-}
-
-function recordMeta(key) {
-  return meta[key] || (meta[key] = {});
-}
-
-function saveMeta() {
-  save(META_KEY, meta);
-}
-
-function savePreferences() {
-  save(PREFS_KEY, prefs);
-  applyPreferences();
-}
+function isHeard(record) { return heard.has(record.k); }
+function isSaved(record) { return favorites.has(record.k); }
+function recordMeta(key) { return meta[key] || (meta[key] = {}); }
+function saveMeta() { save(META_KEY, meta); }
+function savePreferences() { save(PREFS_KEY, prefs); applyPreferences(); }
 
 function applyPreferences() {
   document.documentElement.dataset.accent = prefs.accent === 'frost' ? 'frost' : 'rust';
   document.documentElement.dataset.density = prefs.density === 'compact' ? 'compact' : 'standard';
 }
 
+function rowHeight() {
+  const value = getComputedStyle(document.documentElement).getPropertyValue('--row-h');
+  const n = parseFloat(value);
+  return Number.isFinite(n) ? n : 58;
+}
+
+/* ---- boot ---------------------------------------------------------- */
+
 async function boot() {
-  wall.innerHTML = '<p class="loading-state"><span class="signal-line"></span> Opening the archive…</p>';
+  wall.innerHTML = '<p class="loading-state"><span class="loading-cursor" aria-hidden="true">_</span> Opening the archive…</p>';
   wall.setAttribute('aria-busy', 'true');
   try {
-    const [response, cached] = await Promise.all([
-      fetch('albums.md').then(result => {
-        if (!result.ok) throw new Error('albums.md returned HTTP ' + result.status);
-        return result.text();
-      }),
-      fetch('data/resolved.json').then(result => result.ok ? result.json() : {}).catch(() => ({}))
+    const [mdText, cached] = await Promise.all([
+      fetch('albums.md').then(r => { if (!r.ok) throw new Error('albums.md returned HTTP ' + r.status); return r.text(); }),
+      fetch('data/resolved.json').then(r => (r.ok ? r.json() : {})).catch(() => ({})),
     ]);
     resolved = { ...cached, ...readObject(RESOLVED_KEY) };
-    crates = parse(response);
+    crates = parse(mdText);
     if (!crates.length) throw new Error('The archive contains no crates');
     records = [];
     byKey = new Map();
@@ -138,31 +128,27 @@ async function boot() {
     render();
   } catch (error) {
     wall.innerHTML = '<section class="error-state"><p class="eyebrow">ARCHIVE / UNAVAILABLE</p><h1>The index did not open.</h1><p>' +
-      esc(error.message) + '. Serve the project over HTTP, then try again. Your local listening data remains untouched.</p>' +
-      '<button class="action-button" data-action="retry">TRY AGAIN</button></section>';
+      esc(error.message) + '. Serve this folder over HTTP, then try again — your local listening data is untouched.</p>' +
+      '<button type="button" class="action-button" data-action="retry">TRY AGAIN</button></section>';
     wall.setAttribute('aria-busy', 'false');
   }
 }
 
 function renderCrateNav() {
-  $('#crate-nav').innerHTML = crates.map((crate, index) =>
-    '<button data-crate="' + esc(crate.name) + '" data-crate-index="' + index + '" aria-current="false">' +
-    '<span>' + esc(crate.name) + '</span><small>' + crate.albums.length + '</small></button>'
-  ).join('');
+  $('#crate-nav').innerHTML = crates.map(crate =>
+    '<button type="button" data-crate="' + esc(crate.name) + '" aria-current="false">' +
+    '<span>' + esc(crate.name) + '</span><small>' + crate.albums.length + '</small></button>').join('');
   $('#nav-total').textContent = records.length.toLocaleString();
   updateSavedCount();
 }
 
 function updateSavedCount() {
   $('#nav-saved').textContent = favorites.size || '';
-  document.querySelectorAll('.mobile-nav [data-view="saved"]').forEach(button => {
-    button.setAttribute('aria-label', 'Kept, ' + favorites.size + ' records');
-  });
 }
 
 function routeTitle() {
   if (view === 'index' && activeCrate) return activeCrate;
-  return ({ room: 'Listening room', index: 'The index', saved: 'Kept records', ledger: 'Your ledger', settings: 'Settings' })[view] || 'Listening room';
+  return ({ room: 'Room', index: 'The index', saved: 'Kept', ledger: 'The ledger', settings: 'Settings' })[view] || 'Room';
 }
 
 function updateNavigation() {
@@ -172,12 +158,15 @@ function updateNavigation() {
     button.classList.toggle('selected', selected);
     if (button.matches('button')) button.setAttribute('aria-current', selected ? 'page' : 'false');
   });
-  document.querySelectorAll('#crate-nav [data-crate]').forEach(button => {
+  document.querySelectorAll('[data-crate]').forEach(button => {
     const selected = view === 'index' && button.dataset.crate === activeCrate;
     button.classList.toggle('selected', selected);
     button.setAttribute('aria-current', selected ? 'location' : 'false');
   });
-  $('#route-kicker').textContent = view === 'index' && activeCrate ? 'CRATE / ' + String(crates.find(crate => crate.name === activeCrate)?.family || '').toUpperCase() : 'PRIVATE ARCHIVE / 0' + (['room', 'index', 'saved', 'ledger', 'settings'].indexOf(view) + 1);
+  const stepIndex = ['room', 'index', 'saved', 'ledger', 'settings'].indexOf(view);
+  $('#route-kicker').textContent = view === 'index' && activeCrate
+    ? 'CRATE / ' + String(crates.find(c => c.name === activeCrate)?.family || '').toUpperCase()
+    : 'PRIVATE ARCHIVE / 0' + (stepIndex + 1);
   $('#route-title').textContent = routeTitle();
   document.title = 'SonicField — ' + routeTitle();
 }
@@ -186,6 +175,7 @@ function render() {
   if (!records.length) return;
   updateNavigation();
   wall.setAttribute('aria-busy', 'true');
+  if (virtualCleanup) { virtualCleanup(); virtualCleanup = null; }
   const output = view === 'room' ? roomView()
     : view === 'saved' ? savedView()
     : view === 'ledger' ? ledgerView()
@@ -196,12 +186,25 @@ function render() {
   coverObserver.disconnect();
   wall.querySelectorAll('[data-cover-key]').forEach(element => coverObserver.observe(element));
   if (view === 'index') {
+    const matches = filteredRecords();
+    mountRecordList($('#index-list-mount'), matches);
     const selected = $('#crate-filter');
     if (selected) selected.value = activeCrate;
     const state = $('#status-filter');
     if (state) state.value = statusFilter;
   }
+  if (view === 'saved') {
+    const seen = new Set();
+    const savedRecords = records.filter(record => {
+      if (!isSaved(record) || seen.has(record.k)) return false;
+      seen.add(record.k);
+      return true;
+    });
+    mountRecordList($('#saved-list-mount'), savedRecords);
+  }
 }
+
+/* ---- search / filtering --------------------------------------------- */
 
 function searchContext() {
   const ratings = {}, tags = {}, notes = {}, shelves = {};
@@ -212,7 +215,7 @@ function searchContext() {
     if (value.note) notes[key] = 1;
     if (Number.isInteger(value.sec) && crates[value.sec]) (shelves[crates[value.sec].name] ||= []).push(key);
   }
-  return { r: ratings, t: tags, n: notes, s: shelves, h: heard };
+  return { r: ratings, t: tags, n: notes, s: shelves, h: heard, sv: favorites };
 }
 
 function audioFlags(record) {
@@ -263,25 +266,79 @@ function filteredRecords() {
   return records.filter(record =>
     (!activeCrate || record.crate === activeCrate) &&
     (!decades.size || decades.has(Math.floor(record.year / 10) * 10)) &&
-    matchesStatus(record) && predicate(record)
-  );
+    matchesStatus(record) && predicate(record));
 }
+
+/* ---- record rows + list mounting (windowed for large sets) ---------- */
 
 function recordRow(record) {
   const value = meta[record.k] || {};
   const marks = [
     isHeard(record) ? '<span class="record-mark">HEARD</span>' : '',
     isSaved(record) ? '<span class="record-mark saved">KEPT</span>' : '',
-    value.r ? '<span class="record-mark rating">' + value.r + '/5</span>' : ''
+    value.r ? '<span class="record-mark rating">' + value.r + '/5</span>' : '',
   ].filter(Boolean).join('');
-  const short = (record.artist || record.title).trim().split(/\s+/).slice(0, 2).map(word => word[0]).join('').toUpperCase();
-  return '<li><button class="record-row" data-record="' + esc(record.id) + '" aria-label="Open ' + esc(record.title) + ', ' + esc(record.artist) + ', ' + record.year + '">' +
+  const short = (record.artist || record.title).trim().split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase();
+  return '<li><button type="button" class="record-row" data-record="' + esc(record.id) + '" aria-label="Open ' + esc(record.title) + ', ' + esc(record.artist) + ', ' + record.year + '">' +
     '<span class="record-cover" data-cover-key="' + esc(record.k) + '"><span class="cover-fallback" aria-hidden="true">' + esc(short || '—') + '</span></span>' +
     '<span class="record-identity"><strong>' + esc(record.title) + '</strong><span>' + esc(record.artist) + '</span></span>' +
-    '<span class="record-crate">' + esc(record.crate) + '</span><span class="record-year">' + record.year + '</span>' +
+    '<span class="record-crate">' + esc(record.crate) + '</span><span class="record-year tnum">' + record.year + '</span>' +
     '<span class="record-marks">' + (marks || '<span class="record-mark blank">—</span>') + '</span><span class="row-arrow" aria-hidden="true">↗</span>' +
     '</button></li>';
 }
+
+// For small lists, render everything. For large ones, window the DOM to the
+// rows actually near the viewport so the index stays fast at archive scale.
+function mountRecordList(container, items) {
+  if (!container) return;
+  if (!items.length) return;
+  if (items.length <= VIRTUAL_THRESHOLD) {
+    container.innerHTML = '<ol class="record-list">' + items.map(recordRow).join('') + '</ol>';
+    return;
+  }
+  const rh = rowHeight();
+  const viewport = document.createElement('div');
+  viewport.className = 'virtual-viewport';
+  viewport.style.position = 'relative';
+  viewport.style.height = (items.length * rh) + 'px';
+  const windowEl = document.createElement('ol');
+  windowEl.className = 'record-list';
+  windowEl.style.position = 'absolute';
+  windowEl.style.left = '0';
+  windowEl.style.right = '0';
+  viewport.appendChild(windowEl);
+  container.innerHTML = '';
+  container.appendChild(viewport);
+
+  let lastStart = -1, lastEnd = -1, frame = null;
+  function paint() {
+    frame = null;
+    const rect = viewport.getBoundingClientRect();
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    const buffer = rh * LIST_BUFFER_ROWS;
+    let start = Math.floor((-rect.top - buffer) / rh);
+    let end = Math.ceil((-rect.top + vh + buffer) / rh);
+    start = Math.max(0, Math.min(start, items.length));
+    end = Math.max(0, Math.min(end, items.length));
+    if (start === lastStart && end === lastEnd) return;
+    lastStart = start; lastEnd = end;
+    windowEl.style.top = (start * rh) + 'px';
+    windowEl.innerHTML = items.slice(start, end).map(recordRow).join('');
+    coverObserver.disconnect();
+    wall.querySelectorAll('[data-cover-key]').forEach(el => coverObserver.observe(el));
+  }
+  function onScroll() { if (frame === null) frame = requestAnimationFrame(paint); }
+  paint();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  virtualCleanup = () => {
+    window.removeEventListener('scroll', onScroll);
+    window.removeEventListener('resize', onScroll);
+    if (frame !== null) cancelAnimationFrame(frame);
+  };
+}
+
+/* ---- room ------------------------------------------------------------ */
 
 function roomView() {
   const heardCount = records.filter(isHeard).length;
@@ -291,22 +348,34 @@ function roomView() {
   const cratesToShow = [...crates].sort((a, b) => b.albums.length - a.albums.length).slice(0, 6);
   const suggestions = recommendationList(5);
   const next = records.find(record => !isHeard(record));
+
   return '<section class="home-top">' +
-    '<div class="home-lead"><p class="eyebrow">PRIVATE ARCHIVE / ' + crates.length + ' CRATES</p><h1>THE RECORDS<br><span>REMAIN.</span></h1>' +
-    '<p class="home-copy">' + records.length.toLocaleString() + ' records, filed by hand. Your notes and listening marks stay on this device.</p>' +
-    '<div class="home-actions"><button class="action-button" data-view="index">OPEN THE INDEX <span aria-hidden="true">↗</span></button>' +
-    (next ? '<button class="line-button" data-record="' + esc(next.id) + '">BEGIN WITH <strong>' + esc(next.title) + '</strong><span>— ' + esc(next.artist) + '</span></button>' : '') +
+    '<div class="home-lead"><p class="eyebrow">PRIVATE ARCHIVE / ' + crates.length + ' CRATES</p>' +
+    '<h1>NOTHING HERE<br><span>IS WATCHED.</span></h1>' +
+    '<p class="home-copy">' + records.length.toLocaleString() + ' records, filed by hand, on this device only. No account reads them. No one else arrives.</p>' +
+    '<div class="home-actions"><button type="button" class="action-button" data-view="index">OPEN THE INDEX <span aria-hidden="true">↗</span></button>' +
+    (next ? '<button type="button" class="line-button" data-record="' + esc(next.id) + '"><strong>' + esc(next.title) + '</strong><span>BEGIN HERE — ' + esc(next.artist) + '</span></button>' : '') +
     '</div></div>' +
-    '<aside class="archive-state" aria-label="Listening progress"><p class="eyebrow">ARCHIVE STATE / 01</p><strong class="state-number">' + String(heardCount).padStart(4, '0') + '</strong>' +
-    '<span class="state-caption">OF ' + records.length.toLocaleString() + ' MARKED HEARD</span><div class="progress-track" role="progressbar" aria-label="Records marked heard" aria-valuenow="' + heardCount + '" aria-valuemin="0" aria-valuemax="' + records.length + '"><span style="width:' + percent + '%"></span></div>' +
+    '<aside class="archive-state" aria-label="Listening progress">' +
+    '<p class="eyebrow">ARCHIVE STATE / 01</p><strong class="state-number tnum">' + String(heardCount).padStart(4, '0') + '</strong>' +
+    '<span class="state-caption">OF ' + records.length.toLocaleString() + ' MARKED HEARD</span>' +
+    '<div class="progress-track" role="progressbar" aria-label="Records marked heard" aria-valuenow="' + heardCount + '" aria-valuemin="0" aria-valuemax="' + records.length + '"><span style="width:' + percent + '%"></span></div>' +
     '<dl><div><dt>HEARD</dt><dd>' + percent + '%</dd></div><div><dt>KEPT</dt><dd>' + favorites.size + '</dd></div><div><dt>RATED</dt><dd>' + ratedCount + '</dd></div></dl>' +
-    '<button class="text-button state-draw" data-action="draw">DRAW AN UNHEARD RECORD <span aria-hidden="true">↗</span></button></aside></section>' +
-    '<section class="home-section"><div class="section-heading"><div><p class="eyebrow">RECENT / 01</p><h2>Last touched</h2></div><button class="text-button" data-view="saved">ALL RECENT <span aria-hidden="true">↗</span></button></div>' +
-    (last.length ? '<ol class="record-list compact-list">' + last.map(recordRow).join('') + '</ol>' : '<div class="quiet-empty"><strong>No trace yet.</strong><p>Open any record. Your recent list stays here on this device.</p><button class="text-button" data-view="index">FIND A RECORD ↗</button></div>') + '</section>' +
-    '<section class="home-section"><div class="section-heading"><div><p class="eyebrow">FROM YOUR RATINGS / 02</p><h2>Follow a line</h2></div><button class="text-button" data-view="index">BROWSE ALL <span aria-hidden="true">↗</span></button></div>' +
-    (suggestions.length ? '<ol class="record-list compact-list">' + suggestions.map(recordRow).join('') + '</ol>' : '<div class="quiet-empty"><strong>No signal to follow.</strong><p>Rate a few records. Suggestions use only your ratings and this archive’s crate, decade, and tag data.</p><button class="text-button" data-view="index">OPEN THE INDEX ↗</button></div>') + '</section>' +
-    '<section class="home-section crate-shortcuts"><div class="section-heading"><div><p class="eyebrow">SHELVES / 03</p><h2>Choose a crate</h2></div><button class="text-button" data-view="index">ALL ' + crates.length + ' CRATES <span aria-hidden="true">↗</span></button></div>' +
-    '<div class="crate-quick-list">' + cratesToShow.map(crate => '<button data-crate="' + esc(crate.name) + '"><span>' + esc(crate.family) + '</span><strong>' + esc(crate.name) + '</strong><small>' + crate.albums.length + ' records <b aria-hidden="true">↗</b></small></button>').join('') + '</div></section>';
+    '<button type="button" class="text-button state-draw" data-action="draw">DRAW AN UNHEARD RECORD <span aria-hidden="true">↗</span></button></aside></section>' +
+
+    '<section class="home-section"><div class="section-heading"><div><p class="eyebrow">RECENT / 01</p><h2>Last touched</h2></div>' +
+    '<button type="button" class="text-button" data-view="saved">ALL RECENT <span aria-hidden="true">↗</span></button></div>' +
+    (last.length ? '<ol class="record-list compact-list">' + last.map(recordRow).join('') + '</ol>' :
+      '<div class="quiet-empty"><strong>No trace yet.</strong><p>Open any record. What you touch stays on this device, nowhere else.</p><button type="button" class="text-button" data-view="index">FIND A RECORD ↗</button></div>') + '</section>' +
+
+    '<section class="home-section"><div class="section-heading"><div><p class="eyebrow">FROM YOUR RATINGS / 02</p><h2>Follow a line</h2></div>' +
+    '<button type="button" class="text-button" data-view="index">BROWSE ALL <span aria-hidden="true">↗</span></button></div>' +
+    (suggestions.length ? '<ol class="record-list compact-list">' + suggestions.map(recordRow).join('') + '</ol>' :
+      '<div class="quiet-empty"><strong>No signal to follow.</strong><p>Rate a few records. Suggestions use only your ratings and this archive’s crate, decade, and tag data — nothing else.</p><button type="button" class="text-button" data-view="index">OPEN THE INDEX ↗</button></div>') + '</section>' +
+
+    '<section class="home-section crate-shortcuts"><div class="section-heading"><div><p class="eyebrow">SHELVES / 03</p><h2>Choose a crate</h2></div>' +
+    '<button type="button" class="text-button" data-view="index">ALL ' + crates.length + ' CRATES <span aria-hidden="true">↗</span></button></div>' +
+    '<div class="crate-quick-list">' + cratesToShow.map(crate => '<button type="button" data-crate="' + esc(crate.name) + '"><span>' + esc(crate.family) + '</span><strong>' + esc(crate.name) + '</strong><small>' + crate.albums.length + ' records <b aria-hidden="true">↗</b></small></button>').join('') + '</div></section>';
 }
 
 function recommendationList(limit) {
@@ -335,10 +404,12 @@ function uniqueRecords(items) {
   });
 }
 
+/* ---- index ------------------------------------------------------------ */
+
 function filterControls(matches) {
   const statusOptions = [
     ['all', 'Everything'], ['unheard', 'Unheard'], ['heard', 'Heard'], ['saved', 'Kept'],
-    ['rated', 'Rated'], ['noted', 'Noted'], ['matched', 'Matched'], ['flagged', 'Review']
+    ['rated', 'Rated'], ['noted', 'Noted'], ['matched', 'Matched'], ['flagged', 'Review'],
   ];
   const allDecades = [...new Set(records.map(record => Math.floor(record.year / 10) * 10))].sort((a, b) => a - b);
   const hasFilter = !!(activeCrate || query || decades.size || statusFilter !== 'all');
@@ -348,43 +419,40 @@ function filterControls(matches) {
     '</select></label><label class="filter-select"><span>STATE</span><select id="status-filter" aria-label="Filter by record state">' +
     statusOptions.map(option => '<option value="' + option[0] + '"' + (statusFilter === option[0] ? ' selected' : '') + '>' + option[1] + '</option>').join('') +
     '</select></label></div><div class="decade-line" aria-label="Filter by decade">' +
-    allDecades.map(decade => '<button data-decade="' + decade + '" aria-pressed="' + decades.has(decade) + '">' + decade + 's</button>').join('') +
-    (hasFilter ? '<button class="clear-filters" data-action="clear-filters">CLEAR ×</button>' : '') +
-    '</div><p class="list-summary" role="status">' + matches.length.toLocaleString() + ' RECORDS' + (query ? ' / QUERY: ' + esc(query) : '') + '</p>' +
+    allDecades.map(decade => '<button type="button" data-decade="' + decade + '" aria-pressed="' + decades.has(decade) + '">' + decade + 's</button>').join('') +
+    (hasFilter ? '<button type="button" class="clear-filters" data-action="clear-filters">CLEAR ×</button>' : '') +
+    '</div><p class="list-summary tnum" role="status">' + matches.length.toLocaleString() + ' RECORDS' + (query ? ' / QUERY: ' + esc(query) : '') + '</p>' +
     '<details class="syntax-help"><summary>Search syntax</summary><p>Words search titles and artists. Try <code>artist:"Nina Simone"</code>, <code>crate:ambient</code>, <code>family:jazz</code>, <code>tag:mono</code>, <code>shelf:"Soul"</code>, <code>year:1970-1979</code>, <code>rating&gt;=4</code>, or <code>is:unheard</code>. Prefix a term with <code>-</code> to exclude it.</p></details>' +
     '</section>';
 }
 
 function indexView() {
   const matches = filteredRecords();
-  const shown = matches.slice(0, pageSize);
   const title = activeCrate || (query ? 'Search results' : 'All records');
-  const descriptor = activeCrate ? (crates.find(crate => crate.name === activeCrate)?.family || 'CRATE') : 'COLLECTION / 01';
+  const descriptor = activeCrate ? (crates.find(c => c.name === activeCrate)?.family || 'CRATE') : 'COLLECTION / 01';
   return '<section class="page-heading"><div><p class="eyebrow">' + esc(descriptor) + ' / ' + matches.length.toLocaleString() + ' RECORDS</p><h1>' + esc(title) + '</h1>' +
-    '<p class="page-description">Search the archive. Narrow by crate, decade, or listening state.</p></div><button class="line-button page-draw" data-action="draw">DRAW UNHEARD <span aria-hidden="true">↗</span></button></section>' +
-    filterControls(matches) + (shown.length ? '<div class="record-columns" aria-hidden="true"><span>RECORD / ARTIST</span><span>CRATE</span><span>YEAR</span><span>MARKS</span><span></span></div><ol class="record-list">' + shown.map(recordRow).join('') + '</ol>' :
-      '<div class="empty-state"><p class="eyebrow">NO MATCH / 00</p><h2>The signal ends here.</h2><p>Clear one or more filters, or search another title, artist, crate, family, or tag.</p><button class="action-button" data-action="clear-filters">CLEAR FILTERS</button></div>') +
-    (matches.length > shown.length ? '<div class="load-more"><span>SHOWING ' + shown.length + ' OF ' + matches.length.toLocaleString() + '</span><button class="line-button" data-action="load-more">LOAD NEXT ' + Math.min(pageSize, matches.length - shown.length) + ' <span aria-hidden="true">↓</span></button></div>' :
-      (shown.length ? '<p class="end-mark">— END OF INDEX —</p>' : ''));
+    '<p class="page-description">Search the archive. Narrow by crate, decade, or listening state.</p></div>' +
+    '<button type="button" class="line-button page-draw" data-action="draw">DRAW UNHEARD <span aria-hidden="true">↗</span></button></section>' +
+    filterControls(matches) +
+    (matches.length ? '<div class="record-columns" aria-hidden="true"><span>RECORD / ARTIST</span><span>CRATE</span><span>YEAR</span><span>MARKS</span><span></span></div><div id="index-list-mount"></div>' :
+      '<div class="empty-state"><p class="eyebrow">NO MATCH / 00</p><h2>The signal ends here.</h2><p>Clear one or more filters, or search another title, artist, crate, family, or tag.</p><button type="button" class="action-button" data-action="clear-filters">CLEAR FILTERS</button></div>');
 }
 
+/* ---- saved -------------------------------------------------------------- */
+
 function savedView() {
-  const seenSaved = new Set();
-  const savedRecords = records.filter(record => {
-    if (!isSaved(record) || seenSaved.has(record.k)) return false;
-    seenSaved.add(record.k);
-    return true;
-  });
-  const visibleSaved = savedRecords.slice(0, pageSize);
+  const savedCount = records.filter(isSaved).length;
   const recentRecords = recent.map(key => byKey.get(key)).filter(Boolean).slice(0, 24);
-  return '<section class="page-heading"><div><p class="eyebrow">PERSONAL MARKS / 03</p><h1>Kept records</h1><p class="page-description">Saved for later, followed by the records you opened most recently.</p></div></section>' +
-    '<section class="saved-section"><div class="section-heading"><div><p class="eyebrow">SAVED / ' + savedRecords.length + '</p><h2>Held for later</h2></div></div>' +
-    (savedRecords.length ? '<ol class="record-list">' + visibleSaved.map(recordRow).join('') + '</ol>' +
-      (savedRecords.length > visibleSaved.length ? '<div class="load-more"><span>SHOWING ' + visibleSaved.length + ' OF ' + savedRecords.length + '</span><button class="line-button" data-action="load-more-saved">LOAD NEXT ' + Math.min(pageSize, savedRecords.length - visibleSaved.length) + ' <span aria-hidden="true">↓</span></button></div>' : '') :
-      '<div class="empty-state"><p class="eyebrow">NO SAVED RECORDS</p><h2>Leave yourself a marker.</h2><p>Open a record and choose “Keep for later”. It will remain here on this device.</p><button class="action-button" data-view="index">OPEN THE INDEX</button></div>') +
+  return '<section class="page-heading"><div><p class="eyebrow">PERSONAL MARKS / 02</p><h1>Kept records</h1><p class="page-description">Saved for later, followed by the records you opened most recently.</p></div></section>' +
+    '<section class="saved-section"><div class="section-heading"><div><p class="eyebrow">SAVED / ' + savedCount + '</p><h2>Held for later</h2></div></div>' +
+    (savedCount ? '<div id="saved-list-mount"></div>' :
+      '<div class="empty-state"><p class="eyebrow">NO SAVED RECORDS</p><h2>Leave yourself a marker.</h2><p>Open a record and choose “keep for later.” It stays here, on this device, until you remove it.</p><button type="button" class="action-button" data-view="index">OPEN THE INDEX</button></div>') +
     '</section><section class="saved-section"><div class="section-heading"><div><p class="eyebrow">RECENT / ' + recentRecords.length + '</p><h2>Last opened</h2></div></div>' +
-    (recentRecords.length ? '<ol class="record-list">' + recentRecords.map(recordRow).join('') + '</ol>' : '<div class="quiet-empty"><strong>No recent record.</strong><p>Records you open will appear here.</p></div>') + '</section>';
+    (recentRecords.length ? '<ol class="record-list">' + recentRecords.map(recordRow).join('') + '</ol>' :
+      '<div class="quiet-empty"><strong>No recent record.</strong><p>Records you open will appear here.</p></div>') + '</section>';
 }
+
+/* ---- ledger -------------------------------------------------------------- */
 
 function ledgerView() {
   const heardCount = records.filter(isHeard).length;
@@ -398,10 +466,11 @@ function ledgerView() {
   const reviewCount = records.filter(record => audioFlags(record).length).length;
   const duplicateCount = records.filter(duplicateOf).length;
   const tracks = records.reduce((total, record) => total + (resolved[record.k]?.tracks || 0), 0);
-  const completeness = Math.round(records.reduce((total, record) => {
+  const completeness = records.length ? Math.round(records.reduce((total, record) => {
     const value = meta[record.k] || {};
     return total + [value.r, value.tags?.length, value.ty, value.au?.fmt, resolved[record.k]].filter(Boolean).length / 5;
-  }, 0) / records.length * 100);
+  }, 0) / records.length * 100) : 0;
+
   const metrics = [
     [records.length.toLocaleString(), 'RECORDS'], [crates.length, 'CRATES'],
     [new Set(records.map(record => record.artist)).size.toLocaleString(), 'ARTISTS'],
@@ -409,71 +478,80 @@ function ledgerView() {
     [tagged, 'TAGGED'], [noted, 'NOTED'], [matched.toLocaleString(), 'MATCHED RELEASES'],
     [tracks.toLocaleString(), 'TRACKS IN MATCHED RELEASES'],
     [audioRecords.length ? losslessCopies + ' / ' + audioRecords.length : '—', 'LOSSLESS / FORMATS'],
-    [reviewCount, 'REVIEW FLAGS'], [duplicateCount, 'POSSIBLE DUPLICATES'], [completeness + '%', 'ANNOTATION COMPLETENESS']
+    [reviewCount, 'REVIEW FLAGS'], [duplicateCount, 'POSSIBLE DUPLICATES'], [completeness + '%', 'ANNOTATION COMPLETENESS'],
   ];
+
   const decadeYears = [...new Set(records.map(record => Math.floor(record.year / 10) * 10))].sort((a, b) => a - b);
   const decadeRows = decadeYears.map(decade => {
     const group = records.filter(record => Math.floor(record.year / 10) * 10 === decade);
     const count = group.length;
     const heardInDecade = group.filter(isHeard).length;
-    return '<div class="ledger-bar"><span>' + decade + 's</span><div class="bar-track"><i style="width:' + (count / records.length * 100) + '%"></i></div><strong>' + count + '</strong><small>' + heardInDecade + ' HEARD</small></div>';
+    return '<div class="ledger-bar"><span>' + decade + 's</span><div class="bar-track"><i style="width:' + (count / records.length * 100) + '%"></i></div><strong class="tnum">' + count + '</strong><small>' + heardInDecade + ' HEARD</small></div>';
   }).join('');
+
   const crateRows = crates.map(crate => {
     const marked = crate.albums.filter(isHeard).length;
-    return '<button class="crate-ledger-row" data-crate="' + esc(crate.name) + '"><span><small>' + esc(crate.family) + '</small><strong>' + esc(crate.name) + '</strong></span><span>' + marked + ' / ' + crate.albums.length + '<i class="mini-progress"><b style="width:' + (marked / crate.albums.length * 100) + '%"></b></i></span></button>';
+    const pct = crate.albums.length ? (marked / crate.albums.length * 100) : 0;
+    return '<button type="button" class="crate-ledger-row" data-crate="' + esc(crate.name) + '"><span><small>' + esc(crate.family) + '</small><strong>' + esc(crate.name) + '</strong></span><span>' + marked + ' / ' + crate.albums.length + '<i class="mini-progress"><b style="width:' + pct + '%"></b></i></span></button>';
   }).join('');
+
   const ratingCounts = [5, 4, 3, 2, 1].map(rating => rated.filter(record => meta[record.k].r === rating).length);
   const artistCounts = new Map();
   records.forEach(record => artistCounts.set(record.artist, (artistCounts.get(record.artist) || 0) + 1));
   const artistRows = [...artistCounts.entries()]
     .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
     .slice(0, 8)
-    .map(([artist, count]) => '<button data-query="' + esc('artist:"' + artist + '"') + '"><span>' + esc(artist) + '</span><small>' + count + ' RECORDS</small></button>')
+    .map(([artist, count]) => '<button type="button" data-query="' + esc('artist:"' + artist + '"') + '"><span>' + esc(artist) + '</span><small>' + count + ' RECORDS</small></button>')
     .join('');
   const smallestCrateRows = [...crates]
     .sort((a, b) => a.albums.length - b.albums.length)
     .slice(0, 6)
-    .map(crate => '<button data-crate="' + esc(crate.name) + '"><span>' + esc(crate.name) + '</span><small>' + crate.albums.length + ' RECORDS</small></button>')
+    .map(crate => '<button type="button" data-crate="' + esc(crate.name) + '"><span>' + esc(crate.name) + '</span><small>' + crate.albums.length + ' RECORDS</small></button>')
     .join('');
-  return '<section class="page-heading"><div><p class="eyebrow">COLLECTION MEASUREMENTS / 04</p><h1>Your ledger</h1><p class="page-description">A plain account of what is filed, heard, and marked.</p></div></section>' +
-    '<div class="metric-grid">' + metrics.map(metric => '<div class="metric"><strong>' + esc(metric[0]) + '</strong><span>' + esc(metric[1]) + '</span></div>').join('') + '</div>' +
+
+  return '<section class="page-heading"><div><p class="eyebrow">COLLECTION MEASUREMENTS / 03</p><h1>The ledger</h1><p class="page-description">A plain account of what is filed, heard, and marked.</p></div></section>' +
+    '<div class="metric-grid">' + metrics.map(metric => '<div class="metric"><strong class="tnum">' + esc(metric[0]) + '</strong><span>' + esc(metric[1]) + '</span></div>').join('') + '</div>' +
     '<div class="ledger-columns"><section><div class="section-heading"><div><p class="eyebrow">TIME / 01</p><h2>By decade</h2></div></div>' +
     '<div class="ledger-bars">' + decadeRows + '</div><div class="section-heading rating-heading"><div><p class="eyebrow">JUDGMENT / 02</p><h2>Ratings</h2></div></div>' +
-    '<div class="rating-bars">' + ratingCounts.map((count, index) => '<div class="ledger-bar"><span>' + (5 - index) + ' / 5</span><div class="bar-track"><i style="width:' + (rated.length ? count / rated.length * 100 : 0) + '%"></i></div><strong>' + count + '</strong></div>').join('') +
-    (!rated.length ? '<p class="quiet-note">Nothing rated. Open a record and mark what stays with you.</p>' : '') + '</div></section>' +
-    '<section><div class="section-heading"><div><p class="eyebrow">FILED / ' + crates.length + '</p><h2>Crate progress</h2></div><button class="text-button" data-view="index">OPEN INDEX ↗</button></div>' +
+    '<div class="rating-bars">' + ratingCounts.map((count, index) => '<div class="ledger-bar"><span>' + (5 - index) + ' / 5</span><div class="bar-track"><i style="width:' + (rated.length ? count / rated.length * 100 : 0) + '%"></i></div><strong class="tnum">' + count + '</strong></div>').join('') +
+    (!rated.length ? '<p class="quiet-note">Nothing rated yet. Open a record and mark what stays with you.</p>' : '') + '</div></section>' +
+    '<section><div class="section-heading"><div><p class="eyebrow">FILED / ' + crates.length + '</p><h2>Crate progress</h2></div><button type="button" class="text-button" data-view="index">OPEN INDEX ↗</button></div>' +
     '<div class="crate-ledger">' + crateRows + '</div></section></div>' +
-    '<div class="ledger-foot-grid"><section><div class="section-heading"><div><p class="eyebrow">REPEATED MOST / 03</p><h2>Artists</h2></div></div>' +
+    '<div class="ledger-foot-grid"><section><div class="section-heading"><div><p class="eyebrow">REPEATED MOST / 04</p><h2>Artists</h2></div></div>' +
     '<div class="ledger-link-list">' + artistRows + '</div></section>' +
-    '<section><div class="section-heading"><div><p class="eyebrow">SMALLEST FILES / 04</p><h2>Smallest crates</h2></div></div>' +
+    '<section><div class="section-heading"><div><p class="eyebrow">SMALLEST FILES / 05</p><h2>Smallest crates</h2></div></div>' +
     '<div class="ledger-link-list">' + smallestCrateRows + '</div></section></div>';
 }
 
+/* ---- settings -------------------------------------------------------- */
+
 function settingsView() {
-  return '<section class="page-heading"><div><p class="eyebrow">LOCAL CONTROL / 05</p><h1>Settings</h1><p class="page-description">Your archive lives in this browser. Choose its signal and density, or carry your marks out as a file.</p></div></section>' +
-    '<section class="settings-section"><div class="settings-label"><p class="eyebrow">DISPLAY / 01</p><h2>Signal color</h2><p>One active accent. The mark remains visible without color.</p></div><div class="choice-row">' +
-    '<button data-accent="rust" aria-pressed="' + (prefs.accent !== 'frost') + '"><i class="swatch rust-swatch"></i><span>Rust</span><small>DEFAULT</small></button>' +
-    '<button data-accent="frost" aria-pressed="' + (prefs.accent === 'frost') + '"><i class="swatch frost-swatch"></i><span>Cold ash</span><small>ALTERNATE</small></button></div></section>' +
-    '<section class="settings-section"><div class="settings-label"><p class="eyebrow">READING / 02</p><h2>Index density</h2><p>Adjust row height for the way you work.</p></div><div class="choice-row">' +
-    '<button data-density="standard" aria-pressed="' + (prefs.density !== 'compact') + '"><span>Measured</span><small>STANDARD ROWS</small></button>' +
-    '<button data-density="compact" aria-pressed="' + (prefs.density === 'compact') + '"><span>Compressed</span><small>MORE ON SCREEN</small></button></div></section>' +
-    '<section class="settings-section"><div class="settings-label"><p class="eyebrow">YOUR DATA / 03</p><h2>Carry the archive</h2><p>Export or merge your heard marks, ratings, notes, tags, and saved list. Files stay on your device.</p></div>' +
-    '<div class="data-actions"><button class="action-button" data-action="export-json">EXPORT JSON</button><button class="line-button" data-action="export-csv">EXPORT CSV</button><label class="line-button file-import">IMPORT JSON<input id="import-file" type="file" accept=".json,application/json"></label>' +
+  return '<section class="page-heading"><div><p class="eyebrow">LOCAL CONTROL / 04</p><h1>Settings</h1><p class="page-description">This archive lives in one browser, on one device. There is no account to lose, because there is no account.</p></div></section>' +
+    '<section class="settings-section"><div class="settings-label"><p class="eyebrow">DISPLAY / 01</p><h2>Signal color</h2><p>One live accent. Status marks stay legible without it.</p></div><div class="choice-row">' +
+    '<button type="button" data-accent="rust" aria-pressed="' + (prefs.accent !== 'frost') + '"><i class="swatch rust-swatch"></i><span>Rust</span><small>DEFAULT</small></button>' +
+    '<button type="button" data-accent="frost" aria-pressed="' + (prefs.accent === 'frost') + '"><i class="swatch frost-swatch"></i><span>Cold ash</span><small>ALTERNATE</small></button></div></section>' +
+    '<section class="settings-section"><div class="settings-label"><p class="eyebrow">READING / 02</p><h2>Index density</h2><p>Adjust row height for the way you file.</p></div><div class="choice-row">' +
+    '<button type="button" data-density="standard" aria-pressed="' + (prefs.density !== 'compact') + '"><span>Measured</span><small>STANDARD ROWS</small></button>' +
+    '<button type="button" data-density="compact" aria-pressed="' + (prefs.density === 'compact') + '"><span>Compressed</span><small>MORE ON SCREEN</small></button></div></section>' +
+    '<section class="settings-section"><div class="settings-label"><p class="eyebrow">YOUR DATA / 03</p><h2>Carry the archive</h2><p>Export or merge your heard marks, ratings, notes, tags, and kept list. Files stay on your device.</p></div>' +
+    '<div class="data-actions"><button type="button" class="action-button" data-action="export-json">EXPORT JSON</button><button type="button" class="line-button" data-action="export-csv">EXPORT CSV</button><label class="line-button file-import">IMPORT JSON<input id="import-file" type="file" accept=".json,application/json"></label>' +
     '<p id="import-status" class="settings-note" role="status">Import merges with this browser’s archive. It does not replace existing marks.</p></div></section>' +
     '<section class="settings-section"><div class="settings-label"><p class="eyebrow">KEYS / 04</p><h2>Direct access</h2><p>Shortcuts are inactive while you type in a field.</p></div><dl class="shortcut-list">' +
-    '<div><dt><kbd>/</kbd></dt><dd>Focus collection search</dd></div><div><dt><kbd>CTRL</kbd><kbd>⌘K</kbd></dt><dd>Open the command palette</dd></div>' +
-    '<div><dt><kbd>R</kbd></dt><dd>Draw an unheard record</dd></div><div><dt><kbd>ESC</kbd></dt><dd>Close the open sheet</dd></div></dl></section>' +
-    '<p class="storage-note"><span class="local-mark" aria-hidden="true"></span>LOCAL STORAGE / PRIVATE TO THIS DEVICE / NO REMOTE ACCOUNT</p>';
+    '<div><dt><kbd>/</kbd></dt><dd>Focus archive search</dd></div><div><dt><kbd>⌘</kbd><kbd>K</kbd></dt><dd>Open direct access</dd></div>' +
+    '<div><dt><kbd>R</kbd></dt><dd>Draw an unheard record</dd></div><div><dt><kbd>ESC</kbd></dt><dd>Close the open panel</dd></div></dl></section>' +
+    '<p class="storage-note"><span class="local-mark" aria-hidden="true"></span>LOCAL STORAGE / PRIVATE TO THIS DEVICE / NO REMOTE ACCOUNT, EVER</p>';
 }
+
+/* ---- record detail ----------------------------------------------------- */
 
 function openRecord(record, restoreFocus = document.activeElement) {
   if (!record) return;
   recent = [record.k, ...recent.filter(key => key !== record.k)].slice(0, 24);
   save(RECENT_KEY, recent);
-  if (!recordDialog.open) dialogOpener = restoreFocus;
+  if (!recordPanel.open) dialogOpener = restoreFocus;
   current = record;
   paintDetail(record);
-  if (!recordDialog.open) recordDialog.showModal();
+  if (!recordPanel.open) recordPanel.showModal();
   $('#record-close')?.focus({ preventScroll: true });
   if (!resolved[record.k] && !lookupFailed.has(record.k)) requestMatch(record);
 }
@@ -489,20 +567,21 @@ function paintDetail(record) {
   const flags = audioFlags(record);
   const cover = release?.art ? '<img class="detail-cover" src="' + esc(release.art.replace(/\{s\}/g, '480')) + '" alt="" decoding="async">' : '<span class="detail-cover-fallback">' + esc(record.title) + '</span>';
   const optionList = (items, selected) => items.map(item => '<option value="' + esc(item) + '"' + (item === selected ? ' selected' : '') + '>' + esc(item) + '</option>').join('');
+
   detailContent.innerHTML = '<div class="detail-top"><p class="eyebrow">RECORD / ' + String(record.ci + 1).padStart(2, '0') + '.' + String(record.ai + 1).padStart(2, '0') + '</p>' +
-    '<button id="record-close" class="close-button" data-close-record aria-label="Close record detail">×</button></div>' +
-    '<div class="detail-identity"><div class="detail-cover-wrap">' + cover + '<span class="detail-year">' + record.year + '</span></div>' +
+    '<button type="button" id="record-close" class="close-button" data-close-record aria-label="Close record detail">×</button></div>' +
+    '<div class="detail-identity"><div class="detail-cover-wrap">' + cover + '<span class="detail-year tnum">' + record.year + '</span></div>' +
     '<div><p class="eyebrow">' + esc(record.fam) + ' / ' + esc(record.crate) + '</p><h1 id="detail-title">' + esc(record.title) + '</h1><p class="detail-artist">' + esc(record.artist) + '</p>' +
     '<div class="detail-facts"><span>' + record.year + '</span><span>' + esc(record.crate) + '</span><span>' + esc(record.fam) + '</span></div></div></div>' +
     '<section class="detail-actions" aria-label="Record actions"><a class="action-button" id="apple-link" href="' + esc(apple) + '" target="_blank" rel="noopener">APPLE MUSIC ↗</a>' +
     '<a class="line-button" href="https://open.spotify.com/search/' + queryText + '" target="_blank" rel="noopener">SPOTIFY ↗</a>' +
     '<a class="line-button" href="https://music.youtube.com/search?q=' + queryText + '" target="_blank" rel="noopener">YOUTUBE MUSIC ↗</a>' +
-    '<button class="line-button" data-action="toggle-saved" aria-pressed="' + isSaved(record) + '">' + (isSaved(record) ? 'KEPT · REMOVE' : 'KEEP FOR LATER') + '</button>' +
-    '<button class="action-button heard-button" data-action="toggle-heard">' + (isHeard(record) ? 'HEARD · UNDO' : 'MARK HEARD') + '</button></section>' +
+    '<button type="button" class="line-button" data-action="toggle-saved" aria-pressed="' + isSaved(record) + '">' + (isSaved(record) ? 'KEPT · REMOVE' : 'KEEP FOR LATER') + '</button>' +
+    '<button type="button" class="action-button heard-button" data-action="toggle-heard">' + (isHeard(record) ? 'HEARD · UNDO' : 'MARK HEARD') + '</button></section>' +
     '<p class="catalog-note" id="catalog-note">' + (release ? 'Matched to ' + esc(release.name) + ' by ' + esc(release.artist) + ' · ' + release.year + ' · US catalogue.' : lookupPending.has(record.k) ? 'Checking the catalogue… the archive stays usable.' : lookupFailed.has(record.k) ? 'Catalogue lookup unavailable. Apple Music opens a search for this title.' : 'No specific release match. Apple Music opens a search for this title.') + '</p>' +
     '<section class="detail-section"><div class="detail-section-head"><p class="eyebrow">YOUR MARKS / 01</p><h2>Classification</h2></div>' +
-    '<div class="rating-control" role="group" aria-label="Personal rating">' + [1, 2, 3, 4, 5].map(rating => '<button data-rating="' + rating + '" aria-label="' + rating + ' out of 5 stars" aria-pressed="' + ((copy.r || 0) >= rating) + '">' + (copy.r >= rating ? '★' : '☆') + '</button>').join('') +
-    '<button class="clear-rating" data-rating="0" aria-label="Clear rating">CLEAR</button></div>' +
+    '<div class="rating-control" role="group" aria-label="Personal rating">' + [1, 2, 3, 4, 5].map(rating => '<button type="button" data-rating="' + rating + '" aria-label="' + rating + ' out of 5 stars" aria-pressed="' + ((copy.r || 0) >= rating) + '">' + (copy.r >= rating ? '★' : '☆') + '</button>').join('') +
+    '<button type="button" class="clear-rating" data-rating="0" aria-label="Clear rating">CLEAR</button></div>' +
     '<div class="detail-form"><label>RELEASE TYPE<select data-meta="ty"><option value="">Unset</option>' + optionList(TYPES, copy.ty) + '</select></label>' +
     '<label>ALSO FILED UNDER<select data-meta="sec"><option value="">Nowhere else</option>' + crates.map((crate, index) => '<option value="' + index + '"' + (copy.sec === index ? ' selected' : '') + '>' + esc(crate.name) + '</option>').join('') + '</select></label>' +
     '<label class="wide-field">TAGS / COMMA SEPARATED<input data-meta="tags" value="' + esc((copy.tags || []).join(', ')) + '" placeholder="mono, concept album"></label>' +
@@ -518,9 +597,9 @@ function paintDetail(record) {
     (flags.length ? '<ul class="review-flags">' + flags.map(flag => '<li>' + esc(flag) + '</li>').join('') + '</ul>' : '') + '</section>' +
     (crates[record.ci].desc ? '<section class="detail-section"><div class="detail-section-head"><p class="eyebrow">FILED IN / 03</p><h2>' + esc(record.crate) + '</h2></div><p class="crate-description">' + esc(crates[record.ci].desc) + '</p></section>' : '') +
     '<section class="detail-section"><div class="detail-section-head"><p class="eyebrow">NEARBY / 04</p><h2>Same crate</h2></div>' +
-    (neighbors.length ? '<div class="neighbor-list">' + neighbors.map(item => '<button data-record="' + esc(item.id) + '"><span>' + esc(item.title) + '</span><small>' + esc(item.artist) + ' · ' + item.year + '</small><b aria-hidden="true">↗</b></button>').join('') + '</div>' : '<p class="quiet-note">No adjacent records in this crate.</p>') +
+    (neighbors.length ? '<div class="neighbor-list">' + neighbors.map(item => '<button type="button" data-record="' + esc(item.id) + '"><span>' + esc(item.title) + '</span><small>' + esc(item.artist) + ' · ' + item.year + '</small><b aria-hidden="true">↗</b></button>').join('') + '</div>' : '<p class="quiet-note">No adjacent records in this crate.</p>') +
     (sameYear.length ? '<div class="detail-section-head year-head"><p class="eyebrow">SAME YEAR / ' + record.year + '</p><h2>Elsewhere</h2></div><div class="neighbor-list">' +
-      sameYear.map(item => '<button data-record="' + esc(item.id) + '"><span>' + esc(item.title) + '</span><small>' + esc(item.artist) + ' · ' + esc(item.crate) + '</small><b aria-hidden="true">↗</b></button>').join('') + '</div>' : '') + '</section>';
+      sameYear.map(item => '<button type="button" data-record="' + esc(item.id) + '"><span>' + esc(item.title) + '</span><small>' + esc(item.artist) + ' · ' + esc(item.crate) + '</small><b aria-hidden="true">↗</b></button>').join('') + '</div>' : '') + '</section>';
 }
 
 async function requestMatch(record) {
@@ -581,28 +660,26 @@ function paintCover(element) {
   element.prepend(image);
 }
 
-function closeRecord() {
-  if (recordDialog.open) recordDialog.close();
-}
+function closeRecord() { if (recordPanel.open) recordPanel.close(); }
+function closeCommand() { if (commandDialog.open) commandDialog.close(); }
 
-function closeCommand() {
-  if (commandDialog.open) commandDialog.close();
-}
+/* ---- draw --------------------------------------------------------------- */
 
 function drawRecord() {
   const pool = records.filter(record => !isHeard(record));
-  if (!pool.length) return toast('Every record is marked heard.');
+  if (!pool.length) return toast('Every record is marked heard. Nothing left to draw.');
   const record = pool[Math.floor(Math.random() * pool.length)];
   view = 'index';
   query = '';
   activeCrate = '';
   statusFilter = 'all';
   decades.clear();
-  pageSize = 72;
   $('#q').value = '';
   render();
   requestAnimationFrame(() => openRecord(record, $('#pull')));
 }
+
+/* ---- navigation ---------------------------------------------------------- */
 
 function navigate(nextView, crateName = '') {
   view = nextView;
@@ -611,11 +688,12 @@ function navigate(nextView, crateName = '') {
   activeCrate = nextView === 'index' ? crateName : '';
   statusFilter = 'all';
   decades.clear();
-  pageSize = 72;
   render();
   window.scrollTo({ top: 0, behavior: 'instant' });
   $('#main').focus({ preventScroll: true });
 }
+
+/* ---- command palette ------------------------------------------------- */
 
 function openCommand() {
   renderCommandResults('');
@@ -627,29 +705,40 @@ function openCommand() {
 function renderCommandResults(rawQuery) {
   const text = norm(rawQuery);
   const routes = [
-    ['room', 'Listening room', 'Resume / discovery'],
+    ['room', 'Room', 'Entry point / discovery'],
     ['index', 'The index', 'All records / search'],
-    ['saved', 'Kept records', 'Saved / recent'],
-    ['ledger', 'Your ledger', 'Progress / counts'],
-    ['settings', 'Settings', 'Display / data / keys']
+    ['saved', 'Kept', 'Saved / recent'],
+    ['ledger', 'The ledger', 'Progress / counts'],
+    ['settings', 'Settings', 'Display / data / keys'],
   ];
   const routeItems = routes.filter(([, title, detail]) => !text || norm(title + ' ' + detail).includes(text))
-    .map(([name, title, detail]) => '<button class="command-item" data-command-view="' + name + '"><span class="command-code">VIEW</span><strong>' + title + '</strong><small>' + detail + '</small><kbd>↵</kbd></button>');
+    .map(([name, title, detail]) => '<button type="button" class="command-item" role="option" data-command-view="' + name + '"><span class="command-code">VIEW</span><strong>' + title + '</strong><small>' + detail + '</small><kbd>↵</kbd></button>');
+
   const actionItems = (!text || 'draw unheard record'.includes(text)) ?
-    '<button class="command-item" data-command-draw><span class="command-code">ACT</span><strong>Draw an unheard record</strong><small>Choose one from the archive</small><kbd>R</kbd></button>' : '';
+    '<button type="button" class="command-item" role="option" data-command-draw><span class="command-code">ACT</span><strong>Draw an unheard record</strong><small>Choose one from the archive</small><kbd>R</kbd></button>' : '';
+
+  let crateItems = '';
+  if (text.length >= 2) {
+    crateItems = crates.filter(crate => norm(crate.name + ' ' + crate.family).includes(text)).slice(0, 5)
+      .map(crate => '<button type="button" class="command-item" role="option" data-command-crate="' + esc(crate.name) + '"><span class="command-code">CRATE</span><strong>' + esc(crate.name) + '</strong><small>' + esc(crate.family) + ' · ' + crate.albums.length + ' records</small><kbd>↵</kbd></button>').join('');
+  }
+
   let recordItems = '';
   if (text.length >= 2) {
     const found = records.filter(record => norm(record.title + ' ' + record.artist + ' ' + record.crate).includes(text)).slice(0, 8);
-    recordItems = found.map(record => '<button class="command-item" data-command-record="' + esc(record.id) + '"><span class="command-code">RECORD</span><strong>' + esc(record.title) + '</strong><small>' + esc(record.artist) + ' · ' + record.year + ' · ' + esc(record.crate) + '</small><kbd>↵</kbd></button>').join('');
+    recordItems = found.map(record => '<button type="button" class="command-item" role="option" data-command-record="' + esc(record.id) + '"><span class="command-code">RECORD</span><strong>' + esc(record.title) + '</strong><small>' + esc(record.artist) + ' · ' + record.year + ' · ' + esc(record.crate) + '</small><kbd>↵</kbd></button>').join('');
   } else if (!text) {
     recordItems = recent.map(key => byKey.get(key)).filter(Boolean).slice(0, 4).map(record =>
-      '<button class="command-item" data-command-record="' + esc(record.id) + '"><span class="command-code">RECENT</span><strong>' + esc(record.title) + '</strong><small>' + esc(record.artist) + ' · ' + record.year + '</small><kbd>↵</kbd></button>'
+      '<button type="button" class="command-item" role="option" data-command-record="' + esc(record.id) + '"><span class="command-code">RECENT</span><strong>' + esc(record.title) + '</strong><small>' + esc(record.artist) + ' · ' + record.year + '</small><kbd>↵</kbd></button>',
     ).join('');
   }
+
   const results = $('#command-results');
-  const output = routeItems.join('') + actionItems + recordItems;
-  results.innerHTML = output || '<p class="command-empty">NO MATCH / SEARCH A TITLE OR ARTIST</p>';
+  const output = routeItems.join('') + actionItems + crateItems + recordItems;
+  results.innerHTML = output || '<p class="command-empty">NO MATCH / SEARCH A TITLE, ARTIST, OR CRATE</p>';
 }
+
+/* ---- toast -------------------------------------------------------------- */
 
 function toast(message) {
   const element = $('#toast');
@@ -659,13 +748,15 @@ function toast(message) {
   toastTimer = setTimeout(() => element.classList.remove('show'), 2400);
 }
 
+/* ---- mutations ------------------------------------------------------------ */
+
 function toggleHeard() {
   if (!current) return;
   if (isHeard(current)) heard.delete(current.k); else heard.add(current.k);
   save(HEARD_KEY, [...heard]);
   updateDetailActions();
   updateVisibleMarks();
-  if (view === 'ledger') render();
+  if (view === 'ledger' || view === 'room') render();
   toast(isHeard(current) ? 'Marked heard.' : 'Heard mark removed.');
 }
 
@@ -676,7 +767,7 @@ function toggleSaved() {
   updateSavedCount();
   updateDetailActions();
   updateVisibleMarks();
-  if (view === 'ledger') render();
+  if (view === 'ledger' || view === 'saved') render();
   toast(isSaved(current) ? 'Kept for later.' : 'Removed from kept records.');
 }
 
@@ -701,7 +792,7 @@ function updateVisibleMarks() {
     const output = [
       isHeard(record) ? '<span class="record-mark">HEARD</span>' : '',
       isSaved(record) ? '<span class="record-mark saved">KEPT</span>' : '',
-      value.r ? '<span class="record-mark rating">' + value.r + '/5</span>' : ''
+      value.r ? '<span class="record-mark rating">' + value.r + '/5</span>' : '',
     ].filter(Boolean).join('');
     marks.innerHTML = output || '<span class="record-mark blank">—</span>';
   });
@@ -750,7 +841,6 @@ function setAudioField(target, record = current) {
 function toggleDecade(value) {
   if (decades.has(value)) decades.delete(value);
   else decades.add(value);
-  pageSize = 72;
   render();
   document.querySelector('[data-decade="' + value + '"]')?.focus({ preventScroll: true });
 }
@@ -760,12 +850,13 @@ function clearFilters() {
   activeCrate = '';
   statusFilter = 'all';
   decades.clear();
-  pageSize = 72;
   $('#q').value = '';
   view = 'index';
   render();
   $('#q').focus({ preventScroll: true });
 }
+
+/* ---- export / import --------------------------------------------------- */
 
 function downloadFile(filename, content, mime) {
   const url = URL.createObjectURL(new Blob([content], { type: mime }));
@@ -777,9 +868,7 @@ function downloadFile(filename, content, mime) {
 }
 
 function exportJSON() {
-  downloadFile('sonicfield.json', JSON.stringify({
-    heard: [...heard], meta, favorites: [...favorites], recent
-  }, null, 2), 'application/json');
+  downloadFile('sonicfield.json', JSON.stringify({ heard: [...heard], meta, favorites: [...favorites], recent }, null, 2), 'application/json');
   toast('Archive exported.');
 }
 
@@ -792,7 +881,7 @@ function exportCSV() {
     return [
       record.artist, record.title, record.year, record.crate, isHeard(record), isSaved(record),
       value.r, value.ty, (value.tags || []).join('; '), audio.fmt, audio.sr, audio.bd, audio.ch,
-      audio.prov, resolved[record.k]?.id, audioFlags(record).join(' | ')
+      audio.prov, resolved[record.k]?.id, audioFlags(record).join(' | '),
     ].map(quote).join(',');
   });
   downloadFile('sonicfield-index.csv', [header.map(quote).join(','), ...rows].join('\r\n'), 'text/csv;charset=utf-8');
@@ -824,19 +913,14 @@ async function importJSON(file) {
   }
 }
 
+/* ---- events --------------------------------------------------------------- */
+
 document.addEventListener('click', event => {
   const target = event.target.closest('button, a, label');
   if (!target) return;
 
-  if (target.dataset.view) {
-    event.preventDefault();
-    navigate(target.dataset.view);
-    return;
-  }
-  if (target.dataset.crate) {
-    navigate('index', target.dataset.crate);
-    return;
-  }
+  if (target.dataset.view) { event.preventDefault(); navigate(target.dataset.view); return; }
+  if (target.dataset.crate !== undefined) { navigate('index', target.dataset.crate); return; }
   if (target.dataset.query !== undefined) {
     query = target.dataset.query;
     $('#q').value = query;
@@ -844,80 +928,34 @@ document.addEventListener('click', event => {
     statusFilter = 'all';
     decades.clear();
     view = 'index';
-    pageSize = 72;
     render();
     window.scrollTo({ top: 0, behavior: 'instant' });
     $('#main').focus({ preventScroll: true });
     return;
   }
-  if (target.dataset.record) {
-    openRecord(byId.get(target.dataset.record));
-    return;
-  }
-  if (target.id === 'command-open') {
-    openCommand();
-    return;
-  }
-  if (target.id === 'pull' || target.dataset.action === 'draw' || target.dataset.commandDraw !== undefined) {
+  if (target.dataset.record) { openRecord(byId.get(target.dataset.record)); return; }
+  if (target.id === 'command-open') { openCommand(); return; }
+  if (target.id === 'pull' || target.dataset.action === 'draw' || target.hasAttribute('data-command-draw')) {
     closeCommand();
     drawRecord();
     return;
   }
-  if (target.dataset.commandView) {
-    closeCommand();
-    navigate(target.dataset.commandView);
-    return;
-  }
+  if (target.dataset.commandView) { closeCommand(); navigate(target.dataset.commandView); return; }
+  if (target.dataset.commandCrate !== undefined) { closeCommand(); navigate('index', target.dataset.commandCrate); return; }
   if (target.dataset.commandRecord) {
     const record = byId.get(target.dataset.commandRecord);
     closeCommand();
     requestAnimationFrame(() => openRecord(record, $('#command-open')));
     return;
   }
-  if (target.hasAttribute('data-close-command')) {
-    closeCommand();
-    return;
-  }
-  if (target.hasAttribute('data-close-record')) {
-    closeRecord();
-    return;
-  }
-  if (target.dataset.action === 'retry') {
-    boot();
-    return;
-  }
-  if (target.dataset.action === 'load-more') {
-    pageSize += 72;
-    render();
-    $('[data-action="load-more"]')?.focus({ preventScroll: true });
-    return;
-  }
-  if (target.dataset.action === 'load-more-saved') {
-    pageSize += 72;
-    render();
-    $('[data-action="load-more-saved"]')?.focus({ preventScroll: true });
-    return;
-  }
-  if (target.dataset.action === 'clear-filters') {
-    clearFilters();
-    return;
-  }
-  if (target.dataset.action === 'toggle-heard') {
-    toggleHeard();
-    return;
-  }
-  if (target.dataset.action === 'toggle-saved') {
-    toggleSaved();
-    return;
-  }
-  if (target.dataset.action === 'export-json') {
-    exportJSON();
-    return;
-  }
-  if (target.dataset.action === 'export-csv') {
-    exportCSV();
-    return;
-  }
+  if (target.hasAttribute('data-close-command')) { closeCommand(); return; }
+  if (target.hasAttribute('data-close-record')) { closeRecord(); return; }
+  if (target.dataset.action === 'retry') { boot(); return; }
+  if (target.dataset.action === 'clear-filters') { clearFilters(); return; }
+  if (target.dataset.action === 'toggle-heard') { toggleHeard(); return; }
+  if (target.dataset.action === 'toggle-saved') { toggleSaved(); return; }
+  if (target.dataset.action === 'export-json') { exportJSON(); return; }
+  if (target.dataset.action === 'export-csv') { exportCSV(); return; }
   if (target.dataset.accent) {
     prefs.accent = target.dataset.accent;
     savePreferences();
@@ -932,13 +970,8 @@ document.addEventListener('click', event => {
     $('[data-density="' + prefs.density + '"]')?.focus({ preventScroll: true });
     return;
   }
-  if (target.dataset.rating !== undefined) {
-    setRating(+target.dataset.rating);
-    return;
-  }
-  if (target.dataset.decade) {
-    toggleDecade(+target.dataset.decade);
-  }
+  if (target.dataset.rating !== undefined) { setRating(+target.dataset.rating); return; }
+  if (target.dataset.decade) toggleDecade(+target.dataset.decade);
 });
 
 let searchTimer;
@@ -948,21 +981,24 @@ $('#q').addEventListener('input', event => {
     query = event.target.value.trim();
     view = 'index';
     activeCrate = '';
-    pageSize = 72;
     render();
   }, 90);
+});
+$('#q').addEventListener('search', event => {
+  query = event.target.value.trim();
+  view = 'index';
+  activeCrate = '';
+  render();
 });
 
 document.addEventListener('change', async event => {
   const target = event.target;
   if (target.id === 'crate-filter') {
     activeCrate = target.value;
-    pageSize = 72;
     render();
     $('#crate-filter')?.focus({ preventScroll: true });
   } else if (target.id === 'status-filter') {
     statusFilter = target.value;
-    pageSize = 72;
     render();
     $('#status-filter')?.focus({ preventScroll: true });
   } else if (target.id === 'import-file') {
@@ -977,10 +1013,7 @@ document.addEventListener('change', async event => {
     try {
       const buffer = await target.files[0].slice(0, 64).arrayBuffer();
       const detected = sniff(buffer);
-      if (!detected) {
-        toast('No FLAC or WAV header was found.');
-        return;
-      }
+      if (!detected) { toast('No FLAC or WAV header was found.'); return; }
       const copy = recordMeta(record.k);
       copy.au = { ...copy.au, ...detected, prov: 'file' };
       saveMeta();
@@ -996,8 +1029,7 @@ document.addEventListener('change', async event => {
 });
 
 document.addEventListener('input', event => {
-  const target = event.target;
-  if (target.matches('[data-meta]')) setMetaField(target);
+  if (event.target.matches('[data-meta]')) setMetaField(event.target);
 });
 
 document.addEventListener('keydown', event => {
@@ -1005,17 +1037,22 @@ document.addEventListener('keydown', event => {
   const typing = target.matches('input, textarea, select, [contenteditable="true"]');
   if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
     event.preventDefault();
-    if (!commandDialog.open && !recordDialog.open) openCommand();
+    if (!commandDialog.open && !recordPanel.open) openCommand();
     return;
   }
   if (commandDialog.open) {
+    if (event.key === 'Escape') {
+      // A search input clears itself on Escape before the <dialog> would
+      // close; force the close so Escape always has one, predictable job.
+      event.preventDefault();
+      closeCommand();
+      return;
+    }
     const items = [...$('#command-results').querySelectorAll('button')];
     if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
       event.preventDefault();
       const index = items.indexOf(document.activeElement);
-      const next = event.key === 'ArrowDown'
-        ? (index + 1) % items.length
-        : (index <= 0 ? items.length - 1 : index - 1);
+      const next = event.key === 'ArrowDown' ? (index + 1) % items.length : (index <= 0 ? items.length - 1 : index - 1);
       items[next]?.focus();
     } else if (event.key === 'Enter' && document.activeElement.matches('.command-item')) {
       event.preventDefault();
@@ -1023,19 +1060,17 @@ document.addEventListener('keydown', event => {
     }
     return;
   }
-  if (event.key === '/' && !typing && !recordDialog.open) {
+  if (event.key === '/' && !typing && !recordPanel.open) {
     event.preventDefault();
     $('#q').focus();
-  } else if (event.key.toLowerCase() === 'r' && !typing && !recordDialog.open) {
+  } else if (event.key.toLowerCase() === 'r' && !typing && !recordPanel.open) {
     event.preventDefault();
     drawRecord();
   }
 });
 
-recordDialog.addEventListener('click', event => {
-  if (event.target === recordDialog) closeRecord();
-});
-recordDialog.addEventListener('close', () => {
+recordPanel.addEventListener('click', event => { if (event.target === recordPanel) closeRecord(); });
+recordPanel.addEventListener('close', () => {
   const opener = dialogOpener;
   const recordId = opener?.dataset?.record;
   current = null;
@@ -1046,18 +1081,9 @@ recordDialog.addEventListener('close', () => {
     : opener;
   (replacement?.isConnected ? replacement : $('#main'))?.focus({ preventScroll: true });
 });
-commandDialog.addEventListener('click', event => {
-  if (event.target === commandDialog) closeCommand();
-});
 
+commandDialog.addEventListener('click', event => { if (event.target === commandDialog) closeCommand(); });
 $('#command-query').addEventListener('input', event => renderCommandResults(event.target.value));
-$('#q').addEventListener('search', event => {
-  query = event.target.value.trim();
-  view = 'index';
-  activeCrate = '';
-  pageSize = 72;
-  render();
-});
 
 applyPreferences();
 boot();

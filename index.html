@@ -1,83 +1,110 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#11110f">
-  <meta name="description" content="A private, local-first index of records.">
-  <title>SonicField — The Null Index</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0c0b09">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="SonicField — The Null Index. A private, local-first record archive with no account.">
+<title>SonicField — The Null Index</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to the index</a>
-  <div class="shell">
-    <aside class="rail" aria-label="Primary navigation">
-      <a class="wordmark" href="#room" data-view="room" aria-label="SonicField room">
-        <span class="wordmark-mark" aria-hidden="true">SF</span>
-        <span class="wordmark-type">SONICFIELD<small>PRIVATE RECORD ARCHIVE</small></span>
-      </a>
-      <p class="rail-label">Navigate</p>
-      <nav class="primary-nav" aria-label="Main">
-        <button data-view="room"><span>01</span> Room</button>
-        <button data-view="index"><span>02</span> Index <b id="nav-total"></b></button>
-        <button data-view="saved"><span>03</span> Kept <b id="nav-saved"></b></button>
-        <button data-view="ledger"><span>04</span> Ledger</button>
-        <button data-view="settings"><span>05</span> Settings</button>
-      </nav>
-      <div class="rail-crates">
-        <div class="rail-heading"><span class="rail-label">Crates</span><button data-view="index" class="text-button">ALL</button></div>
-        <nav id="crate-nav" aria-label="Browse crates"></nav>
-      </div>
-      <div class="rail-foot">
-        <span class="local-mark" aria-hidden="true"></span>
-        <span>LOCAL ARCHIVE<small>YOUR DEVICE / NO ACCOUNT</small></span>
-      </div>
-    </aside>
+<a class="skip-link" href="#main">Skip to the archive</a>
 
-    <div class="stage">
-      <header class="topbar">
-        <a class="mobile-wordmark" href="#room" data-view="room">SF / SONICFIELD</a>
-        <div class="route-label"><span id="route-kicker">PRIVATE ARCHIVE</span><strong id="route-title">Listening room</strong></div>
-        <label class="search-field">
-          <span aria-hidden="true">⌕</span>
-          <input id="q" type="search" placeholder="Search records, artists, tags…" aria-label="Search the collection" autocomplete="off" spellcheck="false">
-          <kbd>/</kbd>
-        </label>
-        <div class="top-actions">
-          <button id="command-open" class="quiet-button" aria-haspopup="dialog" aria-label="Open command palette">COMMAND <kbd>CTRL/⌘K</kbd></button>
-          <button id="pull" class="draw-button" data-action="draw">DRAW <kbd>R</kbd></button>
-        </div>
-      </header>
+<div class="frame">
 
-      <main id="main" tabindex="-1">
-        <div id="wall">
-          <p class="loading-state"><span class="signal-line"></span> Opening the archive…</p>
-        </div>
-      </main>
+  <aside class="spine" aria-label="Primary navigation">
+    <a class="mark" href="#room" data-view="room">
+      <span class="mark-glyph" aria-hidden="true">00</span>
+      <span class="mark-type">SONICFIELD<small>THE NULL INDEX</small></span>
+    </a>
+
+    <nav class="spine-nav" aria-label="Sections">
+      <button type="button" data-view="room"><b>00</b><span>Room</span></button>
+      <button type="button" data-view="index"><b>01</b><span>Index</span><i id="nav-total"></i></button>
+      <button type="button" data-view="saved"><b>02</b><span>Kept</span><i id="nav-saved"></i></button>
+      <button type="button" data-view="ledger"><b>03</b><span>Ledger</span></button>
+      <button type="button" data-view="settings"><b>04</b><span>Settings</span></button>
+    </nav>
+
+    <div class="spine-crates">
+      <div class="spine-crates-head">
+        <span>Crates</span>
+        <button type="button" class="text-button" data-view="index">ALL ↗</button>
+      </div>
+      <nav id="crate-nav" class="crate-nav" aria-label="Browse by crate"></nav>
     </div>
+
+    <div class="spine-foot">
+      <span class="pulse" aria-hidden="true"></span>
+      <span class="spine-foot-type">LOCAL ARCHIVE<small>THIS DEVICE · NO ACCOUNT · NO REMOTE COPY</small></span>
+    </div>
+  </aside>
+
+  <div class="stage">
+    <header class="topbar">
+      <a class="topbar-mark" href="#room" data-view="room" aria-label="SonicField room">SF</a>
+
+      <div class="route" aria-hidden="true">
+        <span id="route-kicker">PRIVATE ARCHIVE</span>
+        <strong id="route-title">Room</strong>
+      </div>
+
+      <label class="search-field">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <input id="q" type="search" placeholder="Search title, artist, crate, tag…" aria-label="Search the archive" autocomplete="off" spellcheck="false">
+        <kbd>/</kbd>
+      </label>
+
+      <div class="top-actions">
+        <button type="button" id="command-open" aria-haspopup="dialog" aria-label="Open the command line">
+          <span class="hide-narrow">DIRECT ACCESS</span><kbd>⌘K</kbd>
+        </button>
+        <button type="button" id="pull" class="draw-button" data-action="draw">
+          DRAW<kbd>R</kbd>
+        </button>
+      </div>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <div id="wall">
+        <p class="loading-state"><span class="loading-cursor" aria-hidden="true">_</span> Opening the archive…</p>
+      </div>
+      <div id="sentinel-top" class="scroll-sentinel" aria-hidden="true"></div>
+      <div id="sentinel-bottom" class="scroll-sentinel" aria-hidden="true"></div>
+    </main>
   </div>
+</div>
 
-  <nav class="mobile-nav" aria-label="Main navigation">
-    <button data-view="room"><span>01</span>Room</button>
-    <button data-view="index"><span>02</span>Index</button>
-    <button data-view="saved"><span>03</span>Kept</button>
-    <button data-view="ledger"><span>04</span>Ledger</button>
-    <button data-view="settings"><span>05</span>Set</button>
-  </nav>
+<nav class="index-line" aria-label="Primary navigation">
+  <button type="button" data-view="room"><b>00</b>Room</button>
+  <button type="button" data-view="index"><b>01</b>Index</button>
+  <button type="button" data-view="saved"><b>02</b>Kept</button>
+  <button type="button" data-view="ledger"><b>03</b>Ledger</button>
+  <button type="button" data-view="settings"><b>04</b>Set</button>
+</nav>
 
-  <dialog id="record-dialog" class="record-dialog" aria-labelledby="detail-title">
-    <div id="detail-content"></div>
-  </dialog>
-  <dialog id="command-dialog" class="command-dialog" aria-labelledby="command-title">
-    <div class="command-head">
-      <div><span class="eyebrow">DIRECT ACCESS / 00</span><h2 id="command-title">Go somewhere.</h2></div>
-      <button class="close-button" data-close-command aria-label="Close command palette">×</button>
-    </div>
-    <label class="command-search"><span aria-hidden="true">⌕</span><input id="command-query" type="search" placeholder="A view, record, artist, or action" autocomplete="off" aria-label="Search commands"></label>
-    <div id="command-results" class="command-results"></div>
-    <p class="command-hint"><kbd>↑</kbd><kbd>↓</kbd> MOVE <kbd>ENTER</kbd> OPEN <kbd>ESC</kbd> CLOSE</p>
-  </dialog>
-  <div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
-  <script type="module" src="app.js"></script>
+<dialog id="record-panel" class="record-panel" aria-labelledby="detail-title">
+  <div id="detail-content"></div>
+</dialog>
+
+<dialog id="command-dialog" class="command-dialog" aria-labelledby="command-title">
+  <div class="command-head">
+    <p class="eyebrow">DIRECT ACCESS / 00</p>
+    <h2 id="command-title"><span class="command-cursor" aria-hidden="true">&gt;</span> Go somewhere, or do something.</h2>
+    <button type="button" class="close-button" data-close-command aria-label="Close direct access">×</button>
+  </div>
+  <label class="command-search">
+    <span aria-hidden="true">⌕</span>
+    <input id="command-query" type="search" placeholder="A view, record, artist, crate, or action" autocomplete="off" aria-label="Query">
+  </label>
+  <div id="command-results" class="command-results" role="listbox" aria-label="Results"></div>
+  <p class="command-hint"><kbd>↑</kbd><kbd>↓</kbd> move <kbd>↵</kbd> open <kbd>esc</kbd> close</p>
+</dialog>
+
+<div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+<script type="module" src="app.js"></script>
 </body>
 </html>
