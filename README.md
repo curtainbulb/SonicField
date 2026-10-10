@@ -1,15 +1,5 @@
-# SONICFIELD / NULL CHOIR
+# Albums
 
-The interface treats `albums.md` as a dead broadcast log rather than a collection dashboard. A user moves through rooms in a long procession, searches the source, or summons one unheard record from the current room. The only durable action is a mark: when an album is heard, it moves from absence into the ledger.
+Keep `index.html`, `style.css`, `app.js`, and `albums.md` together. No package installation or build step is used. When served from a static host, the page reads the neighboring Markdown file automatically. When opened directly from disk, choose `albums.md` in the source prompt; this is required by browser file-access rules.
 
-The visual system is deliberately spare: a weighted near-black ground, hairline rules, serif reading text, monospaced indices, and one desaturated green signal for the parts that are still alive. The right-hand ledger gives the selected record a physical place without turning the archive into a grid of cards. The full list is window-rendered so the register stays light at source scale, and browser-local state preserves marks, filters, selection, and the last position.
-
-## Run
-
-Regenerate the data artifact whenever `albums.md` changes:
-
-```sh
-node build.mjs
-```
-
-Then open `index.html` in a browser, or serve the folder with any static file server. No dependencies or account are required.
+Cover searches are lazy and paced. Exact Apple album URLs replace the search fallback when a match is found; cover failures and unmatched records are shown in place. Mark records heard, keep a record in orbit for another listen, leave a searchable margin note, or leave a paper slip for later. Notes unlock Echo, which traces one of their specific words into an unheard album title, artist, category, or description; if no word connects, it opens a least-heard cut as a counterpoint. The ∿ pull cycles from one to three and quietly biases future Detours toward records that keep calling you back. The current row accumulates a private linger time while it is in view; that memory stays local, appears in the position line, and gives future Detours a gentle pull toward records you paused over. Next unheard, Detour, and Take slip provide different ways through the source order. Alt+S, Alt+O, Alt+P, and Alt+E are the row shortcuts for slip, orbit, pull, and Echo; Alt+N, Alt+D, and Alt+R operate the footer routes. Your heard marks, orbit, notes, slips, pulls, attention memory, and last position stay in this browser. Export a JSON copy of the listening record or import one to merge records between browsers; nothing in that backup is sent anywhere. Rationale: see [RATIONALE.md](RATIONALE.md).

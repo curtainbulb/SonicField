@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="A personal album checklist, read from its source file.">
+  <title>Albums / index</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#album-window">Skip to albums</a>
+
+  <header class="masthead">
+    <div class="masthead-title">
+      <h1>Albums</h1>
+      <p id="catalog-summary" class="catalog-summary">Reading source…</p>
+    </div>
+    <div class="controls" aria-label="Catalog controls">
+      <label class="search-wrap">
+        <span class="sr-only">Search albums</span>
+        <input id="search" type="search" placeholder="Find title, artist, year, notes" autocomplete="off" disabled>
+        <span class="search-glyph" aria-hidden="true">⌕</span>
+      </label>
+      <label class="select-wrap">
+        <span class="sr-only">Move by category</span>
+        <select id="category" disabled>
+          <option value="all">All categories</option>
+        </select>
+      </label>
+      <label class="select-wrap state-select">
+        <span class="sr-only">Filter listening state</span>
+        <select id="heard-filter" disabled>
+          <option value="all">All records</option>
+          <option value="unheard">Not heard</option>
+          <option value="heard">Heard</option>
+          <option value="notes">With notes</option>
+          <option value="orbit">In orbit</option>
+          <option value="pulled">With pull</option>
+          <option value="slip">On paper slips</option>
+        </select>
+      </label>
+    </div>
+    <div id="progress-track" class="progress-track" aria-hidden="true">
+      <div id="progress-fill" class="progress-fill"></div>
+      <span id="progress-label" class="progress-label"></span>
+    </div>
+  </header>
+
+  <main id="album-window" class="album-window" tabindex="0" role="region" aria-label="Album strip">
+    <div id="tape" class="tape" aria-live="off"></div>
+  </main>
+
+  <footer class="footline">
+    <p id="position" class="position" aria-live="polite">Waiting for albums</p>
+    <div class="route-actions" role="group" aria-label="Ways to continue">
+      <button id="continue-button" type="button" title="Jump to the next unheard album in source order (Alt+N)" disabled>Next unheard</button>
+      <button id="detour-button" type="button" title="Find an unheard album in one of your least-heard categories (Alt+D)" disabled>Detour</button>
+      <button id="slip-button" type="button" title="Take the oldest paper slip you left for later (Alt+R)" disabled>
+        Take slip<span id="slip-count" class="slip-count" aria-hidden="true" hidden></span>
+      </button>
+      <span id="route-result" class="route-result" role="status" aria-live="polite"></span>
+    </div>
+    <div class="record-actions" role="group" aria-label="Listening record backup">
+      <button id="export-record" type="button" disabled>Export</button>
+      <label class="import-record" for="import-record">Import
+        <input id="import-record" type="file" accept="application/json,.json" disabled>
+      </label>
+    </div>
+    <p id="connection" class="connection" role="status" aria-live="polite"></p>
+  </footer>
+
+  <section id="source-help" class="source-help" hidden aria-labelledby="source-title">
+    <div class="source-note">
+      <p class="section-kicker">Source required</p>
+      <h2 id="source-title">Open the catalog file</h2>
+      <p>This page reads <code>albums.md</code> beside itself. When opened directly from disk, the browser keeps pages from reading nearby files automatically. Choose the source file to continue.</p>
+      <label class="file-choice">Choose albums.md
+        <input id="source-file" type="file" accept=".md,text/markdown,text/plain">
+      </label>
+    </div>
+  </section>
+
+  <noscript>
+    <p class="noscript">This catalog needs JavaScript to read albums.md and save listening marks.</p>
+  </noscript>
+</body>
+</html>
